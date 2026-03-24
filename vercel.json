@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd byoc-website && npm install && npm run build",
+  "outputDirectory": "byoc-website/.next",
+  "framework": "nextjs"
+}
