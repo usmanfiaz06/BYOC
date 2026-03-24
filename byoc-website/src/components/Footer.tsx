@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Mail, MapPin, Coffee } from 'lucide-react';
 
 function LinkedinIcon({ size = 18 }: { size?: number }) {
@@ -50,18 +49,12 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="bg-coffee-dark text-cream/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Image
-              src="/byoc-logo.png"
-              alt="BYOC"
-              width={120}
-              height={48}
-              className="h-10 w-auto brightness-0 invert mb-4"
-            />
-            <p className="text-sm text-cream/60 leading-relaxed mb-6">
+            <div className="text-lg font-bold text-cream mb-4">☕ BYOC</div>
+            <p className="text-[13px] text-cream/50 leading-relaxed mb-6">
               The world&apos;s most authentic networking community. Real conversations. Real connections. 21+ countries.
             </p>
             <div className="flex gap-3">
@@ -71,10 +64,10 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-cream/10 flex items-center justify-center hover:bg-accent transition-colors"
+                  className="w-9 h-9 rounded-full bg-cream/10 flex items-center justify-center hover:bg-accent transition-colors"
                   aria-label={social.label}
                 >
-                  <social.Icon size={18} />
+                  <social.Icon size={16} />
                 </a>
               ))}
             </div>
@@ -82,11 +75,11 @@ export default function Footer() {
 
           {/* Community */}
           <div>
-            <h3 className="text-sm font-semibold text-cream uppercase tracking-wider mb-4">Community</h3>
+            <h3 className="text-[12px] font-semibold text-cream uppercase tracking-widest mb-4">Community</h3>
             <ul className="space-y-3">
               {footerLinks.community.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-cream/60 hover:text-cream transition-colors">
+                  <Link href={link.href} className="text-[13px] text-cream/50 hover:text-cream transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -96,11 +89,11 @@ export default function Footer() {
 
           {/* Get Involved */}
           <div>
-            <h3 className="text-sm font-semibold text-cream uppercase tracking-wider mb-4">Get Involved</h3>
+            <h3 className="text-[12px] font-semibold text-cream uppercase tracking-widest mb-4">Get Involved</h3>
             <ul className="space-y-3">
               {footerLinks.getInvolved.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-cream/60 hover:text-cream transition-colors">
+                  <Link href={link.href} className="text-[13px] text-cream/50 hover:text-cream transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -110,23 +103,23 @@ export default function Footer() {
 
           {/* Stay Connected */}
           <div>
-            <h3 className="text-sm font-semibold text-cream uppercase tracking-wider mb-4">Stay Connected</h3>
-            <p className="text-sm text-cream/60 mb-4">
+            <h3 className="text-[12px] font-semibold text-cream uppercase tracking-widest mb-4">Stay Connected</h3>
+            <p className="text-[13px] text-cream/50 mb-4 leading-relaxed">
               Join 3,200+ leaders, founders, and builders across the globe.
             </p>
-            <div className="flex items-center gap-2 text-sm text-cream/40">
-              <Coffee size={16} />
+            <div className="flex items-center gap-2 text-[12px] text-cream/30">
+              <Coffee size={14} />
               <span>Buy your own coffee. Build your own future.</span>
             </div>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-cream/40">
+        <div className="mt-14 pt-6 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[12px] text-cream/30">
             &copy; {new Date().getFullYear()} BYOC Global. All rights reserved.
           </p>
-          <div className="flex items-center gap-1 text-xs text-cream/40">
+          <div className="flex items-center gap-1 text-[12px] text-cream/30">
             <MapPin size={12} />
             <span>Active in 21+ countries worldwide</span>
           </div>
