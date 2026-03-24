@@ -246,7 +246,7 @@ export default function Home() {
           <div className="space-y-16">
             {[
               { step: '01', title: 'Find your city', desc: 'Browse active chapters across five continents. Each follows the same format — intimate, unstructured, high-signal.' },
-              { step: '02', title: 'Show up as yourself', desc: 'Buy your own coffee. Sit down. No name badges, no elevator pitches, no breakout sessions. Just conversation.' },
+              { step: '02', title: 'Show up as yourself', desc: 'Buy your own coffee. Sit down. No elevator pitches, no breakout sessions, no formalities. Just conversation.' },
               { step: '03', title: 'Build from there', desc: 'The best partnerships, hires, and investments start with trust. Trust starts with a real conversation over a good cup of coffee.' },
             ].map((item) => (
               <div key={item.step} className="grid grid-cols-[60px_1fr] gap-8 items-start">

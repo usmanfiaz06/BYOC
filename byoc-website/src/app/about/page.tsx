@@ -58,7 +58,7 @@ export default function AboutPage() {
               <div className="absolute top-12 right-12 w-12 h-12 rounded-full border border-card-border/30 opacity-20" />
               <div className="text-[10px] text-muted/40 tracking-[0.2em] uppercase mb-10">Removed</div>
               <div className="space-y-6">
-                {['Stages & keynotes', 'Panel discussions', 'Formal agendas', 'Sponsored messaging', 'Corporate theatrics', 'Name badge hierarchies'].map((item, i) => (
+                {['Stages & keynotes', 'Panel discussions', 'Formal agendas', 'Sponsored messaging', 'Corporate theatrics', 'Forced introductions'].map((item, i) => (
                   <div key={item} className="flex items-center gap-4 group" style={{ opacity: 0.35 + (i * 0.02) }}>
                     <span className="text-[18px] text-muted/20 font-light">×</span>
                     <span className="text-[16px] lg:text-[18px] text-muted/60 line-through decoration-muted/20 font-serif">{item}</span>
