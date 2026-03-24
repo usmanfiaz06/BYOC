@@ -87,6 +87,11 @@ export default function Home() {
             </div>
 
             {/* RIGHT — Bento Grid */}
+            <div>
+            {/* Mobile-only intro tagline */}
+            <p className="lg:hidden text-[15px] text-muted leading-[1.7] mb-6">
+              A global community where founders, investors, and operators meet over coffee — no stages, no sponsors, no agendas.
+            </p>
             <div className="grid grid-cols-2 gap-3 auto-rows-min">
 
               {/* Card: 80+ Gatherings */}
@@ -174,6 +179,7 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
