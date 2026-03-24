@@ -42,33 +42,41 @@ export default function AboutPage() {
       </section>
 
       {/* What We Removed */}
-      <section className="py-28">
+      <section className="py-28 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5 text-center">The Design</p>
-          <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em] text-center mb-20">
-            We designed by subtraction.
-          </h2>
+          <div className="text-center mb-16">
+            <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">The Design</p>
+            <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
+              We designed by subtraction.
+            </h2>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-[900px] mx-auto">
-            <div className="bg-card rounded-2xl p-8 border border-card-border">
-              <div className="text-[10px] text-muted/50 tracking-[0.15em] uppercase mb-6">Removed</div>
-              <div className="space-y-4">
-                {['Stages & keynotes', 'Panel discussions', 'Formal agendas', 'Sponsored messaging', 'Corporate theatrics', 'Name badge hierarchies'].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <span className="text-[10px] text-muted/30">✕</span>
-                    <span className="text-[13px] text-muted/50 line-through">{item}</span>
+          <div className="grid md:grid-cols-2 gap-0 max-w-[1100px] mx-auto">
+            {/* Removed — left card */}
+            <div className="bg-card rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none p-10 lg:p-14 border border-card-border relative">
+              <div className="absolute top-8 right-8 w-20 h-20 rounded-full border border-card-border/50 opacity-30" />
+              <div className="absolute top-12 right-12 w-12 h-12 rounded-full border border-card-border/30 opacity-20" />
+              <div className="text-[10px] text-muted/40 tracking-[0.2em] uppercase mb-10">Removed</div>
+              <div className="space-y-6">
+                {['Stages & keynotes', 'Panel discussions', 'Formal agendas', 'Sponsored messaging', 'Corporate theatrics', 'Name badge hierarchies'].map((item, i) => (
+                  <div key={item} className="flex items-center gap-4 group" style={{ opacity: 0.35 + (i * 0.02) }}>
+                    <span className="text-[18px] text-muted/20 font-light">×</span>
+                    <span className="text-[16px] lg:text-[18px] text-muted/60 line-through decoration-muted/20 font-serif">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-coffee-dark rounded-2xl p-8">
-              <div className="text-[10px] text-accent tracking-[0.15em] uppercase mb-6">What Remains</div>
-              <div className="space-y-4">
+            {/* What Remains — right card */}
+            <div className="bg-coffee-dark rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none p-10 lg:p-14 relative overflow-hidden">
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-accent/5" />
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-accent/8" />
+              <div className="text-[10px] text-accent tracking-[0.2em] uppercase mb-10">What Remains</div>
+              <div className="space-y-6">
                 {['Unfiltered conversation', 'Honest introductions', 'Organic connection', 'Cross-sector exchange', 'Mutual accountability', 'Exceptional coffee'].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <span className="text-accent text-[8px]">◆</span>
-                    <span className="text-[13px] text-cream/70">{item}</span>
+                  <div key={item} className="flex items-center gap-4">
+                    <span className="text-accent text-[10px]">◆</span>
+                    <span className="text-[16px] lg:text-[18px] text-cream/80 font-serif">{item}</span>
                   </div>
                 ))}
               </div>
