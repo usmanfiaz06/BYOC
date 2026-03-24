@@ -1,21 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import {
-  MapPin, Users, Globe, Calendar, ArrowRight, Coffee,
-  ChevronRight, Play, Quote, Sparkles
-} from 'lucide-react';
-import { CoffeeCupDoodle, ChatBubbleDoodle, GlobeDoodle, PeopleDoodle, CoffeeBeansPattern } from '@/components/DoodleSVGs';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+import { ArrowRight, Play, ChevronRight, Quote, Coffee } from 'lucide-react';
 
 const chapters = [
   { city: 'Islamabad', country: 'Pakistan', flag: '🇵🇰' },
@@ -38,21 +24,14 @@ const chapters = [
   { city: 'Karachi', country: 'Pakistan', flag: '🇵🇰' },
 ];
 
-const stats = [
-  { number: '80+', label: 'Meetups Hosted', icon: Calendar },
-  { number: '21+', label: 'Countries', icon: Globe },
-  { number: '3,200+', label: 'Community Members', icon: Users },
-  { number: '18+', label: 'City Chapters', icon: MapPin },
-];
-
 const testimonials = [
   {
-    quote: "It felt real. No pitches, no agendas — just genuine human connection over coffee.",
+    quote: "The most refreshing networking experience I've ever had. No elevator pitches — just real human beings.",
     author: "Startup Founder",
     city: "San Francisco"
   },
   {
-    quote: "I met people I would never meet otherwise. Conversations here go deeper than any conference.",
+    quote: "I've attended hundreds of events. BYOC is the only one where I made genuine friends, not contacts.",
     author: "Tech Executive",
     city: "London"
   },
@@ -63,481 +42,366 @@ const testimonials = [
   },
 ];
 
-const values = [
-  {
-    title: 'No Stages',
-    description: 'Everyone is equal. No keynotes, no panels — just conversations.',
-    icon: '🎤',
-  },
-  {
-    title: 'No Sponsors',
-    description: 'Community-led, sponsor-independent. You buy your own coffee.',
-    icon: '☕',
-  },
-  {
-    title: 'No Agendas',
-    description: 'Organic exchange of experience, perspective, and intent.',
-    icon: '📋',
-  },
-  {
-    title: 'No Pretense',
-    description: 'Come as a human, not a title. Listen more than pitch.',
-    icon: '🤝',
-  },
-];
-
 export default function Home() {
   return (
-    <div className="relative overflow-hidden">
-      {/* Background pattern */}
-      <CoffeeBeansPattern className="absolute top-0 left-0 w-full h-full text-coffee-dark pointer-events-none" />
+    <div className="relative">
+      {/* ============ HERO — BENTO LAYOUT ============ */}
+      <section className="min-h-[92vh] flex items-center">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 w-full">
+          <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 items-start">
 
-      {/* ============ HERO ============ */}
-      <section className="relative min-h-[90vh] flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Text */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-            >
-              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full text-accent text-sm font-medium mb-6">
-                <Sparkles size={16} />
-                Active in 21+ countries
-              </motion.div>
-              <motion.h1
-                variants={fadeInUp}
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold text-coffee-dark leading-[1.1] tracking-tight"
-              >
-                Where real
-                <br />
-                conversations
-                <br />
-                <span className="text-accent">start.</span>
-              </motion.h1>
-              <motion.p
-                variants={fadeInUp}
-                className="mt-6 text-lg text-muted max-w-lg leading-relaxed"
-              >
-                BYOC is the world&apos;s most authentic networking community. No stages. No sponsors. No agendas. Just humans, coffee, and conversations that matter.
-              </motion.p>
-              <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap gap-4">
+            {/* Left: Bento Grid */}
+            <div className="grid grid-cols-2 gap-3 auto-rows-min">
+
+              {/* Card: 80+ Meetups */}
+              <div className="bg-card rounded-2xl p-5 border border-card-border">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="text-[42px] font-light tracking-tight text-coffee-dark leading-none">80+</div>
+                    <div className="text-[13px] text-muted mt-2 tracking-wide uppercase">Meetups hosted</div>
+                  </div>
+                  <div className="w-9 h-9 rounded-full border border-card-border flex items-center justify-center hover:bg-accent hover:border-accent hover:text-cream transition-colors cursor-pointer">
+                    <ArrowRight size={14} className="-rotate-45" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card: Curated Community */}
+              <div className="bg-card rounded-2xl p-5 border border-card-border">
+                <div className="flex items-center gap-1.5 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-accent text-[11px]">◆</span>
+                  ))}
+                  <span className="text-[12px] text-muted ml-1.5 tracking-wide">Curated</span>
+                </div>
+                <div className="flex -space-x-2 mt-3 mb-3">
+                  {['🇵🇰', '🇺🇸', '🇬🇧', '🇦🇪'].map((flag, i) => (
+                    <div key={i} className="w-8 h-8 rounded-full bg-cream-dark border-2 border-card flex items-center justify-center text-sm">
+                      {flag}
+                    </div>
+                  ))}
+                </div>
+                <div className="text-[14px] font-medium text-coffee-dark tracking-tight">Invite-only circles</div>
+                <div className="text-[11px] text-muted mt-0.5 leading-relaxed">Founders, investors &amp; builders across 21+ countries</div>
+              </div>
+
+              {/* Card: The Ethos */}
+              <div className="bg-card rounded-2xl p-5 border border-card-border">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="text-[14px] font-medium text-coffee-dark leading-tight tracking-tight">
+                    The BYOC<br />ethos
+                  </div>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium uppercase tracking-wider">exclusive</span>
+                </div>
+                <div className="text-[11px] text-muted leading-relaxed">
+                  No Stages. No Sponsors.<br />No Agendas. No Pretense.
+                </div>
+                <div className="mt-4 pt-3 border-t border-card-border">
+                  <div className="text-[11px] text-muted uppercase tracking-widest">Entry</div>
+                  <div className="text-[20px] font-light text-coffee-dark tracking-tight">By invitation</div>
+                </div>
+              </div>
+
+              {/* Card: Featured — tall */}
+              <div className="bg-card rounded-2xl border border-card-border overflow-hidden row-span-2">
+                <div className="p-4 pb-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] text-muted uppercase tracking-widest">Featured</span>
+                    <span className="text-muted-light text-lg leading-none">···</span>
+                  </div>
+                </div>
+                <div className="mx-3 aspect-[4/5] rounded-xl bg-coffee-dark flex items-center justify-center overflow-hidden relative">
+                  <div className="absolute inset-0 bg-gradient-to-b from-coffee-dark/0 via-coffee-dark/0 to-coffee-dark/80" />
+                  <div className="text-7xl opacity-30">☕</div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="text-[12px] text-cream/50 uppercase tracking-widest">Global Series</div>
+                    <div className="text-[15px] font-medium text-cream mt-0.5">The Founders&apos; Table</div>
+                  </div>
+                </div>
+                <div className="p-4 pt-3">
+                  <div className="text-[13px] text-muted leading-relaxed">Intimate, curated conversations with exceptional people</div>
+                </div>
+              </div>
+
+              {/* Card: Next Gathering */}
+              <div className="bg-card rounded-2xl p-5 border border-card-border">
+                <div className="flex items-center justify-between text-[11px] text-muted uppercase tracking-widest mb-3">
+                  <span>Next gathering</span>
+                  <span className="text-accent">Live</span>
+                </div>
+                <div className="text-[36px] font-light tracking-tight text-coffee-dark leading-none">18:00</div>
+                <div className="text-[11px] text-muted mt-1.5 tracking-wide uppercase">This Saturday</div>
+                <div className="flex gap-[3px] mt-4">
+                  {[...Array(10)].map((_, i) => (
+                    <div key={i} className="w-[3px] bg-coffee-dark/70 rounded-full" style={{ height: `${8 + Math.sin(i * 0.8) * 12 + 12}px` }} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Hero Text */}
+            <div className="lg:pt-6">
+              <h1 className="text-[44px] sm:text-[56px] lg:text-[66px] font-serif leading-[1.06] tracking-[-0.02em] text-coffee-dark">
+                Intimate gatherings for exceptional
+                {' '}people
+                <span className="inline-flex items-center gap-1.5 ml-3 align-middle">
+                  <span className="inline-block w-8 h-8 rounded-full bg-accent" />
+                  <span className="inline-block w-6 h-6 rotate-45 border-2 border-accent" />
+                </span>
+              </h1>
+
+              <p className="mt-7 text-[15px] leading-[1.7] text-muted max-w-[500px]">
+                BYOC curates invite-only gatherings across 21+ countries where founders, investors, and builders connect through unfiltered conversation — no stages, no sponsors, no pretense. Just coffee and the people who are shaping what comes next.
+              </p>
+
+              <div className="mt-9 flex items-center gap-3">
                 <Link
                   href="/events"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-coffee-dark text-cream font-medium rounded-full hover:bg-coffee-medium transition-all hover:scale-105"
+                  className="inline-flex items-center gap-3 px-7 py-3.5 bg-coffee-dark text-cream text-[13px] font-medium rounded-full hover:bg-coffee-medium transition-colors tracking-wide uppercase"
                 >
-                  Find a Meetup
-                  <ArrowRight size={18} />
+                  Request invite
+                  <ArrowRight size={15} />
                 </Link>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-coffee-dark/20 text-coffee-dark font-medium rounded-full hover:border-coffee-dark/40 transition-all"
-                >
-                  Learn More
-                </Link>
-              </motion.div>
-            </motion.div>
+                <button className="inline-flex items-center gap-2.5 px-5 py-3.5 border border-card-border text-[13px] text-coffee-dark rounded-full hover:border-foreground/30 transition-colors bg-card tracking-wide uppercase">
+                  Watch film
+                  <div className="w-7 h-7 rounded-full bg-coffee-dark flex items-center justify-center">
+                    <Play size={9} className="text-cream ml-0.5" fill="currentColor" />
+                  </div>
+                </button>
+              </div>
 
-            {/* Right: Bento Grid */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-2 gap-4"
-            >
-              <div className="bg-card rounded-3xl p-6 border border-card-border shadow-sm">
-                <div className="text-4xl font-bold text-coffee-dark">80+</div>
-                <div className="text-sm text-muted mt-1">Meetups Globally</div>
-                <CoffeeCupDoodle className="w-16 h-16 text-accent/30 mt-3" />
+              {/* Stats Row */}
+              <div className="mt-14 grid grid-cols-2 gap-4">
+                <div className="bg-card rounded-2xl p-6 border border-card-border">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-accent">◆</span>
+                    <div className="flex-1 h-px bg-card-border" />
+                  </div>
+                  <div className="text-[36px] font-light tracking-tight text-coffee-dark leading-none">21+</div>
+                  <div className="text-[12px] text-muted mt-2 leading-relaxed">
+                    Countries — from San Francisco to Singapore, Nairobi to Berlin
+                  </div>
+                </div>
+                <div className="bg-card rounded-2xl p-6 border border-card-border">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-accent">◆</span>
+                    <div className="flex-1 h-px bg-card-border" />
+                    <span className="text-[10px] px-2 py-0.5 rounded-full border border-card-border text-muted uppercase tracking-wider">elite</span>
+                  </div>
+                  <div className="text-[36px] font-light tracking-tight text-coffee-dark leading-none">3.2k</div>
+                  <div className="text-[12px] text-muted mt-2 leading-relaxed">
+                    Vetted members — founders, operators, and investors worldwide
+                  </div>
+                </div>
               </div>
-              <div className="bg-coffee-dark rounded-3xl p-6 text-cream">
-                <div className="text-4xl font-bold">21+</div>
-                <div className="text-sm text-cream/60 mt-1">Countries</div>
-                <GlobeDoodle className="w-16 h-16 text-accent/40 mt-3" />
-              </div>
-              <div className="bg-accent/10 rounded-3xl p-6 border border-accent/20">
-                <div className="text-4xl font-bold text-coffee-dark">3,200+</div>
-                <div className="text-sm text-muted mt-1">Community Members</div>
-                <PeopleDoodle className="w-24 h-12 text-accent/40 mt-3" />
-              </div>
-              <div className="bg-card rounded-3xl p-6 border border-card-border shadow-sm flex flex-col items-center justify-center text-center">
-                <ChatBubbleDoodle className="w-16 h-16 text-coffee-medium/30 mb-2" />
-                <div className="text-sm font-medium text-coffee-dark">Real Talk.</div>
-                <div className="text-xs text-muted mt-1">No corporate theatrics</div>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ============ CITY MARQUEE ============ */}
-      <section className="py-8 border-y border-card-border bg-cream overflow-hidden">
-        <div className="animate-marquee flex whitespace-nowrap gap-8">
-          {[...chapters, ...chapters].map((ch, i) => (
-            <span key={i} className="inline-flex items-center gap-2 text-sm text-muted font-medium">
+      {/* ============ MARQUEE DIVIDER ============ */}
+      <section className="py-5 border-y border-card-border overflow-hidden">
+        <div className="flex whitespace-nowrap gap-8 animate-marquee">
+          {[...chapters, ...chapters, ...chapters].map((ch, i) => (
+            <span key={i} className="inline-flex items-center gap-2 text-[13px] text-muted/60 tracking-wide">
               <span>{ch.flag}</span>
-              <span>{ch.city}</span>
-              <span className="text-accent">•</span>
+              <span className="uppercase">{ch.city}</span>
+              <span className="text-accent/40">·</span>
             </span>
           ))}
         </div>
       </section>
 
-      {/* ============ WHAT IS BYOC ============ */}
-      <section className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={stagger}
-            className="text-center mb-16"
-          >
-            <motion.p variants={fadeInUp} className="text-sm font-medium text-accent uppercase tracking-wider mb-3">
-              The Concept
-            </motion.p>
-            <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold text-coffee-dark">
-              Networking, reimagined.
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-4 text-lg text-muted max-w-2xl mx-auto">
-              We stripped away everything that makes networking feel forced. What&apos;s left is pure human connection — the way it should be.
-            </motion.p>
-          </motion.div>
+      {/* ============ VALUES ============ */}
+      <section className="py-24">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="text-center mb-16">
+            <p className="text-[11px] font-medium text-accent uppercase tracking-[0.2em] mb-4">The Philosophy</p>
+            <h2 className="text-[40px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
+              Networking, stripped bare.
+            </h2>
+            <p className="mt-5 text-[15px] text-muted max-w-xl mx-auto leading-[1.7]">
+              We removed everything that makes networking performative. What remains is rare and real.
+            </p>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={stagger}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {values.map((value) => (
-              <motion.div
-                key={value.title}
-                variants={fadeInUp}
-                className="bg-card rounded-2xl p-8 border border-card-border hover:border-accent/30 transition-all hover:shadow-lg group"
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { title: 'No Stages', desc: 'Everyone sits at the same table. No keynotes, no panels — just eye-level conversations.', icon: '—' },
+              { title: 'No Sponsors', desc: 'Entirely community-funded. You buy your own coffee. That\'s the whole model.', icon: '—' },
+              { title: 'No Agendas', desc: 'No schedules, no forced networking. Just organic, serendipitous exchange.', icon: '—' },
+              { title: 'No Pretense', desc: 'Come as a person, not a pitch deck. Titles stay at the door.', icon: '—' },
+            ].map((v) => (
+              <div
+                key={v.title}
+                className="bg-card rounded-2xl p-7 border border-card-border hover:border-accent/40 transition-all group"
               >
-                <div className="text-3xl mb-4">{value.icon}</div>
-                <h3 className="text-lg font-semibold text-coffee-dark mb-2">{value.title}</h3>
-                <p className="text-sm text-muted leading-relaxed">{value.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============ SHOWREEL ============ */}
-      <section className="py-24 bg-coffee-dark relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="text-center mb-12"
-          >
-            <motion.p variants={fadeInUp} className="text-sm font-medium text-accent uppercase tracking-wider mb-3">
-              See It In Action
-            </motion.p>
-            <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold text-cream">
-              This is what BYOC looks like.
-            </motion.h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden bg-coffee-medium/50 border border-cream/10"
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform cursor-pointer">
-                  <Play size={32} className="text-cream ml-1" fill="currentColor" />
-                </div>
-                <p className="text-cream/60 text-sm">Watch the BYOC Showreel</p>
+                <div className="text-accent text-[20px] font-light mb-4">{v.icon}</div>
+                <h3 className="text-[15px] font-medium text-coffee-dark mb-2 tracking-tight">{v.title}</h3>
+                <p className="text-[12px] text-muted leading-[1.7]">{v.desc}</p>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============ STATS BANNER ============ */}
-      <section className="py-16 bg-cream border-y border-card-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <stat.icon className="w-8 h-8 text-accent mx-auto mb-3" />
-                <div className="text-3xl sm:text-4xl font-bold text-coffee-dark">{stat.number}</div>
-                <div className="text-sm text-muted mt-1">{stat.label}</div>
-              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============ CHAPTERS PREVIEW ============ */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-              <div>
-                <motion.p variants={fadeInUp} className="text-sm font-medium text-accent uppercase tracking-wider mb-3">
-                  Global Presence
-                </motion.p>
-                <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold text-coffee-dark">
-                  Our Chapters
-                </motion.h2>
-                <motion.p variants={fadeInUp} className="mt-3 text-muted max-w-lg">
-                  From Islamabad to San Francisco, Berlin to Doha — BYOC brings people together everywhere.
-                </motion.p>
-              </div>
-              <motion.div variants={fadeInUp}>
-                <Link
-                  href="/chapters"
-                  className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all mt-4 md:mt-0"
-                >
-                  View all chapters
-                  <ChevronRight size={18} />
-                </Link>
-              </motion.div>
-            </div>
+      {/* ============ HOW IT WORKS ============ */}
+      <section className="py-24 bg-card border-y border-card-border">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="text-center mb-16">
+            <p className="text-[11px] font-medium text-accent uppercase tracking-[0.2em] mb-4">The Process</p>
+            <h2 className="text-[40px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
+              Intentionally simple.
+            </h2>
+          </div>
 
-            <motion.div variants={stagger} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {chapters.map((ch) => (
-                <motion.div
-                  key={ch.city}
-                  variants={fadeInUp}
-                  className="bg-card rounded-xl p-4 border border-card-border hover:border-accent/30 hover:shadow-md transition-all group cursor-pointer"
-                >
-                  <div className="text-2xl mb-2">{ch.flag}</div>
-                  <div className="font-medium text-sm text-coffee-dark group-hover:text-accent transition-colors">{ch.city}</div>
-                  <div className="text-xs text-muted">{ch.country}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {[
+              { step: '01', title: 'Get Invited', desc: 'Request an invitation or get referred by an existing member. We keep gatherings intentionally intimate.' },
+              { step: '02', title: 'Show Up', desc: 'Buy your own coffee. Come as you are — curious, open, and ready for real conversation.' },
+              { step: '03', title: 'Connect Deeply', desc: 'No small talk. No pitching. Just meaningful exchange between people who are building things that matter.' },
+            ].map((item) => (
+              <div key={item.step} className="text-center p-6">
+                <div className="w-14 h-14 rounded-full border border-card-border flex items-center justify-center mx-auto mb-6">
+                  <span className="text-accent font-light text-[15px]">{item.step}</span>
+                </div>
+                <h3 className="text-[15px] font-medium text-coffee-dark mb-3 tracking-tight">{item.title}</h3>
+                <p className="text-[12px] text-muted leading-[1.7]">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ CHAPTERS ============ */}
+      <section className="py-24">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div>
+              <p className="text-[11px] font-medium text-accent uppercase tracking-[0.2em] mb-4">Global Presence</p>
+              <h2 className="text-[40px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
+                Active chapters
+              </h2>
+              <p className="mt-3 text-[15px] text-muted max-w-lg leading-[1.7]">
+                From Islamabad to San Francisco, Berlin to Doha — curated gatherings across every continent.
+              </p>
+            </div>
+            <Link
+              href="/chapters"
+              className="inline-flex items-center gap-2 text-accent text-[13px] font-medium hover:gap-3 transition-all mt-4 md:mt-0 uppercase tracking-wide"
+            >
+              View all
+              <ChevronRight size={14} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {chapters.map((ch) => (
+              <div
+                key={ch.city}
+                className="bg-card rounded-xl p-4 border border-card-border hover:border-accent/40 transition-all cursor-pointer group"
+              >
+                <div className="text-xl mb-2">{ch.flag}</div>
+                <div className="text-[13px] font-medium text-coffee-dark group-hover:text-accent transition-colors tracking-tight">{ch.city}</div>
+                <div className="text-[11px] text-muted">{ch.country}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ============ TESTIMONIALS ============ */}
-      <section className="py-24 bg-cream">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeInUp} className="text-center mb-12">
-              <p className="text-sm font-medium text-accent uppercase tracking-wider mb-3">What People Say</p>
-              <h2 className="text-4xl sm:text-5xl font-bold text-coffee-dark">
-                Voices from the community
-              </h2>
-            </motion.div>
+      <section className="py-24 bg-card border-y border-card-border">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="text-center mb-14">
+            <p className="text-[11px] font-medium text-accent uppercase tracking-[0.2em] mb-4">Testimonials</p>
+            <h2 className="text-[40px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
+              In their words.
+            </h2>
+          </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((t, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeInUp}
-                  className="bg-card rounded-2xl p-8 border border-card-border relative"
-                >
-                  <Quote className="w-8 h-8 text-accent/20 mb-4" />
-                  <p className="text-foreground leading-relaxed mb-6">{t.quote}</p>
-                  <div className="flex items-center gap-2 text-sm">
-                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                      <Coffee size={14} className="text-accent" />
-                    </div>
-                    <div>
-                      <div className="font-medium text-coffee-dark">{t.author}</div>
-                      <div className="text-xs text-muted">{t.city}</div>
-                    </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="bg-background rounded-2xl p-7 border border-card-border"
+              >
+                <Quote className="w-5 h-5 text-accent/30 mb-5" />
+                <p className="text-[14px] text-foreground leading-[1.7] mb-7 italic">&ldquo;{t.quote}&rdquo;</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                    <Coffee size={13} className="text-accent" />
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============ HOW IT WORKS ============ */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeInUp} className="text-center mb-16">
-              <p className="text-sm font-medium text-accent uppercase tracking-wider mb-3">Simple by Design</p>
-              <h2 className="text-4xl sm:text-5xl font-bold text-coffee-dark">How BYOC works</h2>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {[
-                { step: '01', title: 'Find a Meetup', desc: 'Browse upcoming BYOC gatherings in your city or explore chapters worldwide.' },
-                { step: '02', title: 'Buy Your Own Coffee', desc: 'Show up, grab your drink, and come as you are — human first, title second.' },
-                { step: '03', title: 'Connect & Grow', desc: 'Have real conversations. Build lasting relationships. Create opportunities together.' },
-              ].map((item) => (
-                <motion.div key={item.step} variants={fadeInUp} className="text-center">
-                  <div className="w-14 h-14 rounded-full bg-accent/10 border-2 border-accent/30 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-accent font-bold text-sm">{item.step}</span>
+                  <div>
+                    <div className="text-[13px] font-medium text-coffee-dark">{t.author}</div>
+                    <div className="text-[11px] text-muted">{t.city}</div>
                   </div>
-                  <h3 className="text-lg font-semibold text-coffee-dark mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============ UPCOMING EVENTS PREVIEW ============ */}
-      <section className="py-24 bg-cream">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-              <div>
-                <motion.p variants={fadeInUp} className="text-sm font-medium text-accent uppercase tracking-wider mb-3">
-                  Don&apos;t Miss Out
-                </motion.p>
-                <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold text-coffee-dark">
-                  Upcoming Events
-                </motion.h2>
+                </div>
               </div>
-              <motion.div variants={fadeInUp}>
-                <Link
-                  href="/events"
-                  className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all mt-4 md:mt-0"
-                >
-                  View all events
-                  <ChevronRight size={18} />
-                </Link>
-              </motion.div>
-            </div>
-
-            <motion.div
-              variants={fadeInUp}
-              className="bg-card rounded-2xl border border-card-border overflow-hidden luma-embed-container"
-            >
-              <iframe
-                src="https://luma.com/embed/calendar/cal-x5mKvnTRHwbEeV1/events"
-                width="100%"
-                height="450"
-                frameBorder="0"
-                style={{ border: 'none', borderRadius: '12px' }}
-                allowFullScreen
-                aria-hidden="false"
-                tabIndex={0}
-              />
-            </motion.div>
-          </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ============ SOCIAL ============ */}
+      {/* ============ EVENTS ============ */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="text-center"
-          >
-            <motion.p variants={fadeInUp} className="text-sm font-medium text-accent uppercase tracking-wider mb-3">
-              Follow The Journey
-            </motion.p>
-            <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold text-coffee-dark mb-4">
-              @byoc.global
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-muted mb-8">
-              Follow us on social media for community highlights, event recaps, and behind-the-scenes moments.
-            </motion.p>
-            <motion.div variants={fadeInUp} className="flex justify-center gap-4">
-              <a
-                href="https://instagram.com/byoc.global"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-card border border-card-border rounded-full hover:border-accent/30 hover:shadow-md transition-all"
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                Instagram
-              </a>
-              <a
-                href="https://www.linkedin.com/company/byoc-global"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-card border border-card-border rounded-full hover:border-accent/30 hover:shadow-md transition-all"
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-                LinkedIn
-              </a>
-            </motion.div>
-          </motion.div>
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div>
+              <p className="text-[11px] font-medium text-accent uppercase tracking-[0.2em] mb-4">Upcoming</p>
+              <h2 className="text-[40px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
+                Next gatherings
+              </h2>
+            </div>
+            <Link
+              href="/events"
+              className="inline-flex items-center gap-2 text-accent text-[13px] font-medium hover:gap-3 transition-all mt-4 md:mt-0 uppercase tracking-wide"
+            >
+              All events
+              <ChevronRight size={14} />
+            </Link>
+          </div>
+
+          <div className="bg-card rounded-2xl border border-card-border overflow-hidden luma-embed-container">
+            <iframe
+              src="https://luma.com/embed/calendar/cal-x5mKvnTRHwbEeV1/events"
+              width="100%"
+              height="450"
+              frameBorder="0"
+              style={{ border: 'none', borderRadius: '12px' }}
+              allowFullScreen
+              aria-hidden="false"
+              tabIndex={0}
+            />
+          </div>
         </div>
       </section>
 
       {/* ============ CTA ============ */}
-      <section className="py-24 bg-coffee-dark relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <CoffeeBeansPattern className="w-full h-full text-cream" />
-        </div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold text-cream mb-6">
-              Ready to join the world&apos;s most
-              <br />
-              <span className="text-accent">authentic</span> community?
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-cream/60 text-lg mb-8 max-w-2xl mx-auto">
-              Find a meetup near you, or bring BYOC to your city. No applications, no fees — just show up and be yourself.
-            </motion.p>
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 justify-center">
-              <Link
-                href="/events"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-cream font-medium rounded-full hover:bg-accent/90 transition-all hover:scale-105"
-              >
-                Find a Meetup
-                <ArrowRight size={18} />
-              </Link>
-              <Link
-                href="/request-meetup"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-cream/20 text-cream font-medium rounded-full hover:border-cream/40 transition-all"
-              >
-                Host in Your City
-              </Link>
-            </motion.div>
-          </motion.div>
+      <section className="py-24 bg-coffee-dark">
+        <div className="max-w-3xl mx-auto px-6 lg:px-10 text-center">
+          <p className="text-[11px] font-medium text-accent uppercase tracking-[0.2em] mb-6">Join Us</p>
+          <h2 className="text-[40px] sm:text-[52px] font-serif text-cream leading-[1.08] tracking-[-0.02em] mb-7">
+            Ready to pull up a chair?
+          </h2>
+          <p className="text-cream/40 text-[14px] mb-10 max-w-lg mx-auto leading-[1.7]">
+            Request an invitation to your city&apos;s next gathering, or bring BYOC to a city near you. The only requirement is showing up as yourself.
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link
+              href="/events"
+              className="inline-flex items-center gap-3 px-7 py-3.5 bg-accent text-cream text-[13px] font-medium rounded-full hover:bg-accent/90 transition-colors uppercase tracking-wide"
+            >
+              Request invite
+              <ArrowRight size={15} />
+            </Link>
+            <Link
+              href="/request-meetup"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border border-cream/15 text-cream/70 text-[13px] font-medium rounded-full hover:border-cream/30 hover:text-cream transition-colors uppercase tracking-wide"
+            >
+              Host a gathering
+            </Link>
+          </div>
         </div>
       </section>
     </div>
