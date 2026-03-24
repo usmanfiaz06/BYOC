@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, Play } from 'lucide-react';
+import GlobalMap from '@/components/GlobalMap';
 
 const chapters = [
   { city: 'Islamabad', flag: '🇵🇰' }, { city: 'Lahore', flag: '🇵🇰' },
@@ -11,7 +12,7 @@ const chapters = [
   { city: 'Dhaka', flag: '🇧🇩' }, { city: 'Dallas', flag: '🇺🇸' },
   { city: 'Gilgit', flag: '🇵🇰' }, { city: 'Berlin', flag: '🇩🇪' },
   { city: 'Doha', flag: '🇶🇦' }, { city: 'Dubai', flag: '🇦🇪' },
-  { city: 'Toronto', flag: '🇨🇦' }, { city: 'Nairobi', flag: '🇰🇪' },
+  { city: 'Toronto', flag: '🇨🇦' }, { city: 'Dar es Salaam', flag: '🇹🇿' },
   { city: 'Jakarta', flag: '🇮🇩' }, { city: 'Karachi', flag: '🇵🇰' },
 ];
 
@@ -38,7 +39,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-8 text-[15px] leading-[1.75] text-muted max-w-[480px]">
-                BYOC convenes founders, operators, and investors across 21 countries for one purpose: unscripted conversation. No panels. No pitches. No sponsors. Just a coffee shop, the right people, and the space to be direct.
+                BYOC convenes founders, operators, and investors across 21+ countries for one purpose: unscripted conversation. No panels. No pitches. No sponsors. Just a coffee shop, the right people, and the space to be direct.
               </p>
 
               <div className="mt-10 flex items-center gap-3">
@@ -98,7 +99,7 @@ export default function Home() {
               <div className="bg-card rounded-2xl p-6 border border-card-border">
                 <div className="flex items-start justify-between">
                   <div>
-                    <div className="text-[44px] font-serif tracking-[-0.02em] text-coffee-dark leading-none">80+</div>
+                    <div className="text-[44px] font-serif tracking-[-0.02em] text-coffee-dark leading-none">140+</div>
                     <div className="text-[11px] text-muted mt-2 tracking-[0.05em] uppercase">Gatherings held</div>
                   </div>
                   <Link href="/events" className="w-9 h-9 rounded-full border border-card-border flex items-center justify-center hover:bg-coffee-dark hover:border-coffee-dark hover:text-cream transition-colors">
@@ -212,7 +213,7 @@ export default function Home() {
                 Conferences optimise for speaker lineups and sponsor logos. Happy hours optimise for headcount. Neither creates the conditions for the conversations that actually move careers, companies, and ideas forward.
               </p>
               <p className="text-[15px] text-muted leading-[1.8]">
-                BYOC is a deliberate departure. We convene small groups of high-calibre practitioners — founders, investors, operators, policymakers — in coffee shops across 21 countries, with nothing on the agenda except the quality of the room.
+                BYOC is a deliberate departure. We convene small groups of high-calibre practitioners — founders, investors, operators, policymakers — in coffee shops across 21+ countries, with nothing on the agenda except the quality of the room.
               </p>
             </div>
           </div>
@@ -342,6 +343,19 @@ export default function Home() {
               tabIndex={0}
             />
           </div>
+        </div>
+      </section>
+
+      {/* ===== MAP ===== */}
+      <section className="py-28">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="text-center mb-14">
+            <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">Where We Gather</p>
+            <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
+              Five continents. One format.
+            </h2>
+          </div>
+          <GlobalMap />
         </div>
       </section>
 
