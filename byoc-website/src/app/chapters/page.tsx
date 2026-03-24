@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import GlobalMap from '@/components/GlobalMap';
 
 interface Chapter {
   city: string;
@@ -12,7 +13,7 @@ interface Chapter {
 }
 
 const chapters: Chapter[] = [
-  { city: 'Islamabad', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 15, status: 'active', note: 'Founding chapter' },
+  { city: 'Islamabad', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 54, status: 'active', note: 'Founding chapter' },
   { city: 'Lahore', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 8, status: 'active' },
   { city: 'Karachi', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 5, status: 'active' },
   { city: 'Gilgit', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 3, status: 'growing' },
@@ -29,7 +30,7 @@ const chapters: Chapter[] = [
   { city: 'Kuala Lumpur', country: 'Malaysia', flag: '🇲🇾', region: 'Southeast Asia', meetups: 4, status: 'active' },
   { city: 'Singapore', country: 'Singapore', flag: '🇸🇬', region: 'Southeast Asia', meetups: 3, status: 'active' },
   { city: 'Jakarta', country: 'Indonesia', flag: '🇮🇩', region: 'Southeast Asia', meetups: 2, status: 'growing' },
-  { city: 'Nairobi', country: 'Kenya', flag: '🇰🇪', region: 'Africa', meetups: 2, status: 'launching' },
+  { city: 'Dar es Salaam', country: 'Tanzania', flag: '🇹🇿', region: 'Africa', meetups: 2, status: 'active' },
 ];
 
 const regions = ['South Asia', 'Middle East', 'Europe', 'North America', 'Southeast Asia', 'Africa'];
@@ -63,7 +64,7 @@ export default function ChaptersPage() {
                 {[
                   { num: '21+', label: 'Countries' },
                   { num: '18', label: 'Chapters' },
-                  { num: '80+', label: 'Gatherings' },
+                  { num: '140+', label: 'Gatherings' },
                 ].map((s) => (
                   <div key={s.label} className="bg-card rounded-2xl p-5 border border-card-border text-center">
                     <div className="text-[28px] font-serif text-coffee-dark tracking-[-0.02em]">{s.num}</div>
@@ -118,6 +119,17 @@ export default function ChaptersPage() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Map */}
+      <section className="py-28">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="mb-10">
+            <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">Global Footprint</p>
+            <h2 className="text-[32px] sm:text-[42px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">Where we gather</h2>
+          </div>
+          <GlobalMap />
         </div>
       </section>
 

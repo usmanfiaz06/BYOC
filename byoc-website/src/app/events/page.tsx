@@ -74,7 +74,7 @@ export default function EventsPage() {
               <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
                 Past gatherings
               </h2>
-              <p className="mt-4 text-[15px] text-muted leading-[1.7]">80+ gatherings across five continents. A record of rooms worth being in.</p>
+              <p className="mt-4 text-[15px] text-muted leading-[1.7]">140+ gatherings across five continents. A record of rooms worth being in.</p>
             </div>
             <a
               href="https://luma.com/byoc-global?period=past"
