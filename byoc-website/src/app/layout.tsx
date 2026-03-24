@@ -4,9 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "BYOC — Buy Your Own Coffee | The World's Most Authentic Networking Community",
+  title: "BYOC — The Global Table for Builders",
   description:
-    "Join 3,200+ founders, investors, and builders across 21+ countries. No stages, no sponsors — just real conversations over coffee.",
+    "3,200+ founders, operators, and investors across 21 countries. No stages, no sponsors — just real conversations over coffee.",
   keywords: [
     "networking",
     "community",
@@ -15,11 +15,13 @@ export const metadata: Metadata = {
     "coffee",
     "global",
     "BYOC",
+    "investors",
+    "operators",
   ],
   openGraph: {
-    title: "BYOC — Buy Your Own Coffee",
+    title: "BYOC — The Global Table for Builders",
     description:
-      "The world's most authentic networking community. 80+ meetups. 21+ countries. 3,200+ members.",
+      "The community where founders, operators, and investors actually meet. 80+ gatherings. 21+ countries. Zero pretense.",
     type: "website",
     url: "https://byoc.global",
   },
@@ -31,10 +33,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col font-sans">
+    <html lang="en" className="h-full">
+      <body className="min-h-full flex flex-col font-sans antialiased">
         <Navbar />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="flex-1 pt-[60px]">{children}</main>
         <Footer />
       </body>
     </html>
