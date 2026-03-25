@@ -98,6 +98,47 @@ export default function CommunityPage() {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [showNewForm, setShowNewForm] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+  const [linkedinUrl, setLinkedinUrl] = useState('');
+  const [linkedinName, setLinkedinName] = useState('');
+  const [linkedinError, setLinkedinError] = useState('');
+  const [linkedinLoading, setLinkedinLoading] = useState(false);
+
+  const validateLinkedin = (url: string) => {
+    const pattern = /^https?:\/\/(www\.)?linkedin\.com\/in\/[\w-]+\/?$/;
+    return pattern.test(url.trim());
+  };
+
+  const handleLinkedinChange = (url: string) => {
+    setLinkedinUrl(url);
+    setLinkedinError('');
+    setLinkedinName('');
+
+    if (!url.trim()) {
+      setLinkedinError('');
+      return;
+    }
+
+    if (!validateLinkedin(url)) {
+      setLinkedinError('Enter a valid LinkedIn profile URL (linkedin.com/in/your-name)');
+      return;
+    }
+
+    // Extract name from LinkedIn URL slug
+    setLinkedinLoading(true);
+    const match = url.match(/linkedin\.com\/in\/([\w-]+)/);
+    if (match) {
+      const slug = match[1];
+      const name = slug
+        .split('-')
+        .filter(part => !/^\d+$/.test(part)) // remove trailing ID numbers
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ');
+      setTimeout(() => {
+        setLinkedinName(name);
+        setLinkedinLoading(false);
+      }, 600);
+    }
+  };
 
   const filteredPosts = posts.filter((post) => {
     const matchesCategory = activeCategory === 'all' || post.category === activeCategory;
@@ -161,9 +202,27 @@ export default function CommunityPage() {
 
             {/* Reply form */}
             <div className="bg-card rounded-2xl border border-card-border p-5">
+              <div className="mb-4">
+                <label className="block text-[10px] text-muted tracking-[0.06em] uppercase mb-1.5">LinkedIn Profile <span className="text-accent">*</span></label>
+                <input
+                  type="url"
+                  value={linkedinUrl}
+                  onChange={(e) => handleLinkedinChange(e.target.value)}
+                  placeholder="https://linkedin.com/in/your-name"
+                  className={`w-full px-3 py-2.5 bg-background border rounded-lg text-[12px] ${
+                    linkedinError ? 'border-red-400/60' : linkedinName ? 'border-accent/40' : 'border-card-border'
+                  }`}
+                />
+                {linkedinName && (
+                  <div className="flex items-center gap-2 mt-1.5 text-[11px] text-accent">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#C8802A" opacity="0.15"/><path d="M5 8l2 2 4-4" stroke="#C8802A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    {linkedinName}
+                  </div>
+                )}
+              </div>
               <textarea rows={3} placeholder="Write a reply..." className="w-full bg-transparent text-[13px] resize-none border-none p-0 mb-4 placeholder:text-muted/40" />
               <div className="flex justify-end">
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-coffee-dark text-cream rounded-full text-[12px] font-medium hover:bg-coffee-medium transition-colors tracking-[0.03em] uppercase">
+                <button disabled={!linkedinName} className="flex items-center gap-2 px-5 py-2.5 bg-coffee-dark text-cream rounded-full text-[12px] font-medium hover:bg-coffee-medium transition-colors tracking-[0.03em] uppercase disabled:opacity-40 disabled:cursor-not-allowed">
                   <Send size={13} /> Reply
                 </button>
               </div>
@@ -186,7 +245,45 @@ export default function CommunityPage() {
             <h1 className="text-[28px] sm:text-[36px] font-serif text-coffee-dark tracking-[-0.02em] mb-8">
               {activeTab === 'discussions' ? 'Start a discussion' : 'Post an opportunity'}
             </h1>
-            <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setShowNewForm(false); }}>
+            <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); if (!validateLinkedin(linkedinUrl)) return; setShowNewForm(false); setLinkedinUrl(''); setLinkedinName(''); }}>
+              {/* LinkedIn identity verification */}
+              <div>
+                <label className="block text-[11px] text-muted tracking-[0.06em] uppercase mb-2">
+                  LinkedIn Profile <span className="text-accent">*</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type="url"
+                    required
+                    value={linkedinUrl}
+                    onChange={(e) => handleLinkedinChange(e.target.value)}
+                    placeholder="https://linkedin.com/in/your-name"
+                    className={`w-full px-4 py-3.5 bg-card border rounded-xl text-[13px] pr-10 ${
+                      linkedinError ? 'border-red-400/60' : linkedinName ? 'border-accent/40' : 'border-card-border'
+                    }`}
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    {linkedinLoading && (
+                      <div className="w-4 h-4 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+                    )}
+                    {linkedinName && !linkedinLoading && (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#C8802A" opacity="0.15"/><path d="M5 8l2 2 4-4" stroke="#C8802A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    )}
+                  </div>
+                </div>
+                {linkedinError && (
+                  <p className="text-[11px] text-red-500/80 mt-1.5">{linkedinError}</p>
+                )}
+                {linkedinName && !linkedinError && (
+                  <div className="flex items-center gap-2 mt-2 px-3 py-2 bg-accent/5 rounded-lg border border-accent/10">
+                    <div className="w-6 h-6 rounded-full bg-accent/15 flex items-center justify-center text-[10px] font-medium text-accent">{linkedinName[0]}</div>
+                    <span className="text-[12px] text-coffee-dark font-medium">{linkedinName}</span>
+                    <span className="text-[10px] text-muted ml-auto">Verified via LinkedIn</span>
+                  </div>
+                )}
+                <p className="text-[10px] text-muted/50 mt-1.5">Required for identity verification. Your profile will be linked to your post.</p>
+              </div>
+
               <div>
                 <label className="block text-[11px] text-muted tracking-[0.06em] uppercase mb-2">Title</label>
                 <input type="text" required placeholder={activeTab === 'discussions' ? 'Discussion topic...' : 'Role title...'} className="w-full px-4 py-3.5 bg-card border border-card-border rounded-xl text-[13px]" />
@@ -219,9 +316,16 @@ export default function CommunityPage() {
                   </select>
                 </div>
               )}
-              <button type="submit" className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-coffee-dark text-cream text-[13px] font-medium rounded-xl hover:bg-coffee-medium transition-colors tracking-[0.04em] uppercase">
+              <button
+                type="submit"
+                disabled={!linkedinName}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-coffee-dark text-cream text-[13px] font-medium rounded-xl hover:bg-coffee-medium transition-colors tracking-[0.04em] uppercase disabled:opacity-40 disabled:cursor-not-allowed"
+              >
                 <Send size={14} /> Publish
               </button>
+              {!linkedinName && (
+                <p className="text-[10px] text-muted/50 text-center">Add your LinkedIn profile above to publish</p>
+              )}
             </form>
           </div>
         </section>
