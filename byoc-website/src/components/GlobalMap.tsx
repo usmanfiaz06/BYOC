@@ -9,7 +9,7 @@ import {
   ZoomableGroup,
 } from 'react-simple-maps';
 
-const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+const GEO_URL = '/countries-50m.json';
 
 const cities = [
   { name: 'Islamabad', country: 'Pakistan', flag: '🇵🇰', meetups: 54, coords: [73.05, 33.69] as [number, number], region: 'South Asia' },

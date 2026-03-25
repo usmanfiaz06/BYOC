@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "BYOC — The Global Table for Builders",
   description:
     "3,200+ founders, operators, and investors across 21 countries. No stages, no sponsors — just real conversations over coffee.",
+  metadataBase: new URL("https://byoc.global"),
   keywords: [
     "networking",
     "community",
@@ -21,9 +22,21 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BYOC — The Global Table for Builders",
     description:
-      "The community where founders, operators, and investors actually meet. 80+ gatherings. 21+ countries. Zero pretense.",
+      "The community where founders, operators, and investors actually meet. 140+ gatherings. 21+ countries. Zero pretense.",
     type: "website",
     url: "https://byoc.global",
+    siteName: "BYOC",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BYOC — The Global Table for Builders",
+    description:
+      "3,200+ founders, operators & investors across 21 countries. No stages, no sponsors — just real conversations over coffee.",
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
 };
 
