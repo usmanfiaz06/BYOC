@@ -2,15 +2,15 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 const pastEvents = [
-  { title: 'BYOC Islamabad #15', city: 'Islamabad', flag: '🇵🇰', date: 'March 2026', attendees: 45, tags: ['Founders', 'AI'] },
-  { title: 'BYOC Riyadh #6', city: 'Riyadh', flag: '🇸🇦', date: 'February 2026', attendees: 35, tags: ['Investment'] },
-  { title: 'BYOC London #6', city: 'London', flag: '🇬🇧', date: 'February 2026', attendees: 40, tags: ['Policy'] },
-  { title: 'BYOC San Francisco #5', city: 'San Francisco', flag: '🇺🇸', date: 'January 2026', attendees: 30, tags: ['AI'] },
-  { title: 'BYOC Dubai #5', city: 'Dubai', flag: '🇦🇪', date: 'January 2026', attendees: 50, tags: ['Cross-sector'] },
-  { title: 'BYOC Kuala Lumpur #4', city: 'Kuala Lumpur', flag: '🇲🇾', date: 'December 2025', attendees: 25, tags: ['Community'] },
-  { title: 'BYOC Singapore #3', city: 'Singapore', flag: '🇸🇬', date: 'November 2025', attendees: 28, tags: ['VC'] },
-  { title: 'BYOC Berlin #3', city: 'Berlin', flag: '🇩🇪', date: 'October 2025', attendees: 22, tags: ['Design'] },
-  { title: 'BYOC Lahore #8', city: 'Lahore', flag: '🇵🇰', date: 'October 2025', attendees: 38, tags: ['Tech'] },
+  { title: 'BYOC Islamabad', city: 'Islamabad', flag: '🇵🇰', date: 'March 2026', attendees: 45, tags: ['Founders', 'AI'] },
+  { title: 'BYOC Riyadh', city: 'Riyadh', flag: '🇸🇦', date: 'February 2026', attendees: 35, tags: ['Investment'] },
+  { title: 'BYOC London', city: 'London', flag: '🇬🇧', date: 'February 2026', attendees: 40, tags: ['Policy'] },
+  { title: 'BYOC San Francisco', city: 'San Francisco', flag: '🇺🇸', date: 'January 2026', attendees: 30, tags: ['AI'] },
+  { title: 'BYOC Dubai', city: 'Dubai', flag: '🇦🇪', date: 'January 2026', attendees: 50, tags: ['Cross-sector'] },
+  { title: 'BYOC Kuala Lumpur', city: 'Kuala Lumpur', flag: '🇲🇾', date: 'December 2025', attendees: 25, tags: ['Community'] },
+  { title: 'BYOC Singapore', city: 'Singapore', flag: '🇸🇬', date: 'November 2025', attendees: 28, tags: ['VC'] },
+  { title: 'BYOC Berlin', city: 'Berlin', flag: '🇩🇪', date: 'October 2025', attendees: 22, tags: ['Design'] },
+  { title: 'BYOC Lahore', city: 'Lahore', flag: '🇵🇰', date: 'October 2025', attendees: 38, tags: ['Tech'] },
 ];
 
 export default function EventsPage() {
@@ -72,9 +72,9 @@ export default function EventsPage() {
             <div>
               <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">Archive</p>
               <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
-                Past gatherings
+                Invite-only. Intentionally small.
               </h2>
-              <p className="mt-4 text-[15px] text-muted leading-[1.7]">140+ gatherings across five continents. A record of rooms worth being in.</p>
+              <p className="mt-4 text-[15px] text-muted leading-[1.7]">Every gathering is capped, curated, and high-signal. 140+ intimate rooms across five continents — where the right people meet without the noise.</p>
             </div>
             <a
               href="https://luma.com/byoc-global?period=past"
