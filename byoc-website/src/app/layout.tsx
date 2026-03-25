@@ -22,17 +22,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BYOC — The Global Table for Builders",
     description:
-      "The community where founders, operators, and investors actually meet. 140+ gatherings. 21+ countries. Zero pretense.",
+      "140+ gatherings across 21 countries. 3,200+ founders, operators & investors — no stages, no sponsors, just real conversations over coffee.",
     type: "website",
     url: "https://byoc.global",
     siteName: "BYOC",
     locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "BYOC — The Global Table for Builders",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "BYOC — The Global Table for Builders",
     description:
-      "3,200+ founders, operators & investors across 21 countries. No stages, no sponsors — just real conversations over coffee.",
+      "140+ gatherings across 21 countries. 3,200+ founders, operators & investors — no stages, no sponsors, just real conversations over coffee.",
+    images: ["/twitter-image"],
   },
   icons: {
     icon: "/icon.svg",
