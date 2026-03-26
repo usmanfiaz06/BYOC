@@ -13,7 +13,7 @@ export default function AboutPage() {
               <h1 className="text-[46px] sm:text-[58px] lg:text-[68px] font-serif leading-[1.05] tracking-[-0.03em] text-coffee-dark">
                 Buy your own coffee.
                 <br />
-                <span className="italic">Build your own future.</span>
+                <span className="italic">Start something real.</span>
               </h1>
             </div>
             <div className="lg:pt-12">

@@ -158,7 +158,7 @@ export default function Home() {
                   <div className="text-7xl opacity-20">☕</div>
                   <div className="absolute bottom-4 left-5 right-5">
                     <div className="text-[10px] text-cream/40 tracking-[0.1em] uppercase">Global Series</div>
-                    <div className="text-[14px] font-serif text-cream mt-1 italic">The Founders&apos; Table</div>
+                    <div className="text-[14px] font-serif text-cream mt-1 italic">Where the Right People Meet</div>
                   </div>
                 </div>
                 <div className="p-5 pt-3">
