@@ -1,8 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Play } from 'lucide-react';
+import { useState } from 'react';
+import {
+  ArrowRight, Play, MicOff, Wallet, CalendarX, Sparkles,
+  MapPin, Coffee, Handshake,
+} from 'lucide-react';
 import GlobalMap from '@/components/GlobalMap';
+import { getNextMeetup, type NextMeetup } from '@/data/meetups';
 
 const chapters = [
   { city: 'Islamabad', flag: '🇵🇰' }, { city: 'Lahore', flag: '🇵🇰' },
@@ -17,6 +22,12 @@ const chapters = [
 ];
 
 export default function Home() {
+  // Pick the soonest upcoming gathering from a single data source. The lazy
+  // initializer runs again on the client during hydration with the visitor's
+  // real clock, so the proximity badge and time stay accurate as dates pass;
+  // suppressHydrationWarning on the dynamic nodes covers the build-vs-view gap.
+  const [nextMeetup] = useState<NextMeetup>(() => getNextMeetup());
+
   return (
     <div>
       {/* ===== HERO ===== */}
@@ -166,20 +177,28 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Card: Next */}
-              <div className="bg-card rounded-2xl p-6 border border-card-border">
+              {/* Card: Next — dynamically resolved from src/data/meetups.ts */}
+              <Link href="/events" className="bg-card rounded-2xl p-6 border border-card-border block hover:border-accent/40 transition-colors group">
                 <div className="flex items-center justify-between text-[10px] text-muted tracking-[0.08em] uppercase mb-3">
                   <span>Next gathering</span>
-                  <span className="text-accent">This week</span>
+                  <span className="text-accent" suppressHydrationWarning>{nextMeetup.proximity}</span>
                 </div>
-                <div className="text-[38px] font-serif tracking-[-0.02em] text-coffee-dark leading-none">18:00</div>
-                <div className="text-[11px] text-muted mt-1 tracking-[0.02em]">Islamabad — Saturday</div>
+                <div className="text-[38px] font-serif tracking-[-0.02em] text-coffee-dark leading-none" suppressHydrationWarning>
+                  {nextMeetup.localTime}
+                  <span className="text-[13px] text-muted ml-1.5 align-middle">{nextMeetup.timezone}</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] text-muted mt-2 tracking-[0.02em]" suppressHydrationWarning>
+                  <span>{nextMeetup.flag}</span>
+                  <span className="text-coffee-dark font-medium">{nextMeetup.city}</span>
+                  <span className="text-muted/40">·</span>
+                  <span>{nextMeetup.weekday}, {nextMeetup.shortDate}</span>
+                </div>
                 <div className="flex gap-[3px] mt-5 items-end">
                   {[14, 20, 10, 24, 16, 28, 12, 22, 18, 26].map((h, i) => (
-                    <div key={i} className="w-[3px] bg-coffee-dark/60 rounded-full" style={{ height: `${h}px` }} />
+                    <div key={i} className="w-[3px] bg-coffee-dark/60 rounded-full group-hover:bg-accent/70 transition-colors" style={{ height: `${h}px` }} />
                   ))}
                 </div>
-              </div>
+              </Link>
             </div>
             </div>
           </div>
@@ -212,21 +231,28 @@ export default function Home() {
               <p className="text-[15px] text-muted leading-[1.8] mb-8">
                 Conferences optimise for speaker lineups and sponsor logos. Happy hours optimise for headcount. Neither creates the conditions for the conversations that actually move careers, companies, and ideas forward.
               </p>
-              <p className="text-[15px] text-muted leading-[1.8]">
-                BYOC is a deliberate departure. We convene small groups of high-calibre practitioners — founders, investors, operators, policymakers — in coffee shops across 21+ countries, with nothing on the agenda except the quality of the room.
-              </p>
+              <div className="border-l-2 border-accent pl-6 py-1">
+                <p className="text-[18px] font-serif italic text-coffee-dark leading-[1.5]">
+                  &ldquo;Nothing on the agenda except the quality of the room.&rdquo;
+                </p>
+                <p className="text-[13px] text-muted leading-[1.7] mt-4">
+                  We convene small groups of high-calibre practitioners — founders, investors, operators, policymakers — in coffee shops across 21+ countries.
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-20">
             {[
-              { title: 'No Stages', desc: 'Hierarchy flattens over coffee. Every voice carries equal weight.' },
-              { title: 'No Sponsors', desc: 'Independence is non-negotiable. The community funds itself.' },
-              { title: 'No Agendas', desc: 'Structure kills serendipity. We let conversations find their own direction.' },
-              { title: 'No Pretense', desc: 'Titles stay outside. What matters is what you think, not what you run.' },
+              { title: 'No Stages', desc: 'Hierarchy flattens over coffee. Every voice carries equal weight.', Icon: MicOff },
+              { title: 'No Sponsors', desc: 'Independence is non-negotiable. The community funds itself.', Icon: Wallet },
+              { title: 'No Agendas', desc: 'Structure kills serendipity. We let conversations find their own direction.', Icon: CalendarX },
+              { title: 'No Pretense', desc: 'Titles stay outside. What matters is what you think, not what you run.', Icon: Sparkles },
             ].map((v) => (
               <div key={v.title} className="bg-card rounded-2xl p-7 border border-card-border group hover:border-accent/40 transition-colors">
-                <div className="text-[10px] text-accent tracking-[0.15em] uppercase mb-4">◆</div>
+                <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent group-hover:text-cream text-accent transition-colors">
+                  <v.Icon size={18} strokeWidth={1.75} />
+                </div>
                 <h3 className="text-[15px] font-medium text-coffee-dark mb-2 tracking-[-0.01em]">{v.title}</h3>
                 <p className="text-[12px] text-muted leading-[1.7]">{v.desc}</p>
               </div>
@@ -243,20 +269,27 @@ export default function Home() {
             Three steps. No complexity.
           </h2>
 
-          <div className="space-y-16">
-            {[
-              { step: '01', title: 'Find your city', desc: 'Browse active chapters across five continents. Each follows the same format — intimate, unstructured, high-signal.' },
-              { step: '02', title: 'Show up as yourself', desc: 'Buy your own coffee. Sit down. No elevator pitches, no breakout sessions, no formalities. Just conversation.' },
-              { step: '03', title: 'Build from there', desc: 'The best partnerships, hires, and investments start with trust. Trust starts with a real conversation over a good cup of coffee.' },
-            ].map((item) => (
-              <div key={item.step} className="grid grid-cols-[60px_1fr] gap-8 items-start">
-                <div className="text-[32px] font-serif text-accent/30 leading-none pt-1">{item.step}</div>
-                <div>
-                  <h3 className="text-[18px] font-medium text-coffee-dark mb-2 tracking-[-0.01em]">{item.title}</h3>
-                  <p className="text-[14px] text-muted leading-[1.75]">{item.desc}</p>
+          <div className="relative">
+            {/* vertical connector line */}
+            <div className="absolute left-[27px] top-6 bottom-6 w-px bg-card-border hidden sm:block" />
+            <div className="space-y-12">
+              {[
+                { step: '01', title: 'Find your city', desc: 'Browse active chapters across five continents. Each follows the same format — intimate, unstructured, high-signal.', Icon: MapPin },
+                { step: '02', title: 'Show up as yourself', desc: 'Buy your own coffee. Sit down. No elevator pitches, no breakout sessions, no formalities. Just conversation.', Icon: Coffee },
+                { step: '03', title: 'Build from there', desc: 'The best partnerships, hires, and investments start with trust. Trust starts with a real conversation over a good cup of coffee.', Icon: Handshake },
+              ].map((item) => (
+                <div key={item.step} className="relative grid grid-cols-[56px_1fr] gap-6 items-start">
+                  <div className="w-14 h-14 rounded-2xl bg-card border border-card-border flex items-center justify-center text-accent relative z-10">
+                    <item.Icon size={20} strokeWidth={1.75} />
+                  </div>
+                  <div className="pt-1.5">
+                    <div className="text-[11px] text-accent/60 tracking-[0.15em] uppercase mb-1.5">Step {item.step}</div>
+                    <h3 className="text-[18px] font-medium text-coffee-dark mb-2 tracking-[-0.01em]">{item.title}</h3>
+                    <p className="text-[14px] text-muted leading-[1.75]">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -370,8 +403,8 @@ export default function Home() {
             Whether you&apos;re a first-time founder or a seasoned operator, BYOC exists so that the people building the future can find each other. No gatekeeping. No fees.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/events" className="inline-flex items-center gap-3 px-7 py-3.5 bg-accent text-cream text-[13px] font-medium rounded-full hover:bg-accent/90 transition-colors tracking-[0.04em] uppercase">
-              Find a gathering <ArrowRight size={15} />
+            <Link href="/join" className="inline-flex items-center gap-3 px-7 py-3.5 bg-accent text-cream text-[13px] font-medium rounded-full hover:bg-accent/90 transition-colors tracking-[0.04em] uppercase">
+              Join the community <ArrowRight size={15} />
             </Link>
             <Link href="/request-meetup" className="inline-flex items-center gap-2 px-7 py-3.5 border border-cream/15 text-cream/60 text-[13px] font-medium rounded-full hover:border-cream/30 hover:text-cream transition-colors tracking-[0.04em] uppercase">
               Host in your city

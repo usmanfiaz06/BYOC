@@ -32,7 +32,7 @@ export default function Navbar() {
           </div>
           <div className="hidden lg:flex items-center gap-4">
             <div className="w-10 h-px bg-card-border" />
-            <Link href="/events" className="px-5 py-2 text-[12px] font-medium border border-coffee-dark text-coffee-dark rounded-full hover:bg-coffee-dark hover:text-cream transition-colors tracking-[0.04em] uppercase">Join us</Link>
+            <Link href="/join" className="px-5 py-2 text-[12px] font-medium border border-coffee-dark text-coffee-dark rounded-full hover:bg-coffee-dark hover:text-cream transition-colors tracking-[0.04em] uppercase">Join us</Link>
           </div>
           <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2">
             {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -45,7 +45,7 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)} className="block px-4 py-3 text-[13px] text-foreground/60 hover:text-foreground transition-colors tracking-[0.01em]">{link.label}</Link>
             ))}
-            <Link href="/events" onClick={() => setIsOpen(false)} className="block px-4 py-3 text-[12px] font-medium border border-coffee-dark text-coffee-dark rounded-full text-center mt-4 tracking-[0.04em] uppercase">Join us</Link>
+            <Link href="/join" onClick={() => setIsOpen(false)} className="block px-4 py-3 text-[12px] font-medium border border-coffee-dark text-coffee-dark rounded-full text-center mt-4 tracking-[0.04em] uppercase">Join us</Link>
           </div>
         </div>
       )}

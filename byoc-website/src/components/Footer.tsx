@@ -36,6 +36,7 @@ export default function Footer() {
             <div className="text-[10px] text-cream/20 tracking-[0.15em] uppercase mb-5">Get Involved</div>
             <div className="space-y-3">
               {[
+                { label: 'Join the Community', href: '/join' },
                 { label: 'Host a Gathering', href: '/request-meetup' },
                 { label: 'Collaborate', href: '/about#partner' },
               ].map((link) => (
