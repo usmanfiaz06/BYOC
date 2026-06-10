@@ -43,10 +43,8 @@ export const metadata: Metadata = {
       "140+ gatherings across 21 countries. 3,200+ founders, operators & investors — no stages, no sponsors, just real conversations over coffee.",
     images: ["/twitter-image"],
   },
-  icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
-  },
+  // Icons (favicon + apple touch icon) are generated from the
+  // icon.svg / apple-icon.tsx file conventions in this directory.
 };
 
 export default function RootLayout({

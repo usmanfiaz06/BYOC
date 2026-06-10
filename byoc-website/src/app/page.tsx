@@ -1,13 +1,14 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
 import {
   ArrowRight, Play, MicOff, Wallet, CalendarX, Sparkles,
   MapPin, Coffee, Handshake,
 } from 'lucide-react';
 import GlobalMap from '@/components/GlobalMap';
-import { getNextMeetup, type NextMeetup } from '@/data/meetups';
+import { getNextMeetup } from '@/data/meetups';
+
+// Revalidate the page (and the cached Luma fetch) hourly so the "next
+// gathering" stays current without rendering on every request.
+export const revalidate = 3600;
 
 const chapters = [
   { city: 'Islamabad', flag: '🇵🇰' }, { city: 'Lahore', flag: '🇵🇰' },
@@ -21,12 +22,10 @@ const chapters = [
   { city: 'Jakarta', flag: '🇮🇩' }, { city: 'Karachi', flag: '🇵🇰' },
 ];
 
-export default function Home() {
-  // Pick the soonest upcoming gathering from a single data source. The lazy
-  // initializer runs again on the client during hydration with the visitor's
-  // real clock, so the proximity badge and time stay accurate as dates pass;
-  // suppressHydrationWarning on the dynamic nodes covers the build-vs-view gap.
-  const [nextMeetup] = useState<NextMeetup>(() => getNextMeetup());
+export default async function Home() {
+  // Soonest upcoming gathering, pulled live from the Luma calendar (or null
+  // when nothing is scheduled / the feed is unreachable).
+  const nextMeetup = await getNextMeetup();
 
   return (
     <div>
@@ -177,28 +176,46 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Card: Next — dynamically resolved from src/data/meetups.ts */}
-              <Link href="/events" className="bg-card rounded-2xl p-6 border border-card-border block hover:border-accent/40 transition-colors group">
-                <div className="flex items-center justify-between text-[10px] text-muted tracking-[0.08em] uppercase mb-3">
-                  <span>Next gathering</span>
-                  <span className="text-accent" suppressHydrationWarning>{nextMeetup.proximity}</span>
-                </div>
-                <div className="text-[38px] font-serif tracking-[-0.02em] text-coffee-dark leading-none" suppressHydrationWarning>
-                  {nextMeetup.localTime}
-                  <span className="text-[13px] text-muted ml-1.5 align-middle">{nextMeetup.timezone}</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-muted mt-2 tracking-[0.02em]" suppressHydrationWarning>
-                  <span>{nextMeetup.flag}</span>
-                  <span className="text-coffee-dark font-medium">{nextMeetup.city}</span>
-                  <span className="text-muted/40">·</span>
-                  <span>{nextMeetup.weekday}, {nextMeetup.shortDate}</span>
-                </div>
-                <div className="flex gap-[3px] mt-5 items-end">
-                  {[14, 20, 10, 24, 16, 28, 12, 22, 18, 26].map((h, i) => (
-                    <div key={i} className="w-[3px] bg-coffee-dark/60 rounded-full group-hover:bg-accent/70 transition-colors" style={{ height: `${h}px` }} />
-                  ))}
-                </div>
-              </Link>
+              {/* Card: Next — resolved live from the Luma calendar */}
+              {nextMeetup ? (
+                <Link href={nextMeetup.url ?? '/events'} className="bg-card rounded-2xl p-6 border border-card-border block hover:border-accent/40 transition-colors group">
+                  <div className="flex items-center justify-between text-[10px] text-muted tracking-[0.08em] uppercase mb-3">
+                    <span>Next gathering</span>
+                    <span className="text-accent">{nextMeetup.proximity}</span>
+                  </div>
+                  <div className="text-[38px] font-serif tracking-[-0.02em] text-coffee-dark leading-none">
+                    {nextMeetup.localTime}
+                    <span className="text-[13px] text-muted ml-1.5 align-middle">{nextMeetup.tzLabel}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-muted mt-2 tracking-[0.02em]">
+                    <span>{nextMeetup.flag}</span>
+                    <span className="text-coffee-dark font-medium">{nextMeetup.city}</span>
+                    <span className="text-muted/40">·</span>
+                    <span>{nextMeetup.weekday}, {nextMeetup.shortDate}</span>
+                  </div>
+                  <div className="flex gap-[3px] mt-5 items-end">
+                    {[14, 20, 10, 24, 16, 28, 12, 22, 18, 26].map((h, i) => (
+                      <div key={i} className="w-[3px] bg-coffee-dark/60 rounded-full group-hover:bg-accent/70 transition-colors" style={{ height: `${h}px` }} />
+                    ))}
+                  </div>
+                </Link>
+              ) : (
+                <Link href="/join" className="bg-card rounded-2xl p-6 border border-card-border block hover:border-accent/40 transition-colors group">
+                  <div className="flex items-center justify-between text-[10px] text-muted tracking-[0.08em] uppercase mb-3">
+                    <span>Next gathering</span>
+                    <span className="text-accent">New dates soon</span>
+                  </div>
+                  <div className="text-[26px] font-serif tracking-[-0.02em] text-coffee-dark leading-[1.1]">
+                    To be announced
+                  </div>
+                  <p className="text-[11px] text-muted mt-2 leading-[1.6]">
+                    No gathering on the calendar right now. Join the community and we&apos;ll let you know the moment your city goes live.
+                  </p>
+                  <div className="inline-flex items-center gap-1.5 text-[11px] text-accent mt-4 tracking-[0.04em] uppercase group-hover:gap-2.5 transition-all">
+                    Get notified <ArrowRight size={12} />
+                  </div>
+                </Link>
+              )}
             </div>
             </div>
           </div>

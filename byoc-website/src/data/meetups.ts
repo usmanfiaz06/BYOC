@@ -1,98 +1,169 @@
 // ─────────────────────────────────────────────────────────────────────────
-// Upcoming BYOC meetups.
+// Next BYOC meetup — sourced live from the public Luma calendar.
 //
-// This is the single source of truth for the "next gathering" surfaced on the
-// home page. Add new gatherings here and the site will automatically pick the
-// soonest one whose date is still in the future — no code changes required.
-//
-// `startsAt` is an ISO 8601 timestamp WITH an explicit timezone offset so the
-// displayed time is correct regardless of where the visitor (or build server)
-// is located. Example: Islamabad is UTC+5, so 18:00 local => "+05:00".
+// The home page shows the soonest upcoming gathering. Rather than maintain a
+// hand-written list, we read the same Luma calendar that powers the embedded
+// calendar widget (cal-x5mKvnTRHwbEeV1) via its public iCal feed, parse the
+// events, and surface the next one. If the feed is unreachable or empty, the
+// caller gets `null` and renders a graceful "to be announced" state.
 // ─────────────────────────────────────────────────────────────────────────
+
+const LUMA_CALENDAR_ID = 'cal-x5mKvnTRHwbEeV1';
+const LUMA_ICS_URL = `https://api.lu.ma/ics/get?entity=calendar&id=${LUMA_CALENDAR_ID}`;
 
 export interface Meetup {
   city: string;
   country: string;
   flag: string;
-  /** ISO 8601 with timezone offset, e.g. "2026-06-13T18:00:00+05:00" */
-  startsAt: string;
-  /** IANA-ish label shown to users, e.g. "PKT", "GST" */
-  timezone: string;
-  venue?: string;
+  /** UTC instant the gathering starts. */
+  date: Date;
+  /** Link to the specific Luma event, when available. */
+  url?: string;
+  /** IANA timezone used to render the local time, e.g. "Asia/Karachi". */
+  timeZone: string;
 }
 
-export const upcomingMeetups: Meetup[] = [
-  { city: 'Islamabad', country: 'Pakistan', flag: '🇵🇰', startsAt: '2026-06-13T18:00:00+05:00', timezone: 'PKT', venue: 'Coffee Lab, F-7' },
-  { city: 'Lahore', country: 'Pakistan', flag: '🇵🇰', startsAt: '2026-06-20T17:00:00+05:00', timezone: 'PKT', venue: 'Gloria Jean\'s, Gulberg' },
-  { city: 'Dubai', country: 'UAE', flag: '🇦🇪', startsAt: '2026-06-27T19:00:00+04:00', timezone: 'GST', venue: 'Common Grounds, DIFC' },
-  { city: 'London', country: 'United Kingdom', flag: '🇬🇧', startsAt: '2026-07-04T11:00:00+01:00', timezone: 'BST', venue: 'Monmouth Coffee' },
-  { city: 'San Francisco', country: 'United States', flag: '🇺🇸', startsAt: '2026-07-11T10:00:00-07:00', timezone: 'PDT', venue: 'Sightglass, SoMa' },
-];
-
 export interface NextMeetup extends Meetup {
-  date: Date;
-  /** e.g. "18:00" in the meetup's own timezone */
+  /** e.g. "18:00" rendered in the gathering's own timezone. */
   localTime: string;
-  /** e.g. "Saturday" */
+  /** Short timezone label for that date, e.g. "PKT", "GMT+5". */
+  tzLabel: string;
+  /** e.g. "Saturday". */
   weekday: string;
-  /** e.g. "Jun 13" */
+  /** e.g. "Jun 13". */
   shortDate: string;
-  /** Human-friendly proximity, e.g. "This week", "Next week", "In 3 weeks" */
+  /** Friendly proximity, e.g. "Today", "This week", "In 3 weeks". */
   proximity: string;
 }
 
-function buildFormatters(startsAt: string) {
-  // Derive the meetup's UTC offset (in minutes) from the ISO string so we can
-  // render the time in the gathering's own timezone, not the viewer's.
-  const offsetMatch = startsAt.match(/([+-])(\d{2}):(\d{2})$/);
-  let timeZone: string | undefined;
-  if (offsetMatch) {
-    const sign = offsetMatch[1] === '-' ? '-' : '+';
-    // Etc/GMT signs are inverted, so flip them to keep things intuitive.
-    const hours = parseInt(offsetMatch[2], 10);
-    if (offsetMatch[3] === '00') {
-      timeZone = `Etc/GMT${sign === '+' ? '-' : '+'}${hours}`;
-    }
-  }
-  return { timeZone };
+// Known BYOC cities → flag, timezone, country. Used to localise the time and
+// flag from an event's free-text title/location. Order doesn't matter; we
+// match the longest city name first so "San Francisco" beats a stray "San".
+const CITY_INFO: Record<string, { flag: string; timeZone: string; country: string }> = {
+  islamabad: { flag: '🇵🇰', timeZone: 'Asia/Karachi', country: 'Pakistan' },
+  lahore: { flag: '🇵🇰', timeZone: 'Asia/Karachi', country: 'Pakistan' },
+  karachi: { flag: '🇵🇰', timeZone: 'Asia/Karachi', country: 'Pakistan' },
+  gilgit: { flag: '🇵🇰', timeZone: 'Asia/Karachi', country: 'Pakistan' },
+  london: { flag: '🇬🇧', timeZone: 'Europe/London', country: 'United Kingdom' },
+  dublin: { flag: '🇮🇪', timeZone: 'Europe/Dublin', country: 'Ireland' },
+  berlin: { flag: '🇩🇪', timeZone: 'Europe/Berlin', country: 'Germany' },
+  'kuala lumpur': { flag: '🇲🇾', timeZone: 'Asia/Kuala_Lumpur', country: 'Malaysia' },
+  singapore: { flag: '🇸🇬', timeZone: 'Asia/Singapore', country: 'Singapore' },
+  jakarta: { flag: '🇮🇩', timeZone: 'Asia/Jakarta', country: 'Indonesia' },
+  dhaka: { flag: '🇧🇩', timeZone: 'Asia/Dhaka', country: 'Bangladesh' },
+  riyadh: { flag: '🇸🇦', timeZone: 'Asia/Riyadh', country: 'Saudi Arabia' },
+  doha: { flag: '🇶🇦', timeZone: 'Asia/Qatar', country: 'Qatar' },
+  dubai: { flag: '🇦🇪', timeZone: 'Asia/Dubai', country: 'UAE' },
+  'san francisco': { flag: '🇺🇸', timeZone: 'America/Los_Angeles', country: 'United States' },
+  dallas: { flag: '🇺🇸', timeZone: 'America/Chicago', country: 'United States' },
+  virginia: { flag: '🇺🇸', timeZone: 'America/New_York', country: 'United States' },
+  toronto: { flag: '🇨🇦', timeZone: 'America/Toronto', country: 'Canada' },
+  'dar es salaam': { flag: '🇹🇿', timeZone: 'Africa/Dar_es_Salaam', country: 'Tanzania' },
+};
+
+const FALLBACK_CITY = { flag: '📍', timeZone: 'UTC', country: '' };
+
+interface RawEvent {
+  start: Date;
+  summary: string;
+  location: string;
+  url?: string;
 }
 
-/**
- * Returns the soonest gathering still in the future relative to `now`.
- * Falls back to the last meetup in the list if every date has passed, so the
- * UI always has something to show.
- */
-export function getNextMeetup(now: Date = new Date()): NextMeetup {
-  const sorted = [...upcomingMeetups].sort(
-    (a, b) => new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime(),
-  );
+/** Parse an ICS date value like "20250613T123000Z" or "20250613" into a Date. */
+function parseIcsDate(value: string): Date | null {
+  const m = value.match(/(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2}))?/);
+  if (!m) return null;
+  const [, y, mo, d, h = '00', mi = '00', s = '00'] = m;
+  // Luma emits times in UTC ("Z"); treat date-only and TZID-less values as UTC too.
+  return new Date(Date.UTC(+y, +mo - 1, +d, +h, +mi, +s));
+}
 
-  const upcoming = sorted.find((m) => new Date(m.startsAt).getTime() >= now.getTime());
-  const meetup = upcoming ?? sorted[sorted.length - 1];
-  const date = new Date(meetup.startsAt);
+function parseIcs(ics: string): RawEvent[] {
+  // Unfold folded lines (continuation lines begin with a space or tab).
+  const text = ics.replace(/\r\n/g, '\n').replace(/\n[ \t]/g, '');
+  const events: RawEvent[] = [];
 
-  const { timeZone } = buildFormatters(meetup.startsAt);
+  for (const chunk of text.split('BEGIN:VEVENT').slice(1)) {
+    const body = chunk.split('END:VEVENT')[0];
+    const get = (name: string) => {
+      const m = body.match(new RegExp(`^${name}[^:\\n]*:(.*)$`, 'm'));
+      return m ? m[1].trim() : '';
+    };
+
+    if (get('STATUS').toUpperCase() === 'CANCELLED') continue;
+    const start = parseIcsDate(get('DTSTART'));
+    if (!start) continue;
+
+    const summary = get('SUMMARY');
+    const location = get('LOCATION');
+    const description = get('DESCRIPTION');
+    const urlMatch = `${description} ${location}`.match(/https?:\/\/(?:lu\.ma|luma\.com)\/[^\s\\]+/);
+
+    events.push({ start, summary, location, url: urlMatch?.[0] });
+  }
+
+  return events;
+}
+
+function resolveCity(raw: RawEvent): { city: string; flag: string; timeZone: string; country: string } {
+  const haystack = `${raw.summary} ${raw.location}`.toLowerCase();
+  const keys = Object.keys(CITY_INFO).sort((a, b) => b.length - a.length);
+  for (const key of keys) {
+    if (haystack.includes(key)) {
+      const info = CITY_INFO[key];
+      const city = key.replace(/\b\w/g, (c) => c.toUpperCase());
+      return { city, ...info };
+    }
+  }
+  // Couldn't match a known city — fall back to a cleaned-up title.
+  const city = raw.summary.replace(/byoc|meetup|networking|global|[-—|].*$/gi, '').trim() || 'TBA';
+  return { city, ...FALLBACK_CITY };
+}
+
+function toNextMeetup(raw: RawEvent, now: Date): NextMeetup {
+  const { city, flag, timeZone, country } = resolveCity(raw);
+  const date = raw.start;
 
   const localTime = new Intl.DateTimeFormat('en-GB', {
     hour: '2-digit', minute: '2-digit', hour12: false, timeZone,
   }).format(date);
 
-  const weekday = new Intl.DateTimeFormat('en-US', {
-    weekday: 'long', timeZone,
-  }).format(date);
+  const tzParts = new Intl.DateTimeFormat('en-US', {
+    timeZone, timeZoneName: 'short',
+  }).formatToParts(date);
+  const tzLabel = tzParts.find((p) => p.type === 'timeZoneName')?.value ?? 'UTC';
 
-  const shortDate = new Intl.DateTimeFormat('en-US', {
-    month: 'short', day: 'numeric', timeZone,
-  }).format(date);
+  const weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long', timeZone }).format(date);
+  const shortDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone }).format(date);
 
-  // Whole-week distance for a friendly proximity badge.
-  const msPerDay = 1000 * 60 * 60 * 24;
-  const dayDiff = Math.ceil((date.getTime() - now.getTime()) / msPerDay);
+  const dayDiff = Math.ceil((date.getTime() - now.getTime()) / 86_400_000);
   let proximity: string;
   if (dayDiff <= 0) proximity = 'Today';
   else if (dayDiff <= 7) proximity = 'This week';
   else if (dayDiff <= 14) proximity = 'Next week';
   else proximity = `In ${Math.ceil(dayDiff / 7)} weeks`;
 
-  return { ...meetup, date, localTime, weekday, shortDate, proximity };
+  return { city, country, flag, date, url: raw.url, timeZone, localTime, tzLabel, weekday, shortDate, proximity };
+}
+
+/**
+ * Fetches the Luma calendar and returns the soonest gathering still in the
+ * future, or `null` if there are none / the feed is unreachable. Cached and
+ * revalidated hourly so the home page stays fresh without a request per view.
+ */
+export async function getNextMeetup(now: Date = new Date()): Promise<NextMeetup | null> {
+  try {
+    const res = await fetch(LUMA_ICS_URL, { next: { revalidate: 3600 } });
+    if (!res.ok) return null;
+    const ics = await res.text();
+
+    const upcoming = parseIcs(ics)
+      .filter((e) => e.start.getTime() >= now.getTime())
+      .sort((a, b) => a.start.getTime() - b.start.getTime());
+
+    return upcoming.length > 0 ? toNextMeetup(upcoming[0], now) : null;
+  } catch {
+    return null;
+  }
 }
