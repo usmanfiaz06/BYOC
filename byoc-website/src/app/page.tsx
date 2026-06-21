@@ -4,6 +4,7 @@ import {
   MapPin, Coffee, Handshake,
 } from 'lucide-react';
 import GlobalMap from '@/components/GlobalMap';
+import HeroFilmStrip from '@/components/HeroFilmStrip';
 import { getNextMeetup } from '@/data/meetups';
 
 // Revalidate the page (and the cached Luma fetch) hourly so the "next
@@ -233,6 +234,9 @@ export default async function Home() {
           ))}
         </div>
       </section>
+
+      {/* ===== FILM STRIP ===== */}
+      <HeroFilmStrip />
 
       {/* ===== THESIS ===== */}
       <section className="py-28">
