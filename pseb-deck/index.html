@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Corridor Mornings</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A110D; --bg2:#0F1813; --ink:#F1F3EE; --muted:rgba(241,243,238,.64); --dim:rgba(241,243,238,.38);
+  --line:rgba(241,243,238,.14); --node:rgba(241,243,238,.55); --lime:#7FE33B; --lime-ink:#0A110D;
+  --display:'Saira',sans-serif; --body:'Inter',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#050806}
+body{font-family:var(--body);color:var(--ink);-webkit-font-smoothing:antialiased}
+@page{size:1920px 1080px;margin:0}
+.slide{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--bg);page-break-after:always;break-after:page}
+.slide:last-child{page-break-after:auto}
+@media screen{.slide{margin:0 auto 40px}}
+
+/* background photo + tint */
+.bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.tint{position:absolute;inset:0}
+.grain{position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* grid system from the reference: hairlines + square nodes */
+.grid{position:absolute;inset:0;pointer-events:none}
+.grid .v,.grid .h{position:absolute;background:var(--line)}
+.grid .v{top:0;bottom:0;width:1px}
+.grid .h{left:0;right:0;height:1px}
+.grid .n{position:absolute;width:9px;height:9px;background:var(--node);transform:translate(-4px,-4px)}
+
+.kicker{font-family:var(--mono);font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kicker b{color:var(--lime);font-weight:500}
+h1.title{font-family:var(--display);font-weight:700;font-size:76px;line-height:1.02;letter-spacing:-.01em}
+h1.title .thin{font-weight:200}
+.sub{font-size:26px;line-height:1.45;color:var(--muted);max-width:980px}
+.chip{display:inline-block;font-family:var(--mono);font-weight:500;font-size:22px;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;line-height:1}
+.chip.dark{background:#000;color:var(--ink)}
+.chip.lime{background:var(--lime);color:var(--lime-ink)}
+.chip.ghost{border:1px solid var(--line);color:var(--muted)}
+.foot{position:absolute;left:200px;right:96px;bottom:46px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.src{font-family:var(--mono);font-size:14px;color:var(--dim);letter-spacing:.04em}
+
+/* lockup */
+.lockup{display:flex;align-items:center;gap:26px}
+.lockup .pseb{font-family:var(--display);font-weight:700;font-size:54px;letter-spacing:.02em;line-height:1}
+.lockup .pseb small{display:block;font-family:var(--mono);font-weight:400;font-size:13px;letter-spacing:.12em;color:var(--muted);margin-top:6px}
+.lockup .bar{width:1px;height:64px;background:rgba(241,243,238,.7)}
+.lockup .x{font-family:var(--display);font-weight:200;font-size:40px;color:var(--muted)}
+.byoc{height:62px;filter:brightness(0) invert(1)}
+
+/* cards */
+.card{border:1px solid var(--line);background:rgba(10,17,13,.55);padding:34px 34px 30px}
+.photo{background-size:cover;background-position:center;position:relative}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,13,0) 50%,rgba(10,17,13,.75))}
+.cap{position:absolute;left:14px;bottom:12px;z-index:2;font-family:var(--mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- ============ 01 COVER ============ -->
+<section class="slide" id="s1">
+  <div class="bg" style="background-image:url(img/mb_headline_13.jpg)"></div>
+  <div class="tint" style="background:linear-gradient(180deg,rgba(6,12,8,.72) 0%,rgba(6,12,8,.25) 38%,rgba(6,12,8,.35) 60%,rgba(6,10,8,.92) 100%)"></div>
+  <div class="grain"></div>
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:250px"></div><div class="v" style="left:1824px"></div>
+    <div class="h" style="top:130px"></div><div class="h" style="top:760px"></div><div class="h" style="top:870px"></div><div class="h" style="top:1010px"></div>
+    <div class="n" style="left:96px;top:130px"></div><div class="n" style="left:250px;top:130px"></div><div class="n" style="left:1824px;top:130px"></div>
+    <div class="n" style="left:96px;top:760px"></div><div class="n" style="left:96px;top:870px"></div><div class="n" style="left:250px;top:870px"></div><div class="n" style="left:96px;top:1010px"></div><div class="n" style="left:250px;top:1010px"></div>
+  </div>
+  <div style="position:absolute;left:250px;top:470px">
+    <div class="lockup">
+      <div class="pseb">PSEB<small>PAKISTAN SOFTWARE EXPORT BOARD</small></div>
+      <div class="bar"></div>
+      <img class="byoc" src="img/byoc-logo.png" alt="BYOC">
+    </div>
+  </div>
+  <div style="position:absolute;left:250px;top:600px">
+    <div style="font-family:var(--display);font-weight:800;font-size:170px;line-height:.9;letter-spacing:.005em">CORRIDOR</div>
+  </div>
+  <div style="position:absolute;right:96px;top:770px;text-align:right">
+    <div style="font-family:var(--display);font-weight:200;font-size:150px;line-height:.9;letter-spacing:.02em">MORNINGS</div>
+  </div>
+  <div style="position:absolute;left:250px;top:940px;display:flex">
+    <span class="chip dark">Invite-only tech breakfasts</span><span class="chip lime">Across Pakistan's missions abroad</span>
+  </div>
+  <div style="position:absolute;right:96px;top:170px" class="kicker">Tech Destination Pakistan &nbsp;·&nbsp; Proposal &nbsp;·&nbsp; Sept 2026</div>
+</section>
+
+<!-- ============ 02 OPPORTUNITY ============ -->
+<section class="slide" id="s2">
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:1000px"></div><div class="n" style="left:200px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:150px">
+    <div class="kicker"><b>01</b> &nbsp;The opportunity</div>
+    <h1 class="title" style="margin-top:26px;max-width:1600px">Pakistani tech is growing.<br><span class="thin">Many buyers abroad have yet to meet it.</span></h1>
+  </div>
+  <!-- map -->
+  <div style="position:absolute;left:640px;top:410px;width:1200px;height:560px">
+    <svg id="map" width="1200" height="560"></svg>
+    <div style="position:absolute;right:0;bottom:-6px;display:flex;gap:26px;align-items:center" class="src">
+      <span style="display:flex;align-items:center;gap:8px"><i style="width:12px;height:12px;background:var(--lime);display:inline-block"></i>Pakistan's missions abroad (illustrative)</span>
+    </div>
+  </div>
+  <!-- stats -->
+  <div style="position:absolute;left:200px;top:450px;width:420px;display:flex;flex-direction:column;gap:40px">
+    <div>
+      <div style="font-family:var(--display);font-weight:700;font-size:92px;line-height:.9">$4.6B</div>
+      <div style="font-size:22px;color:var(--muted);margin-top:10px">ICT exports, FY2025–26. A record year.</div>
+    </div>
+    <div>
+      <div style="font-family:var(--display);font-weight:200;font-size:92px;line-height:.9">+21%</div>
+      <div style="font-size:22px;color:var(--muted);margin-top:10px">growth on the previous year</div>
+    </div>
+    <div>
+      <div style="font-family:var(--display);font-weight:700;font-size:92px;line-height:.9;color:var(--lime)">57</div>
+      <div style="font-size:22px;color:var(--muted);margin-top:10px">missions, each with a room and a flag</div>
+    </div>
+  </div>
+  <div class="foot"><span>Source: Ministry of IT &amp; Telecom via Arab News, Jul 2026</span><span>PSEB × BYOC &nbsp;·&nbsp; 02</span></div>
+</section>
+
+<!-- ============ 03 PRECEDENTS ============ -->
+<section class="slide" id="s3">
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div><div class="h" style="top:820px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:820px"></div><div class="n" style="left:200px;top:820px"></div><div class="n" style="left:96px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:150px">
+    <div class="kicker"><b>02</b> &nbsp;Proven elsewhere</div>
+    <h1 class="title" style="margin-top:26px">Other countries already open doors<br><span class="thin">through their diaspora.</span></h1>
+  </div>
+  <div style="position:absolute;left:200px;right:96px;top:420px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+    <div class="card" style="height:370px">
+      <div class="kicker" style="font-size:16px">Scotland</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:48px;margin:10px 0 18px">GlobalScot</div>
+      <div style="font-family:var(--display);font-weight:200;font-size:64px;line-height:1;color:var(--lime)">1,200+</div>
+      <div style="font-size:21px;color:var(--muted);margin-top:14px;line-height:1.4">senior diaspora leaders opening doors for Scottish firms</div>
+    </div>
+    <div class="card" style="height:370px">
+      <div class="kicker" style="font-size:16px">New Zealand</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:48px;margin:10px 0 18px">Kea</div>
+      <div style="font-family:var(--display);font-weight:200;font-size:64px;line-height:1;color:var(--lime)">2001</div>
+      <div style="font-size:21px;color:var(--muted);margin-top:14px;line-height:1.4">founded as a public–private network making business introductions</div>
+    </div>
+    <div class="card" style="height:370px">
+      <div class="kicker" style="font-size:16px">Indus diaspora</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:48px;margin:10px 0 18px">TiE</div>
+      <div style="font-family:var(--display);font-weight:200;font-size:64px;line-height:1;color:var(--lime)">60+</div>
+      <div style="font-size:21px;color:var(--muted);margin-top:14px;line-height:1.4">chapters, grown from one Silicon Valley group in 1992</div>
+    </div>
+    <div class="card" style="height:370px">
+      <div class="kicker" style="font-size:16px">South Korea</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:48px;margin:10px 0 18px">KOTRA</div>
+      <div style="font-family:var(--display);font-weight:200;font-size:64px;line-height:1;color:var(--lime)">1 : 1</div>
+      <div style="font-size:21px;color:var(--muted);margin-top:14px;line-height:1.4">buyer meetings arranged before exporters arrive</div>
+    </div>
+  </div>
+  <div style="position:absolute;left:200px;right:96px;top:858px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+    <span style="font-size:24px;color:var(--muted);margin-right:8px">Corridor Mornings combines</span>
+    <span class="chip dark">The mission's invitation</span><span class="chip dark">The diaspora's network</span><span class="chip lime">Introductions planned in advance</span>
+  </div>
+  <div class="foot"><span>Sources: gov.scot, keanewzealand.com, tie.org, kotra.or.kr</span><span>PSEB × BYOC &nbsp;·&nbsp; 03</span></div>
+</section>
+
+<!-- ============ 04 THE MORNING ============ -->
+<section class="slide" id="s4">
+  <div class="bg" style="background-image:url(img/mb_experience_24.jpg)"></div>
+  <div class="tint" style="background:linear-gradient(90deg,rgba(8,14,10,.96) 0%,rgba(8,14,10,.9) 55%,rgba(8,14,10,.72) 100%)"></div>
+  <div class="grain"></div>
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div><div class="h" style="top:560px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:560px"></div><div class="n" style="left:96px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:150px">
+    <div class="kicker"><b>03</b> &nbsp;The format</div>
+    <h1 class="title" style="margin-top:26px">One morning, <span class="thin">in each city.</span></h1>
+    <div class="sub" style="margin-top:22px;max-width:900px">Invite-only, hosted at the embassy or consulate. Around 50 guests, before the working day begins.</div>
+  </div>
+  <!-- room composition -->
+  <div style="position:absolute;right:96px;top:150px;width:560px">
+    <div id="room" style="display:grid;grid-template-columns:repeat(10,1fr);gap:14px"></div>
+    <div style="display:flex;gap:30px;margin-top:22px;font-size:19px;color:var(--muted)">
+      <span style="display:flex;align-items:center;gap:10px"><i style="width:14px;height:14px;background:var(--lime);border-radius:50%;display:inline-block"></i>Local decision-makers</span>
+      <span style="display:flex;align-items:center;gap:10px"><i style="width:14px;height:14px;border:2px solid var(--ink);border-radius:50%;display:inline-block"></i>Pakistani-origin companies</span>
+    </div>
+  </div>
+  <!-- timeline -->
+  <div style="position:absolute;left:200px;right:96px;top:540px">
+    <div style="position:relative;height:40px">
+      <div style="position:absolute;left:0;right:0;top:19px;height:2px;background:linear-gradient(90deg,var(--lime),rgba(127,227,59,.25))"></div>
+    </div>
+    <div id="tl" style="display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:-40px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:860px;display:flex">
+    <span class="chip lime">7:00 – 9:00</span><span class="chip dark">Timing adjusts to each city's working week</span>
+  </div>
+  <div class="foot" style="left:auto"><span>PSEB × BYOC &nbsp;·&nbsp; 04</span></div>
+</section>
+
+<!-- ============ 05 WHO DOES WHAT ============ -->
+<section class="slide" id="s5">
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div><div class="h" style="top:380px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:380px"></div><div class="n" style="left:200px;top:380px"></div><div class="n" style="left:96px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:150px">
+    <div class="kicker"><b>04</b> &nbsp;The partnership</div>
+    <h1 class="title" style="margin-top:26px">Three partners, <span class="thin">each doing what it does best.</span></h1>
+  </div>
+  <div style="position:absolute;left:200px;right:96px;top:420px;display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:24px">
+    <div class="card" style="height:540px;position:relative">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#F1F3EE" stroke-width="2.5"><path d="M14 58V6"/><path d="M14 8h34l-7 10 7 10H14"/></svg>
+      <div class="kicker" style="margin-top:26px;font-size:16px">The host</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:44px;margin:6px 0 26px">The Mission</div>
+      <ul class="list">
+        <li>The room and the flag</li>
+        <li>Invitation co-signed by the Head of Mission</li>
+        <li>Local chambers and trade bodies</li>
+      </ul>
+    </div>
+    <div class="card" style="height:540px;position:relative">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#F1F3EE" stroke-width="2.5"><rect x="6" y="14" width="52" height="38"/><path d="M6 26h52M22 14V6h20v8"/></svg>
+      <div class="kicker" style="margin-top:26px;font-size:16px">The programme owner</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:44px;margin:6px 0 26px">PSEB</div>
+      <ul class="list">
+        <li>Shortlist of registered exporters</li>
+        <li>Partnerships and sponsorship</li>
+        <li>Tech Destination Pakistan narrative</li>
+      </ul>
+    </div>
+    <div class="card" style="height:540px;position:relative;border-color:rgba(127,227,59,.55);background:rgba(127,227,59,.06)">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#7FE33B" stroke-width="2.5"><rect x="6" y="6" width="20" height="20"/><rect x="38" y="6" width="20" height="20"/><rect x="6" y="38" width="20" height="20"/><path d="M38 38h8v8h-8zM50 50h8v8h-8zM50 38h8M38 58h8"/></svg>
+      <div class="kicker" style="margin-top:26px;font-size:16px;color:var(--lime)">The operator</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:44px;margin:6px 0 26px">BYOC</div>
+      <ul class="list">
+        <li>Guest curation, from BYOC's network and beyond</li>
+        <li>Invitations, personal QR passes, reminders</li>
+        <li>Check-in, planned introductions on the day</li>
+        <li>Follow-up and outcome reporting</li>
+      </ul>
+      <div style="position:absolute;left:34px;bottom:30px;display:flex"><span class="chip lime" style="font-size:17px">140+ gatherings</span><span class="chip dark" style="font-size:17px">21 countries</span></div>
+    </div>
+  </div>
+  <div class="foot"><span></span><span>PSEB × BYOC &nbsp;·&nbsp; 05</span></div>
+  <style>
+    .list{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .list li{font-size:23px;line-height:1.35;color:var(--muted);padding-left:26px;position:relative}
+    .list li::before{content:"";position:absolute;left:0;top:12px;width:10px;height:10px;background:var(--node)}
+  </style>
+</section>
+
+<!-- ============ 06 GUEST JOURNEY ============ -->
+<section class="slide" id="s6">
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:1000px"></div><div class="n" style="left:200px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:150px">
+    <div class="kicker"><b>05</b> &nbsp;The guest experience</div>
+    <h1 class="title" style="margin-top:26px">Personal from the<br><span class="thin">first invitation.</span></h1>
+    <div class="sub" style="margin-top:22px;max-width:760px">Every guest is chosen, and every pass is theirs alone. BYOC runs the whole flow.</div>
+  </div>
+  <!-- steps -->
+  <div id="journey" style="position:absolute;left:200px;top:560px;width:980px"></div>
+  <!-- phone + photo -->
+  <div class="photo" style="position:absolute;left:1260px;top:150px;width:300px;height:534px;background-image:url(img/p_experience_3.jpg)"><div class="cap">BYOC check-in, live</div></div>
+  <div style="position:absolute;left:1470px;top:270px;width:354px;height:690px;border-radius:46px;background:#0c0f0d;border:2px solid rgba(241,243,238,.3);box-shadow:0 40px 80px rgba(0,0,0,.6);padding:18px">
+    <div style="width:100%;height:100%;border-radius:32px;background:linear-gradient(180deg,#132019,#0A110D);padding:34px 28px;display:flex;flex-direction:column">
+      <div style="font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--muted)">YOUR PERSONAL PASS</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:34px;line-height:1;margin-top:14px">CORRIDOR<br><span style="font-weight:200">MORNINGS</span></div>
+      <div style="font-size:15px;color:var(--muted);margin-top:12px">Embassy of Pakistan, Riyadh</div>
+      <div style="background:#F1F3EE;margin:24px auto 0;padding:14px;width:230px;height:230px"><svg id="qr" width="202" height="202"></svg></div>
+      <div style="font-family:var(--mono);font-size:14px;color:var(--ink);text-align:center;margin-top:16px;letter-spacing:.06em">GUEST 024 · 07:00</div>
+      <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+        <div style="background:var(--lime);color:var(--lime-ink);font-family:var(--mono);font-size:13px;padding:10px 12px;letter-spacing:.06em">2 INTRODUCTIONS PLANNED</div>
+        <div style="border:1px solid var(--line);font-family:var(--mono);font-size:13px;padding:10px 12px;color:var(--muted);letter-spacing:.06em">ADD TO CALENDAR</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="left:auto"><span>PSEB × BYOC &nbsp;·&nbsp; 06</span></div>
+</section>
+
+<!-- ============ 07 AFTER THE BREAKFAST ============ -->
+<section class="slide" id="s7">
+  <div class="bg" style="background-image:url(img/mb_video2025_3.jpg)"></div>
+  <div class="tint" style="background:linear-gradient(180deg,rgba(8,14,10,.93),rgba(8,14,10,.97))"></div>
+  <div class="grain"></div>
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="v" style="left:1250px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:1250px;top:96px"></div><div class="n" style="left:1250px;top:1000px"></div><div class="n" style="left:96px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:150px">
+    <div class="kicker"><b>06</b> &nbsp;After the breakfast</div>
+    <h1 class="title" style="margin-top:26px">Guests leave at 9:00.<br><span class="thin">The follow-up begins.</span></h1>
+  </div>
+  <div id="after" style="position:absolute;left:200px;top:450px;width:980px"></div>
+  <!-- scorecard -->
+  <div style="position:absolute;left:1300px;right:96px;top:150px">
+    <div class="kicker">What each morning is measured on</div>
+    <div id="score" style="margin-top:34px;display:flex;flex-direction:column;gap:30px"></div>
+  </div>
+  <div class="foot" style="left:auto"><span>PSEB × BYOC &nbsp;·&nbsp; 07</span></div>
+</section>
+
+<!-- ============ 08 FUNDING ============ -->
+<section class="slide" id="s8">
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div><div class="h" style="top:850px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:850px"></div><div class="n" style="left:200px;top:850px"></div><div class="n" style="left:96px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:150px">
+    <div class="kicker"><b>07</b> &nbsp;Funding the series</div>
+    <h1 class="title" style="margin-top:26px">Partners host the morning.</h1>
+    <div class="sub" style="margin-top:22px;max-width:1300px">Partnerships are led and secured by PSEB. BYOC supports with partner packs, on-the-day delivery and reporting.</div>
+  </div>
+  <div style="position:absolute;left:200px;right:96px;top:440px;display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:24px">
+    <div class="card" style="height:370px;background:var(--lime);color:var(--lime-ink);border:none">
+      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.14em">ONE BRAND · EVERY CITY</div>
+      <div style="font-family:var(--display);font-weight:800;font-size:46px;line-height:1;margin:14px 0 26px">GLOBAL FOUNDING<br>PARTNER</div>
+      <ul class="plist dark">
+        <li>Named on every invitation, in every city</li>
+        <li>Presence at every morning</li>
+        <li>Series-wide outcomes report</li>
+      </ul>
+    </div>
+    <div class="card" style="height:370px">
+      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:var(--muted)">ONE PER CITY</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:46px;line-height:1;margin:14px 0 26px">CORRIDOR<br><span style="font-weight:200">PARTNER</span></div>
+      <ul class="plist">
+        <li>"Hosted by" credit on the invitation</li>
+        <li>Places for their own clients</li>
+        <li>A one-minute welcome</li>
+      </ul>
+    </div>
+    <div class="card" style="height:370px">
+      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:var(--muted)">IN KIND</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:46px;line-height:1;margin:14px 0 26px">COFFEE<br><span style="font-weight:200">PARTNER</span></div>
+      <ul class="plist">
+        <li>A specialty coffee bar in the room</li>
+        <li>Brand presence at the coffee station</li>
+      </ul>
+    </div>
+  </div>
+  <div style="position:absolute;left:200px;right:96px;top:886px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <span class="kicker" style="margin-right:12px">Natural partners</span>
+    <span class="chip ghost" style="font-size:17px">Pakistani banks abroad</span>
+    <span class="chip ghost" style="font-size:17px">Remittance &amp; fintech</span>
+    <span class="chip ghost" style="font-size:17px">Airlines</span>
+    <span class="chip ghost" style="font-size:17px">Telcos</span>
+    <span class="chip ghost" style="font-size:17px">Advisory &amp; law firms</span>
+    <span class="chip ghost" style="font-size:17px">Firms with Pakistan delivery centres</span>
+  </div>
+  <div class="foot" style="left:auto"><span>PSEB × BYOC &nbsp;·&nbsp; 08</span></div>
+  <style>
+    .plist{list-style:none;display:flex;flex-direction:column;gap:14px}
+    .plist li{font-size:22px;line-height:1.35;color:var(--muted);padding-left:24px;position:relative}
+    .plist li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:9px;background:var(--node)}
+    .plist.dark li{color:rgba(10,17,13,.82)}
+    .plist.dark li::before{background:var(--lime-ink)}
+  </style>
+</section>
+
+<!-- ============ 09 PILOT ============ -->
+<section class="slide" id="s9">
+  <div class="bg" style="background-image:url(img/mb_riyadh_2.jpg)"></div>
+  <div class="tint" style="background:linear-gradient(180deg,rgba(6,10,8,.8),rgba(6,10,8,.94))"></div>
+  <div class="grain"></div>
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="v" style="left:1824px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div><div class="h" style="top:520px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:1824px;top:96px"></div><div class="n" style="left:96px;top:520px"></div><div class="n" style="left:1824px;top:520px"></div><div class="n" style="left:96px;top:1000px"></div><div class="n" style="left:200px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:200px;top:150px">
+    <div class="kicker"><b>08</b> &nbsp;The pilot</div>
+    <h1 class="title" style="margin-top:26px">Riyadh first.<br><span class="thin">Then one morning in every city.</span></h1>
+  </div>
+  <div class="photo" style="position:absolute;right:340px;top:150px;width:190px;height:338px;background-image:url(img/p_riyadh_1.jpg)"></div>
+  <div class="photo" style="position:absolute;right:96px;top:150px;width:220px;height:338px;background-image:url(img/p_riyadh_3.jpg)"><div class="cap">BYOC Riyadh</div></div>
+  <!-- 57 squares -->
+  <div style="position:absolute;left:200px;right:96px;top:560px">
+    <div id="cities" style="display:grid;grid-template-columns:repeat(29,1fr);gap:10px"></div>
+    <div style="display:flex;justify-content:space-between;margin-top:14px" class="src"><span style="color:var(--lime)">01 · RIYADH</span><span>57 MISSIONS</span></div>
+  </div>
+  <!-- steps -->
+  <div style="position:absolute;left:200px;right:96px;top:760px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px" id="steps"></div>
+  <div class="foot" style="left:auto"><span>PSEB × BYOC &nbsp;·&nbsp; 09</span></div>
+</section>
+
+<script src="lib/d3.min.js"></script>
+<script src="lib/topojson.min.js"></script>
+<script src="lib/land.js"></script>
+<script>
+const el=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild};
+
+/* room: 50 guests */
+const room=document.getElementById('room');
+for(let i=0;i<50;i++){const local=(i%10)<5;
+  room.appendChild(el(`<div style="aspect-ratio:1;border-radius:50%;${local?'background:var(--lime)':'border:2.5px solid var(--ink)'}"></div>`));}
+
+/* timeline */
+const tl=[["7:00","Arrival","Personal QR check-in, coffee"],["7:15","Introductions","Planned matches, made in person"],["8:00","Welcome","3 minutes from the mission"],["8:05","Keynote","Optional, 15 minutes"],["8:20","Open floor","Conversations continue"],["9:00","Close","Guests leave for work"]];
+const tlEl=document.getElementById('tl');
+tl.forEach(([t,h,d],i)=>tlEl.appendChild(el(`<div style="padding-right:24px">
+  <div style="width:40px;height:40px;display:flex;align-items:center;justify-content:flex-start"><div style="width:16px;height:16px;background:${i===2?'var(--lime)':'var(--ink)'}"></div></div>
+  <div style="font-family:var(--mono);font-size:30px;font-weight:500;margin-top:20px;color:${i===2?'var(--lime)':'var(--ink)'}">${t}</div>
+  <div style="font-family:var(--display);font-weight:600;font-size:30px;margin-top:10px">${h}</div>
+  <div style="font-size:20px;color:var(--muted);margin-top:8px;line-height:1.4">${d}</div></div>`)));
+
+/* journey */
+const jr=[["Before","Curated guest list","BYOC network, mission contacts, PSEB exporters"],["Before","Personal invitation","Co-branded, sent one guest at a time"],["Before","Personal QR pass","Unique to each guest, non-transferable"],["Before","Reminders","Calendar, a week out, the evening before"],["On the day","QR check-in","Seconds at the door, live guest count"],["On the day","Planned introductions","Each guest knows who they are there to meet"]];
+const j=document.getElementById('journey');
+j.style.display='grid';j.style.gridTemplateColumns='repeat(3,1fr)';j.style.rowGap='34px';j.style.columnGap='28px';
+jr.forEach(([p,h,d],i)=>j.appendChild(el(`<div style="border-top:1px solid ${p==='On the day'?'var(--lime)':'var(--line)'};padding-top:18px">
+  <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:${p==='On the day'?'var(--lime)':'var(--dim)'}"><span>${p}</span><span>0${i+1}</span></div>
+  <div style="font-family:var(--display);font-weight:600;font-size:29px;margin-top:12px">${h}</div>
+  <div style="font-size:19px;color:var(--muted);margin-top:6px;line-height:1.4">${d}</div></div>`)));
+
+/* after */
+const af=[["Same day","Thank-you note, and a directory of who was in the room"],["Week 1","BYOC brokers follow-up introductions on request"],["Day 30","Follow-up meetings checked and logged"],["Day 90","Outcomes report to PSEB and the mission: meetings, pilots, deals"]];
+const a=document.getElementById('after');
+af.forEach(([t,d],i)=>a.appendChild(el(`<div style="display:grid;grid-template-columns:220px 1fr;align-items:start;padding:26px 0;border-top:1px solid var(--line);${i===af.length-1?'border-bottom:1px solid var(--line)':''}">
+  <div style="display:flex;align-items:center;gap:16px"><div style="width:14px;height:14px;background:${i===3?'var(--lime)':'var(--ink)'}"></div><span style="font-family:var(--mono);font-size:24px;font-weight:500;color:${i===3?'var(--lime)':'var(--ink)'}">${t}</span></div>
+  <div style="font-size:26px;line-height:1.4;color:var(--ink)">${d}</div></div>`)));
+
+/* scorecard */
+const sc=[["~50","guests in the room",1],["50 / 50","local and Pakistani-origin",1],["20+","planned introductions",.8],["10+","follow-up meetings within 30 days",.55],["90 days","deals and partnerships tracked",.35]];
+const s=document.getElementById('score');
+sc.forEach(([n,l,w])=>s.appendChild(el(`<div>
+  <div style="display:flex;align-items:baseline;gap:16px"><span style="font-family:var(--display);font-weight:700;font-size:48px;line-height:1">${n}</span><span style="font-size:20px;color:var(--muted)">${l}</span></div>
+  <div style="height:6px;background:var(--line);margin-top:12px"><div style="height:100%;width:${w*100}%;background:var(--lime)"></div></div></div>`)));
+
+/* pilot: 57 squares */
+const c=document.getElementById('cities');
+for(let i=0;i<58;i++){ if(i===57){c.appendChild(el('<div></div>'));continue}
+  c.appendChild(el(`<div style="aspect-ratio:1;${i===0?'background:var(--lime)':'border:1.5px solid rgba(241,243,238,'+(0.55-i*0.006)+')'}"></div>`));}
+const st=[["Weeks 1–2","Date and room confirmed with the Embassy. PSEB confirms partners."],["Weeks 3–5","Guest list curated. Invitations and personal passes go out."],["Week 6","The first Corridor Morning, Riyadh."],["Weeks 7–18","Outcomes tracked. Playbook set for the next cities."]];
+const sEl=document.getElementById('steps');
+st.forEach(([t,d],i)=>sEl.appendChild(el(`<div style="border-top:2px solid ${i===2?'var(--lime)':'var(--line)'};padding-top:18px">
+  <div style="font-family:var(--mono);font-size:22px;font-weight:500;color:${i===2?'var(--lime)':'var(--ink)'}">${t}</div>
+  <div style="font-size:21px;color:var(--muted);margin-top:10px;line-height:1.4">${d}</div></div>`)));
+
+/* pseudo QR */
+(function(){const svg=document.getElementById('qr'),N=29,u=202/N;let seed=7;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+  let h='';const finder=(x,y)=>{h+=`<rect x="${x*u}" y="${y*u}" width="${7*u}" height="${7*u}" fill="#0A110D"/><rect x="${(x+1)*u}" y="${(y+1)*u}" width="${5*u}" height="${5*u}" fill="#F1F3EE"/><rect x="${(x+2)*u}" y="${(y+2)*u}" width="${3*u}" height="${3*u}" fill="#0A110D"/>`};
+  const inF=(x,y)=>(x<8&&y<8)||(x>N-9&&y<8)||(x<8&&y>N-9);
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){if(inF(x,y))continue;if(r()<.48)h+=`<rect x="${x*u}" y="${y*u}" width="${u+.3}" height="${u+.3}" fill="#0A110D"/>`}
+  finder(0,0);finder(N-7,0);finder(0,N-7);svg.innerHTML=h;})();
+
+/* world map with mission dots (illustrative) */
+const missions=[[-0.13,51.5],[-2.24,53.48],[-1.9,52.48],[-1.76,53.8],[-4.25,55.86],[2.35,48.86],[13.4,52.52],[8.68,50.11],[4.35,50.85],[4.3,52.08],[-3.7,40.42],[2.17,41.39],[9.19,45.46],[12.5,41.9],[16.37,48.21],[18.07,59.33],[10.75,59.91],[12.57,55.68],[21.01,52.23],[28.98,41.01],[32.85,39.93],[37.62,55.75],[46.68,24.71],[39.17,21.49],[55.27,25.2],[54.37,24.45],[51.53,25.29],[58.41,23.59],[47.98,29.37],[50.59,26.23],[51.39,35.69],[31.24,30.04],[36.82,-1.29],[28.05,-26.2],[3.38,6.52],[-77.04,38.9],[-74.0,40.71],[-87.63,41.88],[-95.37,29.76],[-118.24,34.05],[-79.38,43.65],[-75.7,45.42],[-73.57,45.5],[116.4,39.9],[121.47,31.23],[113.26,23.13],[114.17,22.32],[139.69,35.69],[126.98,37.57],[103.85,1.29],[101.69,3.14],[106.85,-6.21],[100.5,13.76],[151.21,-33.87],[149.13,-35.28],[69.24,41.3],[49.87,40.41]];
+Promise.resolve(window.LAND).then(w=>{
+  const svg=d3.select('#map'),W=1200,H=560;
+  const land=topojson.feature(w,w.objects.land);
+  const proj=d3.geoEqualEarth().rotate([-30,0]).fitExtent([[0,0],[W,H+40]],{type:'Sphere'});
+  const path=d3.geoPath(proj);
+  // dotted land
+  const g=svg.append('g');const step=9;
+  const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#000';ctx.beginPath();d3.geoPath(proj,ctx)(land);ctx.fill();
+  const data=ctx.getImageData(0,0,W,H).data;
+  for(let y=step/2;y<H;y+=step)for(let x=step/2;x<W;x+=step){if(data[(Math.floor(y)*W+Math.floor(x))*4+3]>128)g.append('circle').attr('cx',x).attr('cy',y).attr('r',1.7).attr('fill','rgba(241,243,238,.26)')}
+  const pk=proj([73.05,33.68]);
+  missions.forEach(m=>{const p=proj(m);
+    svg.append('path').attr('d',`M${pk[0]},${pk[1]} Q${(pk[0]+p[0])/2},${Math.min(pk[1],p[1])-60} ${p[0]},${p[1]}`).attr('fill','none').attr('stroke','rgba(127,227,59,.16)').attr('stroke-width',1);});
+  missions.forEach(m=>{const p=proj(m);svg.append('rect').attr('x',p[0]-4).attr('y',p[1]-4).attr('width',8).attr('height',8).attr('fill','#7FE33B');});
+  svg.append('circle').attr('cx',pk[0]).attr('cy',pk[1]).attr('r',9).attr('fill','none').attr('stroke','#F1F3EE').attr('stroke-width',2);
+  svg.append('circle').attr('cx',pk[0]).attr('cy',pk[1]).attr('r',3.5).attr('fill','#F1F3EE');
+  svg.append('text').attr('x',pk[0]+16).attr('y',pk[1]+6).attr('fill','#F1F3EE').attr('font-family','JetBrains Mono').attr('font-size',16).attr('letter-spacing','.1em').text('PAKISTAN');
+  document.body.dataset.ready='1';
+}).catch(()=>{document.body.dataset.ready='1'});
+</script>
+</body>
+</html>
