@@ -31,8 +31,13 @@ body{font-family:var(--body);color:var(--ink);-webkit-font-smoothing:antialiased
 .grid .h{left:0;right:0;height:1px}
 .grid .n{position:absolute;width:9px;height:9px;background:var(--node);transform:translate(-4px,-4px)}
 
-.kicker{font-family:var(--mono);font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kicker{font-family:var(--mono);font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .kicker b{color:var(--lime);font-weight:500}
+/* label system: solid blocks, as in the reference date/venue chips */
+.tagpair{display:inline-flex;font-family:var(--mono);font-weight:500;font-size:19px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.tagpair span{padding:9px 13px;background:#000;color:var(--ink)}
+.tagpair span.n{background:var(--lime);color:var(--lime-ink)}
+.tagpair span.g{background:rgba(241,243,238,.1);color:var(--ink)}
 h1.title{font-family:var(--display);font-weight:700;font-size:76px;line-height:1.02;letter-spacing:-.01em}
 h1.title .thin{font-weight:200}
 .sub{font-size:26px;line-height:1.45;color:var(--muted);max-width:980px}
@@ -40,7 +45,7 @@ h1.title .thin{font-weight:200}
 .chip.dark{background:#000;color:var(--ink)}
 .chip.lime{background:var(--lime);color:var(--lime-ink)}
 .chip.ghost{border:1px solid var(--line);color:var(--muted)}
-.foot{position:absolute;left:200px;right:96px;bottom:46px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.foot{position:absolute;left:200px;right:96px;bottom:46px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:16px;letter-spacing:.05em;color:var(--dim);text-transform:uppercase}
 .src{font-family:var(--mono);font-size:14px;color:var(--dim);letter-spacing:.04em}
 
 /* lockup */
@@ -55,7 +60,9 @@ h1.title .thin{font-weight:200}
 .card{border:1px solid var(--line);background:rgba(10,17,13,.55);padding:34px 34px 30px}
 .photo{background-size:cover;background-position:center;position:relative}
 .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,13,0) 50%,rgba(10,17,13,.75))}
-.cap{position:absolute;left:14px;bottom:12px;z-index:2;font-family:var(--mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.cap{position:absolute;left:0;bottom:0;z-index:2;display:inline-flex;font-family:var(--mono);font-weight:500;font-size:15px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.cap span{padding:8px 11px;background:#000;color:var(--ink)}
+.cap span.n{background:var(--lime);color:var(--lime-ink)}
 </style>
 </head>
 <body>
@@ -71,11 +78,11 @@ h1.title .thin{font-weight:200}
     <div class="n" style="left:96px;top:130px"></div><div class="n" style="left:250px;top:130px"></div><div class="n" style="left:1824px;top:130px"></div>
     <div class="n" style="left:96px;top:760px"></div><div class="n" style="left:96px;top:870px"></div><div class="n" style="left:250px;top:870px"></div><div class="n" style="left:96px;top:1010px"></div><div class="n" style="left:250px;top:1010px"></div>
   </div>
-  <div style="position:absolute;left:250px;top:470px">
+  <div style="position:absolute;left:250px;top:440px">
     <div class="lockup">
-      <div class="pseb">PSEB<small>PAKISTAN SOFTWARE EXPORT BOARD</small></div>
-      <div class="bar"></div>
-      <img class="byoc" src="img/byoc-logo.png" alt="BYOC">
+      <img src="img/pseb_white.png" alt="PSEB" style="height:96px">
+      <div class="bar" style="height:80px"></div>
+      <img class="byoc" src="img/byoc-logo.png" alt="BYOC" style="height:70px">
     </div>
   </div>
   <div style="position:absolute;left:250px;top:600px">
@@ -87,7 +94,8 @@ h1.title .thin{font-weight:200}
   <div style="position:absolute;left:250px;top:940px;display:flex">
     <span class="chip dark">Invite-only tech breakfasts</span><span class="chip lime">Across Pakistan's missions abroad</span>
   </div>
-  <div style="position:absolute;right:96px;top:170px" class="kicker">Tech Destination Pakistan &nbsp;·&nbsp; Proposal &nbsp;·&nbsp; Sept 2026</div>
+  <img src="img/tdp_white.png" alt="Tech Destination Pakistan" style="position:absolute;left:250px;top:168px;height:84px;opacity:.92">
+  <div class="tagpair" style="position:absolute;right:96px;top:172px"><span>Proposal</span><span class="n">Sept 2026</span></div>
 </section>
 
 <!-- ============ 02 OPPORTUNITY ============ -->
@@ -97,7 +105,7 @@ h1.title .thin{font-weight:200}
     <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:1000px"></div><div class="n" style="left:200px;top:1000px"></div>
   </div>
   <div style="position:absolute;left:200px;top:150px">
-    <div class="kicker"><b>01</b> &nbsp;The opportunity</div>
+    <div class="tagpair"><span class="n">01</span><span>The opportunity</span></div>
     <h1 class="title" style="margin-top:26px;max-width:1600px">Pakistani tech is growing.<br><span class="thin">Many buyers abroad have yet to meet it.</span></h1>
   </div>
   <!-- map -->
@@ -132,7 +140,7 @@ h1.title .thin{font-weight:200}
     <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:820px"></div><div class="n" style="left:200px;top:820px"></div><div class="n" style="left:96px;top:1000px"></div>
   </div>
   <div style="position:absolute;left:200px;top:150px">
-    <div class="kicker"><b>02</b> &nbsp;Proven elsewhere</div>
+    <div class="tagpair"><span class="n">02</span><span>Proven elsewhere</span></div>
     <h1 class="title" style="margin-top:26px">Other countries already open doors<br><span class="thin">through their diaspora.</span></h1>
   </div>
   <div style="position:absolute;left:200px;right:96px;top:420px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
@@ -178,7 +186,7 @@ h1.title .thin{font-weight:200}
     <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:560px"></div><div class="n" style="left:96px;top:1000px"></div>
   </div>
   <div style="position:absolute;left:200px;top:150px">
-    <div class="kicker"><b>03</b> &nbsp;The format</div>
+    <div class="tagpair"><span class="n">03</span><span>The format</span></div>
     <h1 class="title" style="margin-top:26px">One morning, <span class="thin">in each city.</span></h1>
     <div class="sub" style="margin-top:22px;max-width:900px">Invite-only, hosted at the embassy or consulate. Around 50 guests, before the working day begins.</div>
   </div>
@@ -210,7 +218,7 @@ h1.title .thin{font-weight:200}
     <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:380px"></div><div class="n" style="left:200px;top:380px"></div><div class="n" style="left:96px;top:1000px"></div>
   </div>
   <div style="position:absolute;left:200px;top:150px">
-    <div class="kicker"><b>04</b> &nbsp;The partnership</div>
+    <div class="tagpair"><span class="n">04</span><span>The partnership</span></div>
     <h1 class="title" style="margin-top:26px">Three partners, <span class="thin">each doing what it does best.</span></h1>
   </div>
   <div style="position:absolute;left:200px;right:96px;top:420px;display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:24px">
@@ -262,17 +270,17 @@ h1.title .thin{font-weight:200}
     <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:1000px"></div><div class="n" style="left:200px;top:1000px"></div>
   </div>
   <div style="position:absolute;left:200px;top:150px">
-    <div class="kicker"><b>05</b> &nbsp;The guest experience</div>
+    <div class="tagpair"><span class="n">05</span><span>The guest experience</span></div>
     <h1 class="title" style="margin-top:26px">Personal from the<br><span class="thin">first invitation.</span></h1>
     <div class="sub" style="margin-top:22px;max-width:760px">Every guest is chosen, and every pass is theirs alone. BYOC runs the whole flow.</div>
   </div>
   <!-- steps -->
   <div id="journey" style="position:absolute;left:200px;top:560px;width:980px"></div>
   <!-- phone + photo -->
-  <div class="photo" style="position:absolute;left:1260px;top:150px;width:300px;height:534px;background-image:url(img/p_experience_3.jpg)"><div class="cap">BYOC check-in, live</div></div>
+  <div class="photo" style="position:absolute;left:1260px;top:150px;width:300px;height:534px;background-image:url(img/p_experience_3.jpg)"><div class="cap"><span class="n">Live</span><span>BYOC check-in</span></div></div>
   <div style="position:absolute;left:1470px;top:270px;width:354px;height:690px;border-radius:46px;background:#0c0f0d;border:2px solid rgba(241,243,238,.3);box-shadow:0 40px 80px rgba(0,0,0,.6);padding:18px">
     <div style="width:100%;height:100%;border-radius:32px;background:linear-gradient(180deg,#132019,#0A110D);padding:34px 28px;display:flex;flex-direction:column">
-      <div style="font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--muted)">YOUR PERSONAL PASS</div>
+      <div style="font-family:var(--mono);font-size:13px;letter-spacing:.05em;color:var(--muted)">YOUR PERSONAL PASS</div>
       <div style="font-family:var(--display);font-weight:700;font-size:34px;line-height:1;margin-top:14px">CORRIDOR<br><span style="font-weight:200">MORNINGS</span></div>
       <div style="font-size:15px;color:var(--muted);margin-top:12px">Embassy of Pakistan, Riyadh</div>
       <div style="background:#F1F3EE;margin:24px auto 0;padding:14px;width:230px;height:230px"><svg id="qr" width="202" height="202"></svg></div>
@@ -296,7 +304,7 @@ h1.title .thin{font-weight:200}
     <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:1250px;top:96px"></div><div class="n" style="left:1250px;top:1000px"></div><div class="n" style="left:96px;top:1000px"></div>
   </div>
   <div style="position:absolute;left:200px;top:150px">
-    <div class="kicker"><b>06</b> &nbsp;After the breakfast</div>
+    <div class="tagpair"><span class="n">06</span><span>After the breakfast</span></div>
     <h1 class="title" style="margin-top:26px">Guests leave at 9:00.<br><span class="thin">The follow-up begins.</span></h1>
   </div>
   <div id="after" style="position:absolute;left:200px;top:450px;width:980px"></div>
@@ -311,51 +319,57 @@ h1.title .thin{font-weight:200}
 <!-- ============ 08 FUNDING ============ -->
 <section class="slide" id="s8">
   <div class="grid">
-    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div><div class="h" style="top:850px"></div>
-    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:850px"></div><div class="n" style="left:200px;top:850px"></div><div class="n" style="left:96px;top:1000px"></div>
+    <div class="v" style="left:96px"></div><div class="v" style="left:200px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:96px;top:1000px"></div>
   </div>
   <div style="position:absolute;left:200px;top:150px">
-    <div class="kicker"><b>07</b> &nbsp;Funding the series</div>
+    <div class="tagpair"><span class="n">07</span><span>Funding the series</span></div>
     <h1 class="title" style="margin-top:26px">Partners host the morning.</h1>
-    <div class="sub" style="margin-top:22px;max-width:1300px">Partnerships are led and secured by PSEB. BYOC supports with partner packs, on-the-day delivery and reporting.</div>
+    <div class="sub" style="margin-top:22px;max-width:1300px">Partnerships are led and secured by PSEB. BYOC supports with partner packs, delivery and reporting.</div>
   </div>
-  <div style="position:absolute;left:200px;right:96px;top:440px;display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:24px">
-    <div class="card" style="height:370px;background:var(--lime);color:var(--lime-ink);border:none">
-      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.14em">ONE BRAND · EVERY CITY</div>
-      <div style="font-family:var(--display);font-weight:800;font-size:46px;line-height:1;margin:14px 0 26px">GLOBAL FOUNDING<br>PARTNER</div>
+  <div style="position:absolute;left:200px;right:96px;top:400px;display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:24px">
+    <div class="card" style="height:330px;background:var(--lime);color:var(--lime-ink);border:none">
+      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.05em">ONE BRAND · EVERY CITY</div>
+      <div style="font-family:var(--display);font-weight:800;font-size:46px;line-height:1;margin:12px 0 20px">GLOBAL FOUNDING<br>PARTNER</div>
       <ul class="plist dark">
         <li>Named on every invitation, in every city</li>
         <li>Presence at every morning</li>
         <li>Series-wide outcomes report</li>
       </ul>
     </div>
-    <div class="card" style="height:370px">
-      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:var(--muted)">ONE PER CITY</div>
-      <div style="font-family:var(--display);font-weight:700;font-size:46px;line-height:1;margin:14px 0 26px">CORRIDOR<br><span style="font-weight:200">PARTNER</span></div>
+    <div class="card" style="height:330px">
+      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.05em;color:var(--muted)">ONE PER CITY</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:46px;line-height:1;margin:12px 0 20px">CORRIDOR<br><span style="font-weight:200">PARTNER</span></div>
       <ul class="plist">
         <li>"Hosted by" credit on the invitation</li>
         <li>Places for their own clients</li>
         <li>A one-minute welcome</li>
       </ul>
     </div>
-    <div class="card" style="height:370px">
-      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.14em;color:var(--muted)">IN KIND</div>
-      <div style="font-family:var(--display);font-weight:700;font-size:46px;line-height:1;margin:14px 0 26px">COFFEE<br><span style="font-weight:200">PARTNER</span></div>
+    <div class="card" style="height:330px">
+      <div style="font-family:var(--mono);font-size:16px;letter-spacing:.05em;color:var(--muted)">IN KIND</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:46px;line-height:1;margin:12px 0 20px">COFFEE<br><span style="font-weight:200">PARTNER</span></div>
       <ul class="plist">
         <li>A specialty coffee bar in the room</li>
         <li>Brand presence at the coffee station</li>
       </ul>
     </div>
   </div>
-  <div style="position:absolute;left:200px;right:96px;top:886px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-    <span class="kicker" style="margin-right:12px">Natural partners</span>
-    <span class="chip ghost" style="font-size:17px">Pakistani banks abroad</span>
-    <span class="chip ghost" style="font-size:17px">Remittance &amp; fintech</span>
-    <span class="chip ghost" style="font-size:17px">Airlines</span>
-    <span class="chip ghost" style="font-size:17px">Telcos</span>
-    <span class="chip ghost" style="font-size:17px">Advisory &amp; law firms</span>
-    <span class="chip ghost" style="font-size:17px">Firms with Pakistan delivery centres</span>
+  <div style="position:absolute;left:200px;right:96px;top:780px">
+    <div class="tagpair"><span class="g">Who partners, and why</span></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:22px">
+      <div class="pc"><h4>Pakistani tech firms with clients there</h4><p>Host their clients, deepen accounts</p></div>
+      <div class="pc"><h4>Tech firms entering the market</h4><p>Meet buyers with the mission's backing</p></div>
+      <div class="pc"><h4>Global firms with Pakistan delivery teams</h4><p>Show local clients the bench behind them</p></div>
+      <div class="pc"><h4>Corridor services</h4><p>Airlines, payments, telcos, market-entry advisors</p></div>
+    </div>
   </div>
+  <style>
+    .pc{border-top:2px solid var(--line);padding-top:16px}
+    .pc:first-child{border-top-color:var(--lime)}
+    .pc h4{font-family:var(--display);font-weight:600;font-size:24px;line-height:1.15}
+    .pc p{font-size:19px;color:var(--muted);margin-top:8px;line-height:1.4}
+  </style>
   <div class="foot" style="left:auto"><span>PSEB × BYOC &nbsp;·&nbsp; 08</span></div>
   <style>
     .plist{list-style:none;display:flex;flex-direction:column;gap:14px}
@@ -376,19 +390,49 @@ h1.title .thin{font-weight:200}
     <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:200px;top:96px"></div><div class="n" style="left:1824px;top:96px"></div><div class="n" style="left:96px;top:520px"></div><div class="n" style="left:1824px;top:520px"></div><div class="n" style="left:96px;top:1000px"></div><div class="n" style="left:200px;top:1000px"></div>
   </div>
   <div style="position:absolute;left:200px;top:150px">
-    <div class="kicker"><b>08</b> &nbsp;The pilot</div>
-    <h1 class="title" style="margin-top:26px">Riyadh first.<br><span class="thin">Then one morning in every city.</span></h1>
+    <div class="tagpair"><span class="n">08</span><span>The pilot</span></div>
+    <h1 class="title" style="margin-top:26px">Riyadh first.<br><span class="thin">Then one morning<br>in every city.</span></h1>
   </div>
-  <div class="photo" style="position:absolute;right:340px;top:150px;width:190px;height:338px;background-image:url(img/p_riyadh_1.jpg)"></div>
-  <div class="photo" style="position:absolute;right:96px;top:150px;width:220px;height:338px;background-image:url(img/p_riyadh_3.jpg)"><div class="cap">BYOC Riyadh</div></div>
+  <div class="photo" style="position:absolute;left:1120px;top:150px;width:460px;height:340px;background-image:url(img/r_1441.jpg)"><div class="cap"><span class="n">BYOC Riyadh</span><span>Sept 2026</span></div></div>
+  <div class="photo" style="position:absolute;left:1600px;top:150px;width:224px;height:160px;background-image:url(img/r_1413.jpg)"></div>
+  <div class="photo" style="position:absolute;left:1600px;top:330px;width:224px;height:160px;background-image:url(img/r_1552.jpg)"></div>
   <!-- 57 squares -->
-  <div style="position:absolute;left:200px;right:96px;top:560px">
+  <div style="position:absolute;left:200px;right:96px;top:572px">
     <div id="cities" style="display:grid;grid-template-columns:repeat(29,1fr);gap:10px"></div>
-    <div style="display:flex;justify-content:space-between;margin-top:14px" class="src"><span style="color:var(--lime)">01 · RIYADH</span><span>57 MISSIONS</span></div>
+    <div style="display:flex;justify-content:space-between;margin-top:16px"><div class="tagpair" style="font-size:15px"><span class="n">01</span><span>Riyadh</span></div><div class="tagpair" style="font-size:15px"><span>57 missions</span></div></div>
   </div>
   <!-- steps -->
   <div style="position:absolute;left:200px;right:96px;top:760px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px" id="steps"></div>
   <div class="foot" style="left:auto"><span>PSEB × BYOC &nbsp;·&nbsp; 09</span></div>
+</section>
+
+<!-- ============ 10 OUTRO ============ -->
+<section class="slide" id="s10">
+  <div class="bg" style="background-image:url(img/mb_r1413.jpg)"></div>
+  <div class="tint" style="background:linear-gradient(180deg,rgba(20,24,20,.35) 0%,rgba(10,14,11,.55) 38%,rgba(4,6,5,.96) 70%,#030403 100%)"></div>
+  <div class="grain"></div>
+  <div class="grid">
+    <div class="v" style="left:96px"></div><div class="v" style="left:1824px"></div><div class="h" style="top:96px"></div><div class="h" style="top:1000px"></div>
+    <div class="n" style="left:96px;top:96px"></div><div class="n" style="left:1824px;top:96px"></div><div class="n" style="left:96px;top:1000px"></div><div class="n" style="left:1824px;top:1000px"></div>
+  </div>
+  <div style="position:absolute;left:0;right:0;top:150px;text-align:center">
+    <div style="position:relative;display:inline-block">
+      <div style="font-family:var(--display);font-weight:800;font-size:250px;line-height:.8;letter-spacing:-.01em">SEE YOU</div>
+      <div style="font-family:var(--display);font-weight:800;font-size:250px;line-height:.8;letter-spacing:-.01em;margin-top:28px">AT 7:00</div>
+      <div style="position:absolute;left:-70px;top:50%;transform:translate(0,-50%) rotate(-8deg);width:180px;height:180px;border-radius:50%;background:var(--lime);color:var(--lime-ink);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:40px;line-height:.95;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.35)">in<br>Riyadh</div>
+    </div>
+    
+  </div>
+  <div style="position:absolute;left:-60px;right:-60px;top:680px;transform:rotate(-4deg);background:var(--lime);padding:18px 0;white-space:nowrap;overflow:hidden">
+    <div style="font-family:var(--display);font-weight:800;font-size:58px;color:var(--lime-ink);letter-spacing:.01em">CORRIDOR MORNINGS — INVITE ONLY — CORRIDOR MORNINGS — INVITE ONLY — CORRIDOR MORNINGS — INVITE ONLY —</div>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:130px;display:flex;justify-content:center;align-items:center;gap:36px">
+    <img src="img/pseb_white.png" alt="PSEB" style="height:62px">
+    <div style="width:1px;height:52px;background:rgba(241,243,238,.6)"></div>
+    <img src="img/tdp_white.png" alt="Tech Destination Pakistan" style="height:52px">
+    <div style="width:1px;height:52px;background:rgba(241,243,238,.6)"></div>
+    <img class="byoc" src="img/byoc-logo.png" alt="BYOC" style="height:48px">
+  </div>
 </section>
 
 <script src="lib/d3.min.js"></script>
@@ -416,7 +460,7 @@ const jr=[["Before","Curated guest list","BYOC network, mission contacts, PSEB e
 const j=document.getElementById('journey');
 j.style.display='grid';j.style.gridTemplateColumns='repeat(3,1fr)';j.style.rowGap='34px';j.style.columnGap='28px';
 jr.forEach(([p,h,d],i)=>j.appendChild(el(`<div style="border-top:1px solid ${p==='On the day'?'var(--lime)':'var(--line)'};padding-top:18px">
-  <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:${p==='On the day'?'var(--lime)':'var(--dim)'}"><span>${p}</span><span>0${i+1}</span></div>
+  <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:${p==='On the day'?'var(--lime)':'var(--dim)'}"><span>${p}</span><span>0${i+1}</span></div>
   <div style="font-family:var(--display);font-weight:600;font-size:29px;margin-top:12px">${h}</div>
   <div style="font-size:19px;color:var(--muted);margin-top:6px;line-height:1.4">${d}</div></div>`)));
 
@@ -470,7 +514,7 @@ Promise.resolve(window.LAND).then(w=>{
   missions.forEach(m=>{const p=proj(m);svg.append('rect').attr('x',p[0]-4).attr('y',p[1]-4).attr('width',8).attr('height',8).attr('fill','#7FE33B');});
   svg.append('circle').attr('cx',pk[0]).attr('cy',pk[1]).attr('r',9).attr('fill','none').attr('stroke','#F1F3EE').attr('stroke-width',2);
   svg.append('circle').attr('cx',pk[0]).attr('cy',pk[1]).attr('r',3.5).attr('fill','#F1F3EE');
-  svg.append('text').attr('x',pk[0]+16).attr('y',pk[1]+6).attr('fill','#F1F3EE').attr('font-family','JetBrains Mono').attr('font-size',16).attr('letter-spacing','.1em').text('PAKISTAN');
+  svg.append('text').attr('x',pk[0]+16).attr('y',pk[1]+6).attr('fill','#F1F3EE').attr('font-family','JetBrains Mono').attr('font-size',16).attr('letter-spacing','.05em').text('PAKISTAN');
   document.body.dataset.ready='1';
 }).catch(()=>{document.body.dataset.ready='1'});
 </script>
