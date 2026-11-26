@@ -29,7 +29,7 @@ export interface HeroNext {
 
 function Ribbon({ text, href }: { text: string; href?: string }) {
   const row = (
-    <div className="flex w-max animate-marquee-fast">
+    <div className="flex w-max animate-marquee-ribbon">
       {[0, 1].map((k) => (
         <div key={k} className="flex shrink-0">
           {Array.from({ length: 8 }).map((_, i) => (
