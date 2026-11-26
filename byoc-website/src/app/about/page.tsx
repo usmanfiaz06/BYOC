@@ -1,177 +1,87 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import JoinCTA from '@/components/JoinCTA';
+import { stats } from '@/data/cities';
 
 export const metadata: Metadata = {
   title: 'Manifesto: why we meet',
-  description: 'Why BYOC exists: people gather around a shared problem. Started in Islamabad in 2020 as a coffee during lockdown; now 212+ gatherings in 21 countries.',
+  description: `Why BYOC exists: people gather around a shared problem. Started in Islamabad in ${stats.since} as a coffee during lockdown; now ${stats.gatherings}+ gatherings in ${stats.countries} countries.`,
   alternates: { canonical: '/about' },
 };
+
+const principles = [
+  {
+    t: 'The problem comes first.',
+    b: 'Nobody joins a community. People join each other, around something they couldn’t carry alone. Ours was a lockdown. Yours might be a hire, a raise, a move, or a decision you can’t take to your board. We don’t invent reasons to meet. Our members bring them.',
+  },
+  { t: 'Paying is the point.', b: 'Four dollars is the cheapest independence there is. It means no one owns the room, and no one in it owes anyone anything.' },
+  { t: 'Small on purpose.', b: 'You can’t be honest with two hundred people. You can be honest with eight. Every gathering stays small enough that each person is heard.' },
+  { t: 'Questions over answers.', b: 'We put questions in the middle of the group and let the room answer.' },
+  { t: 'Regulars, not members.', b: 'A membership is something you have. Being a regular is something you do. We care about the second one.' },
+  { t: 'Invite-only, by design.', b: 'Every person at the table was asked to be there. That is how the conversations stay honest and the rooms stay small.' },
+];
+
+const forList = ['People building something: a company, a team, a fund, a policy, or a life in a new city.', 'People who listen as hard as they talk.', 'People who’d rather be useful than impressive.'];
+const notList = ['Collecting cards.', 'Pitching a room.', 'Being seen.'];
 
 export default function AboutPage() {
   return (
     <div>
-      {/* Hero */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
-            <div>
-              <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">About BYOC</p>
-              <h1 className="text-[46px] sm:text-[58px] lg:text-[68px] font-serif leading-[1.05] tracking-[-0.03em] text-coffee-dark">
-                Buy your own coffee.
-                <br />
-                <span className="italic">Start something real.</span>
-              </h1>
-            </div>
-            <div className="lg:pt-12">
-              <p className="text-[15px] text-muted leading-[1.8] mb-6">
-                BYOC is a global community built around a single conviction: the most consequential professional relationships begin with unstructured, honest conversation — not conferences, not pitch nights, not happy hours.
-              </p>
-              <p className="text-[15px] text-muted leading-[1.8]">
-                We operate across 21 countries with a consistent format: small groups, carefully chosen venues, zero programming. The result is a high-signal, low-noise environment where founders meet investors without a deck between them, where operators exchange playbooks without an NDA, and where policymakers sit with practitioners without a podium.
-              </p>
-            </div>
+      <section className="mx-auto max-w-[1600px] px-4 pb-16 pt-16 sm:px-6 sm:pt-24 lg:px-10">
+        <h1 className="font-display text-[clamp(56px,10vw,180px)] font-medium text-ink display-tight">Why we meet.</h1>
+        <p className="mt-8 max-w-[56ch] text-[19px] leading-[1.6] text-ink/75">
+          What we’ve learned in {stats.gatherings}+ gatherings since {stats.since}, and what we borrowed from people who studied it longer.
+        </p>
+      </section>
+
+      <section className="bg-cherry text-paper">
+        <div className="mx-auto grid max-w-[1600px] gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[1fr_1fr] lg:px-10">
+          <div>
+            <h2 className="font-display text-[clamp(40px,5.6vw,96px)] font-medium display-tight">It started because we were bored.</h2>
+            <p className="mt-8 max-w-[46ch] text-[18px] leading-[1.6] text-paper/90">
+              In 2020 the world went indoors. A few of us in Islamabad missed sitting across from someone, talking until the coffee went cold. So we did. Each of us paid for our own cup. We met again the next week. Other people heard. It now happens in {stats.countries} countries.
+            </p>
+          </div>
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <Image src="/images/circle.jpg" alt="A small BYOC group talking around a café table" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover grayscale" />
           </div>
         </div>
       </section>
 
-      {/* The Name */}
-      <section className="py-28 bg-card border-y border-card-border">
-        <div className="max-w-[720px] mx-auto px-6 lg:px-10 text-center">
-          <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">The Name</p>
-          <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em] mb-8">
-            Why &ldquo;Buy Your Own Coffee&rdquo;?
-          </h2>
-          <p className="text-[15px] text-muted leading-[1.8]">
-            The name is the philosophy. Buying your own coffee signals independence from sponsors, respect for host venues, and a community that sustains itself by design. There are no free lunches at BYOC — and that constraint is what keeps the signal clean. When no one is selling, everyone is free to listen.
-          </p>
-        </div>
+      <section className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-32 lg:px-10">
+        <ol className="border-t-2 border-ink">
+          {principles.map((p, i) => (
+            <li key={p.t} className="grid gap-3 border-b border-ink/20 py-8 md:grid-cols-[80px_1fr_1.2fr] md:gap-8">
+              <span className="font-display text-[22px] font-medium text-cherry tabular-nums">{i + 1}</span>
+              <h2 className="font-display text-[clamp(28px,3.2vw,52px)] font-medium leading-[1] tracking-[-0.04em] text-ink">{p.t}</h2>
+              <p className="max-w-[52ch] text-[18px] leading-[1.6] text-ink/75">{p.b}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
-      {/* What We Removed */}
-      <section className="py-28 overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-center mb-16">
-            <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">The Design</p>
-            <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
-              We designed by subtraction.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-0 max-w-[1100px] mx-auto">
-            {/* Removed — left card */}
-            <div className="bg-card rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none p-10 lg:p-14 border border-card-border relative">
-              <div className="absolute top-8 right-8 w-20 h-20 rounded-full border border-card-border/50 opacity-30" />
-              <div className="absolute top-12 right-12 w-12 h-12 rounded-full border border-card-border/30 opacity-20" />
-              <div className="text-[10px] text-muted/40 tracking-[0.2em] uppercase mb-10">Removed</div>
-              <div className="space-y-6">
-                {['Stages & keynotes', 'Panel discussions', 'Formal agendas', 'Sponsored messaging', 'Corporate theatrics', 'Forced introductions'].map((item, i) => (
-                  <div key={item} className="flex items-center gap-4 group" style={{ opacity: 0.35 + (i * 0.02) }}>
-                    <span className="text-[18px] text-muted/20 font-light">×</span>
-                    <span className="text-[16px] lg:text-[18px] text-muted/60 line-through decoration-muted/20 font-serif">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* What Remains — right card */}
-            <div className="bg-coffee-dark rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none p-10 lg:p-14 relative overflow-hidden">
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-accent/5" />
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-accent/8" />
-              <div className="text-[10px] text-accent tracking-[0.2em] uppercase mb-10">What Remains</div>
-              <div className="space-y-6">
-                {['Unfiltered conversation', 'Honest introductions', 'Organic connection', 'Cross-sector exchange', 'Mutual accountability', 'Exceptional coffee'].map((item) => (
-                  <div key={item} className="flex items-center gap-4">
-                    <span className="text-accent text-[10px]">◆</span>
-                    <span className="text-[16px] lg:text-[18px] text-cream/80 font-serif">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Principles */}
-      <section className="py-28 bg-card border-y border-card-border">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5 text-center">Core Beliefs</p>
-          <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em] text-center mb-20">
-            Six principles. Non-negotiable.
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[1100px] mx-auto">
-            {[
-              { title: 'Conversations create opportunities', desc: 'The partnerships, ideas, and friendships that define careers start with a simple, honest conversation — not a pitch.' },
-              { title: 'Trust builds in informal spaces', desc: 'Remove the formality, and people connect as humans. Faster, deeper, and with far less posturing.' },
-              { title: 'Quality over quantity', desc: 'Thirty right people in a room outperform three thousand strangers at a convention centre. Every time.' },
-              { title: 'Simplicity enables authenticity', desc: 'No scripts, no schedules, no slides. The less structure we impose, the more real the exchange becomes.' },
-              { title: 'Think beyond borders', desc: 'Your next collaborator might be in Doha, Dhaka, Dallas, or Dublin. Geography is a feature, not a constraint.' },
-              { title: 'Community cannot be manufactured', desc: 'It must be cultivated — slowly, genuinely, one gathering at a time. There are no shortcuts.' },
-            ].map((p) => (
-              <div key={p.title} className="bg-background rounded-2xl p-7 border border-card-border">
-                <div className="text-accent text-[10px] mb-5">◆</div>
-                <h3 className="text-[15px] font-medium text-coffee-dark mb-3 tracking-[-0.01em]">{p.title}</h3>
-                <p className="text-[12px] text-muted leading-[1.7]">{p.desc}</p>
-              </div>
+      <section className="mx-auto grid max-w-[1600px] gap-12 px-4 pb-24 sm:px-6 sm:pb-32 md:grid-cols-2 lg:px-10">
+        <div className="border-t-2 border-ink pt-8">
+          <h2 className="font-display text-[clamp(32px,3.6vw,60px)] font-medium tracking-[-0.04em] text-ink">Who this is for</h2>
+          <ul className="mt-6 space-y-4">
+            {forList.map((t) => (
+              <li key={t} className="flex gap-4 text-[19px] leading-[1.5] text-ink/85">
+                <span className="mt-3 h-2 w-2 shrink-0 bg-cherry" />
+                {t}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      </section>
-
-      {/* Outcomes */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
-            <div>
-              <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">Impact</p>
-              <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
-                What happens when the right people share a table.
-              </h2>
-              <p className="mt-6 text-[15px] text-muted leading-[1.8]">
-                We don&apos;t track ROI in the traditional sense. But the outcomes speak for themselves — measured in partnerships formed, capital deployed, careers redirected, and friendships that outlast any deal.
-              </p>
-            </div>
-            <div className="space-y-4 lg:pt-8">
-              {[
-                'Startup co-founder partnerships formed',
-                'Series A+ investment conversations initiated',
-                'Cross-border hiring pipelines created',
-                'Policy dialogues influenced',
-                'New chapters launched by members',
-                'Multi-year professional friendships built',
-              ].map((outcome) => (
-                <div key={outcome} className="flex items-center gap-4 bg-card rounded-xl p-5 border border-card-border">
-                  <span className="text-accent text-[8px]">◆</span>
-                  <span className="text-[13px] text-coffee-dark font-medium tracking-[-0.01em]">{outcome}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Strategic Intent */}
-      <section className="py-28 bg-card border-y border-card-border">
-        <div className="max-w-[720px] mx-auto px-6 lg:px-10">
-          <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5 text-center">Strategic Intent</p>
-          <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em] text-center mb-16">
-            Beyond networking.
-          </h2>
-
-          <div className="space-y-6">
-            {[
-              'Elevate emerging-market ecosystems by connecting their builders to global capital and expertise',
-              'Encourage founders to think beyond domestic markets from day one',
-              'Bridge private sector innovation with public sector decision-making',
-              'Shift the narrative from consumption to contribution',
-              'Enable informal diplomacy through founder-to-founder relationships across borders',
-            ].map((text) => (
-              <div key={text} className="flex items-start gap-5">
-                <span className="text-accent text-[8px] mt-2 flex-shrink-0">◆</span>
-                <p className="text-[14px] text-foreground leading-[1.7]">{text}</p>
-              </div>
+        <div className="border-t-2 border-ink pt-8">
+          <h2 className="font-display text-[clamp(32px,3.6vw,60px)] font-medium tracking-[-0.04em] text-ink">Who it isn’t for</h2>
+          <ul className="mt-6 space-y-4">
+            {notList.map((t) => (
+              <li key={t} className="flex gap-4 text-[19px] leading-[1.5] text-ink/85">
+                <span className="mt-3 h-2 w-2 shrink-0 bg-ink/30" />
+                {t}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

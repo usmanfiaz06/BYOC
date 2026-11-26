@@ -34,7 +34,7 @@ export default function OpportunityBoard({ limit, showSearch = false }: { limit?
     <div>
       <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap gap-2" role="tablist">
-          {tabs.map((t) => (
+          {tabs.filter((t) => counts[t.key] > 0).map((t) => (
             <button
               key={t.key}
               role="tab"
