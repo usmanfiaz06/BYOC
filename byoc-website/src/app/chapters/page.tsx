@@ -4,12 +4,11 @@ import { cities, stats } from '@/data/cities';
 
 export const metadata: Metadata = {
   title: 'Cities: where BYOC meets',
-  description:
-    'BYOC meets in Islamabad, Lahore, Karachi, Riyadh, Dubai, Doha, London, Dublin, Berlin, San Francisco, Dallas, Toronto, Kuala Lumpur, Singapore, Jakarta, Dhaka and Dar es Salaam.',
+  description: `BYOC meets in ${cities.map((c) => c.name).join(', ')}.`,
   alternates: { canonical: '/chapters' },
 };
 
-const regionOrder = ['South Asia', 'Middle East', 'Europe', 'North America', 'Southeast Asia', 'Africa'];
+const regionOrder = ['South Asia', 'Middle East', 'Europe', 'North America', 'Southeast Asia', 'Africa', 'Oceania'];
 
 export default function ChaptersPage() {
   const regions = regionOrder

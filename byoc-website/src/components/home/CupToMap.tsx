@@ -39,6 +39,7 @@ function useDotMap() {
 const LABELS: Record<string, 'start' | 'end'> = {
   Islamabad: 'start', Riyadh: 'end', Dubai: 'start', London: 'end', Berlin: 'start', 'San Francisco': 'end',
   Toronto: 'start', Singapore: 'start', 'Dar es Salaam': 'start', Dhaka: 'start', Jakarta: 'start',
+  'Washington, D.C.': 'start', Stockholm: 'start', Tunis: 'start', Melbourne: 'start', Perth: 'end',
 };
 
 // True on phone-width screens, where the map is drawn larger and labels need more size.
