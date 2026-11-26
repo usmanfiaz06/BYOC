@@ -78,12 +78,44 @@ function Roll({ k, children, delay = 0 }: { k: string; children: string; delay?:
   );
 }
 
-function RotatingLine() {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setI((v) => (v + 1) % lines.length), 3000);
-    return () => clearInterval(id);
-  }, []);
+/** Real BYOC photos; one per line, crossfading in step with the sentence. */
+const photos: { src: string; alt: string; pos: string }[] = [
+  { src: '/images/hero-crowd.jpg', alt: 'A full café of BYOC members at an evening gathering', pos: '50% 45%' },
+  { src: '/images/laugh.jpg', alt: 'Members laughing together around a café table', pos: '50% 50%' },
+  { src: '/images/two-talk.jpg', alt: 'Two members deep in conversation over coffee', pos: '50% 40%' },
+  { src: '/images/london-selfie.jpg', alt: 'A BYOC group gathered in a café', pos: '50% 45%' },
+  { src: '/images/circle-2.jpg', alt: 'A small group around a table, coffee cups out', pos: '50% 55%' },
+  { src: '/images/debate.jpg', alt: 'Two members in an animated discussion', pos: '50% 40%' },
+];
+
+const SLIDE_MS = 3600;
+
+function PhotoStack({ i }: { i: number }) {
+  return (
+    <>
+      {photos.map((ph, k) => {
+        const active = k === i % photos.length;
+        return (
+          <div
+            key={ph.src}
+            aria-hidden={!active}
+            className="absolute inset-0 transition-opacity duration-[1200ms] ease-[cubic-bezier(.4,0,.2,1)]"
+            style={{ opacity: active ? 1 : 0, zIndex: active ? 1 : 0 }}
+          >
+            <div
+              className="absolute inset-0 transition-transform ease-linear"
+              style={{ transform: active ? 'scale(1)' : 'scale(1.09)', transitionDuration: active ? `${SLIDE_MS + 1200}ms` : '0ms' }}
+            >
+              <Image src={ph.src} alt={ph.alt} fill priority={k === 0} sizes="100vw" className="object-cover" style={{ objectPosition: ph.pos }} />
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+function RotatingLine({ i }: { i: number }) {
   return (
     <h1 className="max-w-[16ch] font-display text-[clamp(40px,6.4vw,116px)] font-medium leading-[0.95] tracking-[-0.045em] text-paper">
       <span className="text-paper/65">Coffee with someone who </span>
@@ -96,6 +128,12 @@ function RotatingLine() {
 
 export default function Hero({ ribbon, ribbonHref, next }: { ribbon: string; ribbonHref?: string; next: HeroNext | null }) {
   const photoRef = useRef<HTMLDivElement>(null);
+  // One clock drives the sentence and the photo together.
+  const [slide, setSlide] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setSlide((v) => (v + 1) % lines.length), SLIDE_MS);
+    return () => clearInterval(id);
+  }, []);
   const { scrollYProgress } = useScroll({ target: photoRef, offset: ['start start', 'end start'] });
   const imgY = useTransform(scrollYProgress, (v: number) => interpolate([0, 1], ['0%', '18%'])(v));
   const imgScale = useTransform(scrollYProgress, (v: number) => interpolate([0, 1], [1.04, 1.16])(v));
@@ -137,12 +175,12 @@ export default function Hero({ ribbon, ribbonHref, next }: { ribbon: string; rib
       {/* Photo, with the line set on it */}
       <div ref={photoRef} className="relative mx-4 h-[86vh] min-h-[560px] overflow-hidden bg-ink sm:mx-6 lg:mx-10">
         <motion.div style={{ y: imgY, scale: imgScale }} className="absolute inset-0">
-          <Image src="/images/hero-crowd.jpg" alt="A full café of BYOC members at an evening gathering" fill priority sizes="100vw" className="object-cover object-[50%_45%]" />
+          <PhotoStack i={slide} />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/15 to-ink/80" />
 
         <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-6 p-5 sm:p-8">
-          <RotatingLine />
+          <RotatingLine i={slide} />
           <p className="hidden shrink-0 text-right font-display text-[18px] font-medium leading-[1.15] tracking-[-0.01em] text-paper md:block">
             33°41′N
             <br />
