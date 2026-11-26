@@ -14,7 +14,7 @@ const lines: { who: string; city: string }[] = [
   { who: 'just closed a round', city: 'Riyadh' },
   { who: 'is hiring their first VP', city: 'Dublin' },
   { who: 'moved here last month', city: 'Singapore' },
-  { who: 'made the mistake you’re about to make', city: 'Islamabad' },
+  { who: 'already made your next mistake', city: 'Islamabad' },
   { who: 'crossed the border you’re eyeing', city: 'San Francisco' },
   { who: 'carries the same weight you do', city: 'Kuala Lumpur' },
 ];
@@ -116,12 +116,20 @@ function PhotoStack({ i }: { i: number }) {
 }
 
 function RotatingLine({ i }: { i: number }) {
+  // Three fixed rows, so nothing reflows when the phrase changes:
+  // the lead-in, a phrase block with a constant height, then "in City."
   return (
-    <h1 className="max-w-[16ch] font-display text-[clamp(40px,6.4vw,116px)] font-medium leading-[0.95] tracking-[-0.045em] text-paper">
-      <span className="text-paper/65">Coffee with someone who </span>
-      <Roll k={`w${i}`}>{lines[i].who}</Roll>
-      <span className="text-paper/65"> in </span>
-      <Roll k={`c${i}`} delay={0.15}>{`${lines[i].city}.`}</Roll>
+    <h1 className="flex max-w-[34ch] flex-col font-display text-[clamp(38px,5.6vw,100px)] font-medium leading-[0.95] tracking-[-0.045em] text-paper">
+      <span className="text-paper/65">Coffee with someone who</span>
+      <span className="block h-[2.85em] overflow-hidden sm:h-[1.9em] lg:h-[1em] lg:whitespace-nowrap">
+        <Roll k={`w${i}`}>{lines[i].who}</Roll>
+      </span>
+      <span className="flex items-baseline gap-[0.25em]">
+        <span className="text-paper/65">in</span>
+        <span className="overflow-hidden">
+          <Roll k={`c${i}`} delay={0.15}>{`${lines[i].city}.`}</Roll>
+        </span>
+      </span>
     </h1>
   );
 }

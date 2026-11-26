@@ -10,6 +10,7 @@ import Rules from '@/components/home/Rules';
 import Precedent from '@/components/home/Precedent';
 import CityList from '@/components/home/CityList';
 import Closing, { OpportunitiesPreview } from '@/components/home/Closing';
+import Waitlist from '@/components/home/Waitlist';
 import { getNextMeetup } from '@/data/meetups';
 
 // Revalidate hourly so the "next coffee" ribbon stays current.
@@ -39,6 +40,7 @@ export default async function Home() {
       <Precedent />
       <CityList />
       <OpportunitiesPreview />
+      <Waitlist />
       <Closing />
     </>
   );
