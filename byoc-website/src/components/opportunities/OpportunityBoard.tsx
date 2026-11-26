@@ -9,6 +9,7 @@ const tabs: { key: OpportunityCategory; label: string; blurb: string }[] = [
   { key: 'roles', label: 'Senior roles', blurb: 'Director, VP, Head of and C-level roles in the cities where we meet.' },
   { key: 'founders', label: 'For founders', blurb: 'Accelerators, grants and open calls with real deadlines.' },
   { key: 'executives', label: 'For executives', blurb: 'Board seats, fellowships and investor programmes.' },
+  { key: 'funding', label: 'Funding news', blurb: 'Who just raised in the cities where we meet, and new funds now investing.' },
 ];
 
 
@@ -33,7 +34,7 @@ export default function OpportunityBoard({ limit, showSearch = false }: { limit?
     <div>
       <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap gap-2" role="tablist">
-          {tabs.map((t) => (
+          {tabs.filter((t) => counts[t.key] > 0).map((t) => (
             <button
               key={t.key}
               role="tab"
@@ -73,7 +74,8 @@ export default function OpportunityBoard({ limit, showSearch = false }: { limit?
             >
               <a href={o.url} target="_blank" rel="noopener noreferrer" className="relative grid gap-2 py-5 sm:grid-cols-[1.4fr_1fr_auto] sm:items-center sm:gap-6" data-cursor="Open">
                 <div>
-                  {o.featured && <span className="label mb-2 inline-block bg-cherry px-2 py-1 text-[10px] text-paper">Editor’s pick</span>}
+                  {o.featured && <span className="label mb-2 mr-2 inline-block bg-cherry px-2 py-1 text-[12px] text-paper">Editor’s pick</span>}
+                  {o.category === 'funding' && o.kind && <span className="label mb-2 inline-block border border-espresso/30 px-2 py-1 text-[12px] text-espresso">{o.kind}</span>}
                   <p className="font-display text-[clamp(20px,1.9vw,28px)] font-medium leading-[1.1] tracking-[-0.03em] text-espresso transition-colors group-hover:text-cherry">
                     {o.title}
                   </p>

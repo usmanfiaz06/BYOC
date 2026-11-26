@@ -1,122 +1,100 @@
 import type { Metadata } from 'next';
 import JoinCTA from '@/components/JoinCTA';
-import { ArrowRight } from 'lucide-react';
+import RollButton from '@/components/ui/RollButton';
+import { getNextMeetup } from '@/data/meetups';
+import { cities, stats } from '@/data/cities';
 
 export const metadata: Metadata = {
   title: 'Gatherings: the next coffee near you',
-  description: 'Upcoming and past BYOC gatherings. One hour in a café with founders, executives and operators. Everyone buys their own cup.',
+  description: 'Upcoming BYOC gatherings. One hour in a café with founders, executives and operators. Everyone buys their own cup. Invite-only.',
   alternates: { canonical: '/events' },
 };
 
-const pastEvents = [
-  { title: 'BYOC Islamabad', city: 'Islamabad', flag: '🇵🇰', date: 'March 2026', attendees: 45, tags: ['Founders', 'AI'] },
-  { title: 'BYOC Riyadh', city: 'Riyadh', flag: '🇸🇦', date: 'February 2026', attendees: 35, tags: ['Investment'] },
-  { title: 'BYOC London', city: 'London', flag: '🇬🇧', date: 'February 2026', attendees: 40, tags: ['Policy'] },
-  { title: 'BYOC San Francisco', city: 'San Francisco', flag: '🇺🇸', date: 'January 2026', attendees: 30, tags: ['AI'] },
-  { title: 'BYOC Dubai', city: 'Dubai', flag: '🇦🇪', date: 'January 2026', attendees: 50, tags: ['Cross-sector'] },
-  { title: 'BYOC Kuala Lumpur', city: 'Kuala Lumpur', flag: '🇲🇾', date: 'December 2025', attendees: 25, tags: ['Community'] },
-  { title: 'BYOC Singapore', city: 'Singapore', flag: '🇸🇬', date: 'November 2025', attendees: 28, tags: ['VC'] },
-  { title: 'BYOC Berlin', city: 'Berlin', flag: '🇩🇪', date: 'October 2025', attendees: 22, tags: ['Design'] },
-  { title: 'BYOC Lahore', city: 'Lahore', flag: '🇵🇰', date: 'October 2025', attendees: 38, tags: ['Tech'] },
-];
+export const revalidate = 3600;
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const next = await getNextMeetup();
+
   return (
     <div>
-      {/* Hero */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
-            <div>
-              <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">Gatherings</p>
-              <h1 className="text-[46px] sm:text-[58px] lg:text-[68px] font-serif leading-[1.05] tracking-[-0.03em] text-coffee-dark">
-                Every gathering
-                <br />
-                <span className="italic">is intentional.</span>
-              </h1>
-            </div>
-            <div className="lg:pt-12">
-              <p className="text-[15px] text-muted leading-[1.8]">
-                BYOC gatherings are not events in the traditional sense. There are no registration pages with tiered pricing, no speaker lineups, no swag bags. Just a date, a coffee shop, and an invitation to show up as yourself. Browse what&apos;s coming up, or explore the archive.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Header */}
+      <section className="mx-auto max-w-[1600px] px-4 pb-16 pt-16 sm:px-6 sm:pt-24 lg:px-10">
+        <h1 className="font-display text-[clamp(56px,10vw,180px)] font-medium text-ink display-tight">The next coffee.</h1>
+        <p className="mt-8 max-w-[52ch] text-[19px] leading-[1.6] text-ink/75">
+          One hour, a small group, a café. Everyone buys their own cup. Gatherings are invite-only, and members hear first when one is planned in their city.
+        </p>
       </section>
 
-      {/* Upcoming — Luma */}
-      <section className="py-28 bg-card border-y border-card-border">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="flex items-center gap-4 mb-12">
-            <div className="w-2 h-2 rounded-full bg-accent" />
-            <h2 className="text-[28px] font-serif text-coffee-dark tracking-[-0.01em]">Upcoming Gatherings</h2>
-            <div className="flex-1 h-px bg-card-border" />
-          </div>
-
-          <div className="bg-background rounded-2xl border border-card-border overflow-hidden luma-embed-container">
-            <iframe
-              src="https://luma.com/embed/calendar/cal-x5mKvnTRHwbEeV1/events"
-              width="100%"
-              height="600"
-              frameBorder="0"
-              style={{ border: 'none' }}
-              allowFullScreen
-              aria-hidden="false"
-              tabIndex={0}
-            />
-          </div>
-
-          <p className="text-[12px] text-muted mt-5 text-center tracking-[0.02em]">
-            Gatherings are managed through Luma. Select any event above to register.
-          </p>
-        </div>
-      </section>
-
-      {/* Past Events */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-14">
-            <div>
-              <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">Archive</p>
-              <h2 className="text-[42px] sm:text-[52px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">
-                Invite-only. Intentionally small.
-              </h2>
-              <p className="mt-4 text-[15px] text-muted leading-[1.7]">Every gathering is capped, curated, and high-signal. 140+ intimate rooms across five continents — where the right people meet without the noise.</p>
-            </div>
-            <a
-              href="https://luma.com/byoc-global?period=past"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[12px] text-accent font-medium tracking-[0.05em] uppercase hover:gap-3 transition-all mt-4 md:mt-0"
-            >
-              Full archive <ArrowRight size={13} />
-            </a>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {pastEvents.map((event, i) => (
-              <div key={i} className="bg-card rounded-2xl border border-card-border p-6 hover:border-accent/40 transition-colors group">
-                <div className="text-[11px] text-muted tracking-[0.05em] uppercase mb-4">{event.date}</div>
-                <h3 className="text-[15px] font-medium text-coffee-dark group-hover:text-accent transition-colors tracking-[-0.01em] mb-2">
-                  {event.title}
-                </h3>
-                <div className="flex items-center gap-2 text-[12px] text-muted mb-5">
-                  <span>{event.flag}</span>
-                  <span>{event.city}</span>
-                </div>
-                <div className="flex items-center justify-between border-t border-card-border pt-4">
-                  <span className="text-[11px] text-muted">{event.attendees} attendees</span>
-                  <div className="flex gap-1.5">
-                    {event.tags.map((tag) => (
-                      <span key={tag} className="text-[10px] px-2.5 py-1 rounded-full border border-card-border text-muted tracking-[0.03em]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+      {/* Next gathering */}
+      <section className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
+        <div className="grid gap-8 border-y-2 border-ink py-10 md:grid-cols-[1.4fr_1fr] md:items-end">
+          {next ? (
+            <>
+              <div>
+                <p className="label text-ink/60">Next coffee · {next.proximity}</p>
+                <p className="mt-4 font-display text-[clamp(48px,7vw,120px)] font-medium text-ink display-tight">{next.city}</p>
+                <p className="mt-4 font-display text-[clamp(22px,2.2vw,34px)] font-medium tracking-[-0.03em] text-ink/80">
+                  {next.weekday} {next.shortDate} · {next.localTime} {next.tzLabel}
+                </p>
               </div>
-            ))}
+              <div className="flex flex-wrap gap-3 md:justify-end">
+                {next.url && (
+                  <RollButton href={next.url} external size="lg">
+                    Save a seat
+                  </RollButton>
+                )}
+                <RollButton href="/join" variant="outline" size="lg">
+                  Request an invite
+                </RollButton>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="font-display text-[clamp(36px,5vw,80px)] font-medium text-ink display-tight">The next coffee is being planned.</p>
+              <div className="md:justify-self-end">
+                <RollButton href="/join" size="lg">Request an invite</RollButton>
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* Calendar */}
+      <section className="mx-auto max-w-[1600px] px-4 py-20 sm:px-6 lg:px-10">
+        <h2 className="font-display text-[clamp(32px,4vw,64px)] font-medium text-ink display-tight">Every upcoming gathering.</h2>
+        <p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-ink/70">Gatherings are listed on our Luma calendar. Pick one to see the details and save a seat.</p>
+        <div className="luma-embed-container mt-10 overflow-hidden border border-ink/15 bg-paper">
+          <iframe
+            src="https://luma.com/embed/calendar/cal-x5mKvnTRHwbEeV1/events"
+            title="BYOC upcoming gatherings on Luma"
+            width="100%"
+            height="640"
+            frameBorder="0"
+            style={{ border: 'none' }}
+            allowFullScreen
+          />
+        </div>
+      </section>
+
+      {/* So far */}
+      <section className="bg-ink text-paper">
+        <div className="mx-auto grid max-w-[1600px] gap-12 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_1.4fr] lg:px-10">
+          <div>
+            <h2 className="font-display text-[clamp(44px,6vw,104px)] font-medium display-tight">
+              {stats.gatherings}+ gatherings since {stats.since}.
+            </h2>
+            <p className="mt-6 max-w-[40ch] text-[18px] leading-[1.6] text-paper/70">
+              It started with one coffee in Islamabad. It now happens in {stats.countries} countries.
+            </p>
           </div>
+          <p className="font-display text-[clamp(28px,3.4vw,56px)] font-medium leading-[1.08] tracking-[-0.04em]">
+            {cities.map((c, i) => (
+              <span key={c.name}>
+                <span className={i === 0 ? 'text-sky' : 'text-paper'}>{c.name}</span>
+                {i < cities.length - 1 ? <span className="text-paper/30">, </span> : '.'}
+              </span>
+            ))}
+          </p>
         </div>
       </section>
 

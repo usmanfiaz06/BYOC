@@ -1,142 +1,48 @@
 import type { Metadata } from 'next';
 import JoinCTA from '@/components/JoinCTA';
-import GlobalMap from '@/components/GlobalMap';
+import { cities, stats } from '@/data/cities';
 
 export const metadata: Metadata = {
   title: 'Cities: where BYOC meets',
-  description: 'BYOC meets in Islamabad, Lahore, Karachi, Riyadh, Dubai, Doha, London, Dublin, Berlin, San Francisco, Dallas, Toronto, Kuala Lumpur, Singapore, Jakarta, Dhaka and Dar es Salaam.',
+  description:
+    'BYOC meets in Islamabad, Lahore, Karachi, Riyadh, Dubai, Doha, London, Dublin, Berlin, San Francisco, Dallas, Toronto, Kuala Lumpur, Singapore, Jakarta, Dhaka and Dar es Salaam.',
   alternates: { canonical: '/chapters' },
 };
 
-interface Chapter {
-  city: string;
-  country: string;
-  flag: string;
-  region: string;
-  meetups: number;
-  status: 'active' | 'growing' | 'launching';
-  note?: string;
-}
-
-const chapters: Chapter[] = [
-  { city: 'Islamabad', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 54, status: 'active', note: 'Founding chapter' },
-  { city: 'Lahore', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 8, status: 'active' },
-  { city: 'Karachi', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 5, status: 'active' },
-  { city: 'Gilgit', country: 'Pakistan', flag: '🇵🇰', region: 'South Asia', meetups: 3, status: 'growing' },
-  { city: 'Dhaka', country: 'Bangladesh', flag: '🇧🇩', region: 'South Asia', meetups: 3, status: 'growing' },
-  { city: 'Riyadh', country: 'Saudi Arabia', flag: '🇸🇦', region: 'Middle East', meetups: 6, status: 'active' },
-  { city: 'Dubai', country: 'UAE', flag: '🇦🇪', region: 'Middle East', meetups: 5, status: 'active' },
-  { city: 'Doha', country: 'Qatar', flag: '🇶🇦', region: 'Middle East', meetups: 4, status: 'active' },
-  { city: 'London', country: 'UK', flag: '🇬🇧', region: 'Europe', meetups: 6, status: 'active' },
-  { city: 'Dublin', country: 'Ireland', flag: '🇮🇪', region: 'Europe', meetups: 4, status: 'active' },
-  { city: 'Berlin', country: 'Germany', flag: '🇩🇪', region: 'Europe', meetups: 3, status: 'growing' },
-  { city: 'San Francisco', country: 'USA', flag: '🇺🇸', region: 'North America', meetups: 5, status: 'active' },
-  { city: 'Dallas', country: 'USA', flag: '🇺🇸', region: 'North America', meetups: 3, status: 'growing' },
-  { city: 'Toronto', country: 'Canada', flag: '🇨🇦', region: 'North America', meetups: 3, status: 'growing' },
-  { city: 'Kuala Lumpur', country: 'Malaysia', flag: '🇲🇾', region: 'Southeast Asia', meetups: 4, status: 'active' },
-  { city: 'Singapore', country: 'Singapore', flag: '🇸🇬', region: 'Southeast Asia', meetups: 3, status: 'active' },
-  { city: 'Jakarta', country: 'Indonesia', flag: '🇮🇩', region: 'Southeast Asia', meetups: 2, status: 'growing' },
-  { city: 'Dar es Salaam', country: 'Tanzania', flag: '🇹🇿', region: 'Africa', meetups: 2, status: 'active' },
-];
-
-const regions = ['South Asia', 'Middle East', 'Europe', 'North America', 'Southeast Asia', 'Africa'];
-
-const statusStyle: Record<string, string> = {
-  active: 'text-coffee-dark',
-  growing: 'text-accent',
-  launching: 'text-muted',
-};
+const regionOrder = ['South Asia', 'Middle East', 'Europe', 'North America', 'Southeast Asia', 'Africa'];
 
 export default function ChaptersPage() {
+  const regions = regionOrder
+    .map((r) => ({ region: r, list: cities.filter((c) => c.region === r) }))
+    .filter((g) => g.list.length > 0);
+
   return (
     <div>
-      {/* Hero */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
-            <div>
-              <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">Global Presence</p>
-              <h1 className="text-[46px] sm:text-[58px] lg:text-[68px] font-serif leading-[1.05] tracking-[-0.03em] text-coffee-dark">
-                18 cities.
-                <br />
-                <span className="italic">One format.</span>
-              </h1>
-            </div>
-            <div className="lg:pt-12">
-              <p className="text-[15px] text-muted leading-[1.8] mb-6">
-                Every BYOC chapter operates with the same DNA — intimate gatherings, zero programming, curated rooms. What changes is the city, the coffee, and the particular mix of builders at the table.
-              </p>
-              <div className="grid grid-cols-3 gap-4 mt-10">
-                {[
-                  { num: '21+', label: 'Countries' },
-                  { num: '18', label: 'Chapters' },
-                  { num: '140+', label: 'Gatherings' },
-                ].map((s) => (
-                  <div key={s.label} className="bg-card rounded-2xl p-5 border border-card-border text-center">
-                    <div className="text-[28px] font-serif text-coffee-dark tracking-[-0.02em]">{s.num}</div>
-                    <div className="text-[10px] text-muted mt-1 tracking-[0.05em] uppercase">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="mx-auto max-w-[1600px] px-4 pb-16 pt-16 sm:px-6 sm:pt-24 lg:px-10">
+        <h1 className="font-display text-[clamp(56px,10vw,180px)] font-medium text-ink display-tight">Where the coffee is.</h1>
+        <p className="mt-8 max-w-[52ch] text-[19px] leading-[1.6] text-ink/75">
+          {stats.gatherings}+ gatherings in {stats.countries} countries since {stats.since}. Every city keeps the same five rules and makes its own regulars.
+        </p>
       </section>
 
-      {/* Chapters by Region */}
-      <section className="py-28 bg-card border-y border-card-border">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          {regions.map((region) => {
-            const regionChapters = chapters.filter((c) => c.region === region);
-            if (regionChapters.length === 0) return null;
-            return (
-              <div key={region} className="mb-20 last:mb-0">
-                <div className="flex items-center gap-4 mb-8">
-                  <h2 className="text-[24px] font-serif text-coffee-dark tracking-[-0.01em]">{region}</h2>
-                  <div className="flex-1 h-px bg-card-border" />
-                  <span className="text-[11px] text-muted tracking-[0.05em] uppercase">{regionChapters.length} {regionChapters.length === 1 ? 'chapter' : 'chapters'}</span>
-                </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {regionChapters.map((ch) => (
-                    <div key={ch.city} className="bg-background rounded-2xl p-6 border border-card-border hover:border-accent/40 transition-colors group">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{ch.flag}</span>
-                          <div>
-                            <h3 className="text-[15px] font-medium text-coffee-dark group-hover:text-accent transition-colors tracking-[-0.01em]">{ch.city}</h3>
-                            <p className="text-[12px] text-muted">{ch.country}</p>
-                          </div>
-                        </div>
-                        <span className={`text-[10px] tracking-[0.05em] uppercase ${statusStyle[ch.status]}`}>
-                          {ch.status}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-4 text-[12px] text-muted">
-                        <span>{ch.meetups} gatherings</span>
-                        {ch.note && (
-                          <span className="text-[10px] px-2.5 py-1 rounded-full border border-card-border text-accent tracking-[0.03em]">
-                            {ch.note}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Map */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="mb-10">
-            <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-5">Global Footprint</p>
-            <h2 className="text-[32px] sm:text-[42px] font-serif text-coffee-dark leading-[1.08] tracking-[-0.02em]">Where we gather</h2>
+      <section className="mx-auto max-w-[1600px] px-4 pb-24 sm:px-6 lg:px-10">
+        {regions.map((g) => (
+          <div key={g.region} className="grid gap-4 border-t-2 border-ink py-10 md:grid-cols-[260px_1fr] md:gap-10">
+            <h2 className="font-display text-[22px] font-medium tracking-[-0.02em] text-ink/60">{g.region}</h2>
+            <p className="font-display text-[clamp(36px,5vw,88px)] font-medium leading-[1.04] tracking-[-0.045em]">
+              {g.list.map((c, i) => (
+                <span key={c.name}>
+                  <span className={c.note ? 'text-cherry' : 'text-ink'}>{c.name}</span>
+                  {c.note && <sup className="ml-1 align-super text-[0.28em] font-medium tracking-normal text-cherry">since 2020</sup>}
+                  {i < g.list.length - 1 ? <span className="text-ink/25">, </span> : null}
+                </span>
+              ))}
+            </p>
           </div>
-          <GlobalMap />
-        </div>
+        ))}
+        <p className="border-t border-ink/20 pt-8 font-display text-[clamp(22px,2vw,32px)] font-medium tracking-[-0.03em] text-ink">
+          Your city isn’t on the list yet? Tell us where you are when you request an invite.
+        </p>
       </section>
 
       <JoinCTA />
