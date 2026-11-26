@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function OpportunitiesPage() {
   return (
-    <div className="mx-auto max-w-[1600px] px-4 pb-24 pt-16 sm:px-6 sm:pt-24 lg:px-10">
+    <div className="mx-auto max-w-[1600px] px-4 pb-16 pt-16 sm:px-6 sm:pt-24 lg:px-10">
       <span className="label text-espresso/60">Opportunities · Updated {OPPORTUNITIES_UPDATED}</span>
       <h1 className="mt-6 font-display text-[clamp(64px,12vw,220px)] font-medium text-espresso display-tight">What’s moving.</h1>
       <div className="mt-10 grid gap-8 md:grid-cols-[1.3fr_1fr]">

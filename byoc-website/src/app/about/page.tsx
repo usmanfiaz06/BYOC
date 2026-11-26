@@ -48,7 +48,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-32 lg:px-10">
+      <section className="mx-auto max-w-[1600px] px-4 py-16 sm:px-6 sm:py-32 lg:px-10">
         <ol className="border-t-2 border-ink">
           {principles.map((p, i) => (
             <li key={p.t} className="grid gap-3 border-b border-ink/20 py-8 md:grid-cols-[80px_1fr_1.2fr] md:gap-8">
@@ -60,7 +60,7 @@ export default function AboutPage() {
         </ol>
       </section>
 
-      <section className="mx-auto grid max-w-[1600px] gap-12 px-4 pb-24 sm:px-6 sm:pb-32 md:grid-cols-2 lg:px-10">
+      <section className="mx-auto grid max-w-[1600px] gap-12 px-4 pb-16 sm:px-6 sm:pb-32 md:grid-cols-2 lg:px-10">
         <div className="border-t-2 border-ink pt-8">
           <h2 className="font-display text-[clamp(32px,3.6vw,60px)] font-medium tracking-[-0.04em] text-ink">Who this is for</h2>
           <ul className="mt-6 space-y-4">

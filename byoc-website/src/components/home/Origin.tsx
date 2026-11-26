@@ -13,7 +13,7 @@ export default function Origin() {
 
   return (
     <section id="origin" className="bg-cherry text-paper">
-      <div className="mx-auto max-w-[1600px] px-4 pb-16 pt-20 sm:px-6 sm:pt-28 lg:px-10">
+      <div className="mx-auto max-w-[1600px] px-4 pb-16 pt-14 sm:px-6 sm:pt-28 lg:px-10">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
           <h2 className="font-display text-[clamp(44px,7vw,120px)] font-medium display-tight">
             <RiseWords text="It started because we were bored." />

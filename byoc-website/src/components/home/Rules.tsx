@@ -15,7 +15,7 @@ const promises = [
 export default function Rules() {
   return (
     <section className="bg-espresso text-paper">
-      <div className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-36 lg:px-10">
+      <div className="mx-auto max-w-[1600px] px-4 py-16 sm:px-6 sm:py-36 lg:px-10">
         <h2 className="mt-6 font-display text-[clamp(44px,6.6vw,116px)] font-medium display-tight">
           <RiseWords text="Five rules." /> <span className="text-sky"><RiseWords text="All of them short." delay={0.15} /></span>
         </h2>

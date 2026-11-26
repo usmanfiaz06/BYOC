@@ -27,7 +27,7 @@ const items = [
 
 export default function Precedent() {
   return (
-    <section className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-36 lg:px-10">
+    <section className="mx-auto max-w-[1600px] px-4 py-16 sm:px-6 sm:py-36 lg:px-10">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <h2 className="font-display text-[clamp(44px,6.6vw,116px)] font-medium text-espresso display-tight">
           <RiseWords text="This has worked before." />

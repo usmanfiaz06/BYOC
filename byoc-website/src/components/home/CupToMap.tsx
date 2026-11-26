@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { motion, useMotionValueEvent, useScroll, useTransform, type MotionValue, interpolate } from 'framer-motion';
 import { geoContains, geoNaturalEarth1 } from 'd3-geo';
 import { feature } from 'topojson-client';
@@ -41,7 +41,20 @@ const LABELS: Record<string, 'start' | 'end'> = {
   Toronto: 'start', Singapore: 'start', 'Dar es Salaam': 'start', Dhaka: 'start', Jakarta: 'start',
 };
 
-function Pin({ x, y, name, i, progress, primary }: { x: number; y: number; name: string; i: number; progress: MotionValue<number>; primary?: boolean }) {
+// True on phone-width screens, where the map is drawn larger and labels need more size.
+function useIsPhone() {
+  return useSyncExternalStore(
+    (cb) => {
+      const m = window.matchMedia('(max-width: 639px)');
+      m.addEventListener('change', cb);
+      return () => m.removeEventListener('change', cb);
+    },
+    () => window.matchMedia('(max-width: 639px)').matches,
+    () => false,
+  );
+}
+
+function Pin({ x, y, name, i, progress, primary, phone }: { x: number; y: number; name: string; i: number; progress: MotionValue<number>; primary?: boolean; phone?: boolean }) {
   const anchor = LABELS[name];
   const start = 0.5 + i * 0.012;
   const scale = useTransform(progress, (v: number) => interpolate([start, start + 0.04], [0, 1])(v));
@@ -52,7 +65,7 @@ function Pin({ x, y, name, i, progress, primary }: { x: number; y: number; name:
         <circle cx={x} cy={y} r={primary ? 6 : 4} fill={primary ? '#2340FF' : '#F7F5F0'} className="pulse-ring" opacity={0.6} />
         <circle cx={x} cy={y} r={primary ? 5.5 : 3.6} fill={primary ? '#2340FF' : '#F7F5F0'} stroke="#1A0C05" strokeWidth="1.2" />
       </motion.g>
-      {anchor && <text x={anchor === 'start' ? x + 8 : x - 8} y={y + 3.5} textAnchor={anchor} fontSize={primary ? 12 : 9.5} fill="#F7F5F0" opacity={primary ? 1 : 0.8} fontFamily="var(--font-inter-tight)" fontWeight={500}>
+      {anchor && <text x={anchor === 'start' ? x + 8 : x - 8} y={y + 3.5} textAnchor={anchor} fontSize={phone ? (primary ? 21 : 17) : primary ? 12 : 9.5} fill="#F7F5F0" opacity={primary ? 1 : 0.8} fontFamily="var(--font-inter-tight)" fontWeight={500}>
         {name}
       </text>}
     </motion.g>
@@ -75,6 +88,7 @@ export default function CupToMap() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress: p } = useScroll({ target: ref, offset: ['start start', 'end end'] });
   const { dots, pins } = useDotMap();
+  const phone = useIsPhone();
 
   // A real photo of a cup, shot from above. Scrolling pushes the camera into
   // the dark centre of the coffee until it fills the screen and becomes the map.
@@ -91,7 +105,7 @@ export default function CupToMap() {
   const outroY = useTransform(p, (v: number) => interpolate([0.62, 0.72], [40, 0])(v));
 
   return (
-    <section ref={ref} className="relative h-[420vh] bg-ink" aria-label="From one cup to 21 countries">
+    <section ref={ref} className="relative h-[260vh] bg-ink sm:h-[420vh]" aria-label="From one cup to 21 countries">
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* The cup */}
         <motion.div style={{ scale: zoom, transformOrigin: '71% 50%' }} className="absolute inset-0 will-change-transform">
@@ -114,7 +128,7 @@ export default function CupToMap() {
               <circle key={i} cx={x} cy={y} r={1.7} fill="#F7F5F0" opacity={0.42} />
             ))}
             {pins.map((c, i) => (
-              <Pin key={c.name} x={c.x} y={c.y} name={c.name} i={i} progress={p} primary={i === 0} />
+              <Pin key={c.name} x={c.x} y={c.y} name={c.name} i={i} progress={p} primary={i === 0} phone={phone} />
             ))}
           </svg>
         </motion.div>

@@ -8,7 +8,7 @@ import OpportunityBoard from '@/components/opportunities/OpportunityBoard';
 export function OpportunitiesPreview() {
   return (
     <section className="bg-paper">
-      <div className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-32 lg:px-10">
+      <div className="mx-auto max-w-[1600px] px-4 py-16 sm:px-6 sm:py-32 lg:px-10">
         <div className="grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-end">
           <div>
             <h2 className="mt-6 font-display text-[clamp(44px,6.6vw,116px)] font-medium text-espresso display-tight">
@@ -37,7 +37,7 @@ export default function Closing() {
         <Image src="/images/laugh.jpg" alt="" fill sizes="100vw" className="object-cover grayscale" />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-espresso via-espresso/80 to-espresso" />
-      <div className="relative mx-auto max-w-[1600px] px-4 py-28 sm:px-6 sm:py-44 lg:px-10">
+      <div className="relative mx-auto max-w-[1600px] px-4 py-20 sm:px-6 sm:py-44 lg:px-10">
         <h2 className="max-w-[13ch] font-display text-[clamp(52px,8.4vw,150px)] font-medium display-tight">
           <RiseWords text="The hardest coffee to buy is the first one." />
         </h2>

@@ -27,7 +27,7 @@ export default function Waitlist() {
 
   return (
     <section id="waitlist" className="bg-cherry text-paper">
-      <div className="mx-auto grid max-w-[1600px] gap-14 px-4 py-24 sm:px-6 sm:py-32 lg:grid-cols-[1.15fr_1fr] lg:px-10">
+      <div className="mx-auto grid max-w-[1600px] gap-14 px-4 py-16 sm:px-6 sm:py-32 lg:grid-cols-[1.15fr_1fr] lg:px-10">
         <div>
           <h2 className="font-display text-[clamp(44px,6.6vw,116px)] font-medium display-tight">
             <RiseWords text="The BYOC platform is coming." />

@@ -3,7 +3,7 @@ import { faqs } from '@/lib/site';
 /** Plain questions and answers: readable for people, quotable for search and AI. */
 export default function Faq() {
   return (
-    <section id="faq" className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-32 lg:px-10" aria-labelledby="faq-title">
+    <section id="faq" className="mx-auto max-w-[1600px] px-4 py-16 sm:px-6 sm:py-32 lg:px-10" aria-labelledby="faq-title">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">
         <h2 id="faq-title" className="font-display text-[clamp(44px,6vw,104px)] font-medium text-ink display-tight">
           Questions people ask us.
