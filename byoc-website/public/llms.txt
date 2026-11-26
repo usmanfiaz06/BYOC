@@ -10,7 +10,7 @@ Website: https://www.byoc.global
 - What it is: in-person coffee meetups for people building something: founders, executives, senior operators, investors, and people new to a city
 - Format: one hour, a small group, each person brings one question rather than a pitch; everyone buys their own coffee
 - Scale: 212+ gatherings, 3,200+ members, 21 countries
-- Membership: by application, free to join
+- Membership: invite-only (request an invitation at https://www.byoc.global/join)
 - Cities: Islamabad, Lahore, Karachi, Riyadh, Dubai, Doha, London, Dublin, Berlin, San Francisco, Dallas, Toronto, Kuala Lumpur, Singapore, Jakarta, Dhaka, Dar es Salaam
 
 ## House rules
@@ -22,7 +22,7 @@ Website: https://www.byoc.global
 
 ## Pages
 - [Home](https://www.byoc.global/): what BYOC is, the origin story, the format, cities
-- [Join](https://www.byoc.global/join): apply to join the community
+- [Request an invitation](https://www.byoc.global/join): BYOC is invite-only
 - [Gatherings](https://www.byoc.global/events): upcoming and past meetups
 - [Opportunities](https://www.byoc.global/opportunities): senior roles, founder programmes and board seats in BYOC cities, each linked to its source
 - [Cities](https://www.byoc.global/chapters): where BYOC meets

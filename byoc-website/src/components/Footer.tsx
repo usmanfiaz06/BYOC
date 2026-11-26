@@ -62,7 +62,7 @@ export default function Footer() {
             </li>
           ))}
           <li>
-            <Link href="/join" className="label text-espresso/70 transition-colors hover:text-cherry">Apply</Link>
+            <Link href="/join" className="label text-espresso/70 transition-colors hover:text-cherry">Request an invite</Link>
           </li>
         </ul>
         <ul className="space-y-2.5">

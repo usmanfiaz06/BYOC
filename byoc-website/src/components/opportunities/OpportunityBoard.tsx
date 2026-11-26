@@ -80,6 +80,7 @@ export default function OpportunityBoard({ limit, showSearch = false }: { limit?
             >
               <a href={o.url} target="_blank" rel="noopener noreferrer" className="relative grid gap-2 py-5 sm:grid-cols-[1.4fr_1fr_auto] sm:items-center sm:gap-6" data-cursor="Open">
                 <div>
+                  {o.featured && <span className="label mb-2 inline-block bg-cherry px-2 py-1 text-[10px] text-paper">Editor’s pick</span>}
                   <p className="font-display text-[clamp(20px,1.9vw,28px)] font-medium leading-[1.1] tracking-[-0.03em] text-espresso transition-colors group-hover:text-cherry">
                     {o.title}
                   </p>

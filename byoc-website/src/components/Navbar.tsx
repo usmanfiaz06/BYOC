@@ -74,7 +74,7 @@ export default function Navbar() {
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden sm:inline-block">
-              <RollButton href="/join" size="sm">Apply to join</RollButton>
+              <RollButton href="/join" size="sm">Request an invite</RollButton>
             </span>
             <button
               onClick={() => setOpen((v) => !v)}
@@ -110,7 +110,7 @@ export default function Navbar() {
               </motion.div>
             ))}
             <div className="mt-8">
-              <RollButton href="/join" variant="gold" size="lg">Apply to join</RollButton>
+              <RollButton href="/join" variant="gold" size="lg">Request an invite</RollButton>
             </div>
           </motion.div>
         )}

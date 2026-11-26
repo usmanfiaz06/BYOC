@@ -49,7 +49,7 @@ export default function CityList() {
         <p className="max-w-[30ch] font-display text-[clamp(24px,2.4vw,40px)] font-medium leading-[1.05] tracking-[-0.03em] text-espresso">
           Your city isn’t on the list yet? Tell us where you are.
         </p>
-        <RollButton href="/join" size="lg">Apply to join</RollButton>
+        <RollButton href="/join" size="lg">Request an invite</RollButton>
       </div>
     </section>
   );

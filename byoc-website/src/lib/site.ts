@@ -35,7 +35,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'Who can join BYOC?',
-    a: 'People building something: founders, executives, senior operators, investors and people who have just moved to a new city. Membership is by application and free to join; a person reads every application.',
+    a: 'People building something: founders, executives, senior operators, investors and people who have just moved to a new city. BYOC is invite-only: request an invitation at byoc.global/join, and a person reads every request.',
   },
   {
     q: 'Where does BYOC meet?',
@@ -50,7 +50,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: 'How do I attend a BYOC meetup?',
-    a: 'Apply to join at byoc.global/join. Upcoming gatherings are listed on the BYOC Luma calendar, and members hear first when a coffee is planned in their city.',
+    a: 'BYOC is invite-only. Request an invitation at byoc.global/join; invited members get a seat at gatherings in their city. Upcoming gatherings are listed on the BYOC Luma calendar, and members hear first when a coffee is planned.',
   },
   {
     q: 'Does BYOC share jobs and opportunities?',

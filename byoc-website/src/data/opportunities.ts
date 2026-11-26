@@ -1,4 +1,4 @@
-// Live opportunities, researched 26 Nov 2026. Every item links to its original source.
+// Live opportunities, researched 26 Nov 2026 (curated picks first, then the wider list). Every item links to its original source.
 // `verified: false` means the listing was found but its open status should be re-checked.
 // Refresh monthly (see README notes: Greenhouse / Lever / Ashby public feeds, UK & Irish public appointments).
 
@@ -14,6 +14,7 @@ export interface Opportunity {
   verified: boolean;
   category: OpportunityCategory;
   kind: string;
+  featured?: boolean;
 }
 
 export const OPPORTUNITIES_UPDATED = '26 Nov 2026';
@@ -23,12 +24,349 @@ export const opportunities: Opportunity[] = [
     "title": "Head of ASEAN, Applied AI",
     "org": "Anthropic",
     "location": "Singapore",
-    "summary": "Leads Anthropic's Applied AI function across ASEAN markets.",
-    "when": "Posted 2026-11-03",
+    "summary": "Leads Anthropic's Applied AI team for ASEAN, helping customers in the region deploy Claude.",
+    "when": "Posted 3 Nov 2026",
     "url": "https://job-boards.greenhouse.io/anthropic/jobs/5424312008",
     "verified": true,
     "category": "roles",
-    "kind": "Head of"
+    "kind": "",
+    "featured": true
+  },
+  {
+    "title": "Deputy Governor, Markets and Banking",
+    "org": "Bank of England",
+    "location": "London",
+    "summary": "Crown appointment for five years: leads about 700 staff across markets, banking, payments and resolution. Pays £321k.",
+    "when": "Closes 2 Dec 2026",
+    "url": "https://apply-for-public-appointment.service.gov.uk/roles/9659",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": true
+  },
+  {
+    "title": "Vice President of Sales - KSA",
+    "org": "Cognition (Devin / Windsurf)",
+    "location": "Riyadh",
+    "summary": "Builds and leads enterprise sales in Saudi Arabia for the AI software-engineering company behind Devin.",
+    "when": "Posted 19 Jun 2026 (still listed)",
+    "url": "https://jobs.ashbyhq.com/cognition/d5f631ec-e387-4850-9377-81e8a46f66d5",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Account Director - Qatar",
+    "org": "Cognition (Devin / Windsurf)",
+    "location": "Doha",
+    "summary": "Senior enterprise sales role in Doha for Cognition, the AI software-engineering company behind Devin.",
+    "when": "Posted 13 Sep 2026 (still listed)",
+    "url": "https://jobs.ashbyhq.com/cognition/5308cb82-896c-4f9a-86fd-1d65962ef118",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Business Development Director",
+    "org": "Thunes",
+    "location": "Dubai",
+    "summary": "Senior business development role in Dubai for Thunes, the global cross-border payments network.",
+    "when": "Posted 27 Oct 2026",
+    "url": "https://job-boards.greenhouse.io/thunes/jobs/7993848003",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Business Director, Pakistan",
+    "org": "WPP Media",
+    "location": "Karachi",
+    "summary": "Senior client-business leadership role at WPP's media agency in Pakistan.",
+    "when": "Posted 10 Sep 2026 (updated 10 Nov)",
+    "url": "https://job-boards.greenhouse.io/wppmedia/jobs/5375350008",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Director, Revenue Assurance & Ireland Country Lead",
+    "org": "Databricks",
+    "location": "Dublin",
+    "summary": "Director-level role combining revenue assurance with leading Databricks' Ireland country presence.",
+    "when": "Posted 24 Sep 2026 (updated 19 Nov)",
+    "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8788172002",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Head of AI Startups, EMEA",
+    "org": "Stripe",
+    "location": "Dublin / London / Berlin / Paris / Stockholm",
+    "summary": "Leads Stripe's go-to-market for AI-native startups across Europe, the Middle East and Africa. Several hub cities possible.",
+    "when": "Posted 23 Oct 2026",
+    "url": "https://stripe.com/jobs/search?gh_jid=8299649",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "General Manager, Global Attractions & Ticketed Experiences",
+    "org": "GetYourGuide",
+    "location": "Berlin",
+    "summary": "GM-level role running GetYourGuide's global attractions and ticketed-experiences business from Berlin.",
+    "when": "Posted 30 Sep 2026 (still listed)",
+    "url": "https://jobs.ashbyhq.com/GetYourGuide/4f8d53d2-e6e6-44b4-a46f-9292b850a211",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Head of Strategic Startups",
+    "org": "Anthropic",
+    "location": "San Francisco",
+    "summary": "Leads Anthropic's relationships with high-growth strategic startups building on Claude.",
+    "when": "Posted 11 Sep 2026 (still listed)",
+    "url": "https://job-boards.greenhouse.io/anthropic/jobs/5419210008",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Head of SME & Growth, Canada",
+    "org": "Airwallex",
+    "location": "Toronto",
+    "summary": "Leads Airwallex's SME acquisition and growth in Canada.",
+    "when": "Posted 27 Oct 2026",
+    "url": "https://jobs.ashbyhq.com/airwallex/46586b3a-ab75-4f41-b51a-5cf34a7d598b",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Head of SME & Growth, Malaysia",
+    "org": "Airwallex",
+    "location": "Kuala Lumpur",
+    "summary": "Leads Airwallex's SME acquisition and growth in Malaysia.",
+    "when": "Posted 31 Jul 2026 (still listed)",
+    "url": "https://jobs.ashbyhq.com/airwallex/8d1db39e-2323-4628-a801-25579fe3124a",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Product Director",
+    "org": "Xendit",
+    "location": "Jakarta / Kuala Lumpur / Singapore",
+    "summary": "Director-level product leadership at Xendit, the Southeast Asian payments company. Can be based in Jakarta.",
+    "when": "Posted 16 Nov 2026",
+    "url": "https://job-boards.greenhouse.io/xendit/jobs/8204645003",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Head of Commercial Services",
+    "org": "Maendeleo Bank PLC",
+    "location": "Dar es Salaam",
+    "summary": "Executive-committee role leading the bank's commercial strategy, growth and profitability. Reports to the MD.",
+    "when": "Closes 8 Dec 2026",
+    "url": "https://www.ajiriwa.net/view-job/head-of-commercial-services-6b03ef8658074",
+    "verified": true,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Head of Special Asset Management Division (VP-EVP)",
+    "org": "Community Bank Bangladesh PLC",
+    "location": "Dhaka",
+    "summary": "Senior banking role leading recovery and resolution of non-performing loans. Needs 15+ years' experience.",
+    "when": "Closes 6 Dec 2026",
+    "url": "https://thecvguy.net/bank-jobs/community-bank-head-of-special-asset-management-division-vp-evp-2026/",
+    "verified": false,
+    "category": "roles",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "GSMA Innovation Fund for AI-Enabled Financial Health",
+    "org": "GSMA (funded by UK FCDO)",
+    "location": "Africa, South Asia, Southeast Asia",
+    "summary": "Equity-free grants of £100k–£250k for 15–18 months to startups using AI to improve financial health.",
+    "when": "Closes 17 Dec 2026",
+    "url": "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/wp-content/uploads/2026/10/GSMA-Innovation-Fund-for-AI-Enabled-Financial-Health-TCs.pdf",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": true
+  },
+  {
+    "title": "EIC Accelerator (full proposals)",
+    "org": "European Innovation Council",
+    "location": "EU and associated countries",
+    "summary": "EU grant plus equity for deep-tech scale-ups. Short proposals accepted any time.",
+    "when": "Next cut-off 20 Jan 2027 (then 17 Mar 2027)",
+    "url": "https://eic.ec.europa.eu/eic-funding-opportunities/eic-accelerator_en",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": true
+  },
+  {
+    "title": "Google for Startups Accelerator: Sovereign AI",
+    "org": "Google",
+    "location": "Europe and Israel (hybrid)",
+    "summary": "Equity-free 15-week programme for late-seed to Series A startups building AI for regulated sectors.",
+    "when": "Closes 15 Jan 2027",
+    "url": "https://cloud.google.com/blog/topics/startups/sovereign-ai-on-your-terms-our-new-startup-accelerator-is-open",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "a16z speedrun (SR008)",
+    "org": "Andreessen Horowitz",
+    "location": "San Francisco",
+    "summary": "Up to $1M investment and a 10-week SF residency (Feb–Apr 2027). Applications reviewed year-round.",
+    "when": "Rolling; SR008 runs 1 Feb–16 Apr 2027",
+    "url": "https://speedrun.a16z.com/apply",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Pakistan Startup Fund",
+    "org": "Ignite National Technology Fund / MoITT",
+    "location": "Pakistan",
+    "summary": "Equity-free government grant of $50k–$1M, up to 30% of a VC-backed round, for Pakistani startups.",
+    "when": "Rolling (no deadline)",
+    "url": "https://ignite.org.pk/pakistan-startup-fund/",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Entrepreneurship World Cup",
+    "org": "Monsha'at x Global Entrepreneurship Network",
+    "location": "Global (hosted from Saudi Arabia)",
+    "summary": "Global startup competition with $1M in equity-free cash prizes across idea, early and growth tracks.",
+    "when": "Closes 31 May 2027",
+    "url": "https://www.entrepreneurshipworldcup.com/",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Founder Institute Riyadh, Spring 2027",
+    "org": "Founder Institute",
+    "location": "Riyadh (in person)",
+    "summary": "Pre-seed accelerator cohort in Riyadh for early-stage founders. Fee and 2.5% equity warrant apply.",
+    "when": "Apply by 2 Mar 2027",
+    "url": "https://fi.co/enrolling",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "The Liveability Challenge 2027",
+    "org": "Temasek Foundation / Eco-Business",
+    "location": "Singapore (global call)",
+    "summary": "Over S$5.5M in grants and investment for climate solutions; S$1M top grant on the new Oceans theme.",
+    "when": "Closes 12 Feb 2027",
+    "url": "https://www.theliveabilitychallenge.org/",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Madica pre-seed investment programme",
+    "org": "Madica (Flat6Labs, backed by Mastercard Foundation)",
+    "location": "Africa",
+    "summary": "Up to $200k plus an 18-month programme for pre-seed African startups led by full-time local founders.",
+    "when": "Rolling (application form open)",
+    "url": "https://www.madica.vc/apply",
+    "verified": true,
+    "category": "founders",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Yale World Fellows 2027",
+    "org": "Yale Jackson School of Global Affairs",
+    "location": "New Haven, USA",
+    "summary": "Fully funded residential fellowship at Yale for mid-career leaders from around the world.",
+    "when": "Closes 2 Dec 2026",
+    "url": "https://jackson.yale.edu/international-leadership-center/yale-world-fellows",
+    "verified": true,
+    "category": "executives",
+    "kind": "",
+    "featured": true
+  },
+  {
+    "title": "Kauffman Fellows Class 32 (KF32)",
+    "org": "Kauffman Fellows",
+    "location": "Global",
+    "summary": "Leadership fellowship and global network for venture capital investors and innovation leaders.",
+    "when": "Closes 11 Jan 2027",
+    "url": "https://www.kauffmanfellows.org/",
+    "verified": true,
+    "category": "executives",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Non-Executive Director (x2)",
+    "org": "Office of Rail and Road",
+    "location": "London",
+    "summary": "Regulator board seats needing climate or cyber/AI expertise. £20,900 a year, about 4 days a month.",
+    "when": "Closes 9 Dec 2026",
+    "url": "https://apply-for-public-appointment.service.gov.uk/roles/9714",
+    "verified": true,
+    "category": "executives",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Chair, Adaptation Committee of the Climate Change Committee",
+    "org": "Climate Change Committee",
+    "location": "UK",
+    "summary": "Chairs the UK statutory body advising government on climate adaptation and resilience.",
+    "when": "Closes 11 Dec 2026",
+    "url": "https://apply-for-public-appointment.service.gov.uk/roles/9724",
+    "verified": true,
+    "category": "executives",
+    "kind": "",
+    "featured": false
+  },
+  {
+    "title": "Appointments to the Board of Dublin Bus",
+    "org": "Bus Átha Cliath – Dublin Bus (State Boards)",
+    "location": "Dublin",
+    "summary": "Non-executive board seats on Dublin's state-owned bus operator, appointed through the State Boards process.",
+    "when": "Closes 15 Dec 2026",
+    "url": "https://publicjobs.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-6/candidate/so/pm/1/pl/14/opp/11238-Appointments-to-the-Board-of-Bus-%C3%81tha-Cliath-Dublin-Bus/en-GB",
+    "verified": true,
+    "category": "executives",
+    "kind": "",
+    "featured": false
   },
   {
     "title": "VP, Customer Success and Support",
@@ -39,29 +377,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://job-boards.greenhouse.io/xendit/jobs/8034243003",
     "verified": true,
     "category": "roles",
-    "kind": "VP"
-  },
-  {
-    "title": "Product Director",
-    "org": "Xendit",
-    "location": "Jakarta / Kuala Lumpur / Singapore",
-    "summary": "Product leadership role at Southeast Asian payments infrastructure company.",
-    "when": "Posted 2026-11-16",
-    "url": "https://job-boards.greenhouse.io/xendit/jobs/8204645003",
-    "verified": true,
-    "category": "roles",
-    "kind": "Director"
-  },
-  {
-    "title": "Head of AI Startups, EMEA",
-    "org": "Stripe",
-    "location": "Dublin / London / Berlin / Paris / Stockholm",
-    "summary": "Leads Stripe's AI-startup segment across Europe, Middle East and Africa.",
-    "when": "Posted 2026-10-23",
-    "url": "https://stripe.com/jobs/search?gh_jid=8299649",
-    "verified": true,
-    "category": "roles",
-    "kind": "Head of"
+    "kind": "VP",
+    "featured": false
   },
   {
     "title": "Head of AML/CTF - Ireland",
@@ -72,7 +389,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://stripe.com/jobs/search?gh_jid=8394657",
     "verified": true,
     "category": "roles",
-    "kind": "Head of"
+    "kind": "Head of",
+    "featured": false
   },
   {
     "title": "Head of AMER Startups (AI Sales)",
@@ -83,18 +401,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://stripe.com/jobs/search?gh_jid=8267847",
     "verified": true,
     "category": "roles",
-    "kind": "Head of"
-  },
-  {
-    "title": "Director, Revenue Assurance & Ireland Country Lead",
-    "org": "Databricks",
-    "location": "Ireland (Dublin)",
-    "summary": "Combines revenue-assurance leadership with country-lead responsibility for Databricks Ireland.",
-    "when": "Posted 2026-09-24",
-    "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8788172002",
-    "verified": true,
-    "category": "roles",
-    "kind": "Director / Country Lead"
+    "kind": "Head of",
+    "featured": false
   },
   {
     "title": "Enterprise Sales Director, Retail",
@@ -105,7 +413,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8902290002",
     "verified": true,
     "category": "roles",
-    "kind": "Director"
+    "kind": "Director",
+    "featured": false
   },
   {
     "title": "Managing Director, Front Office (Geschaeftsleiter Markt) - SumUp Bank",
@@ -116,7 +425,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://sumup.com/careers/positions/8960256002?gh_jid=8960256002",
     "verified": true,
     "category": "roles",
-    "kind": "C-level / Managing Director"
+    "kind": "C-level / Managing Director",
+    "featured": false
   },
   {
     "title": "Head of Pricing & Monetisation",
@@ -127,7 +437,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://sumup.com/careers/positions/8885084002?gh_jid=8885084002",
     "verified": true,
     "category": "roles",
-    "kind": "Head of"
+    "kind": "Head of",
+    "featured": false
   },
   {
     "title": "Director, Revenue",
@@ -138,7 +449,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://job-boards.greenhouse.io/intercom/jobs/8375740",
     "verified": true,
     "category": "roles",
-    "kind": "Director"
+    "kind": "Director",
+    "featured": false
   },
   {
     "title": "VP of Sales - Public Sector",
@@ -149,7 +461,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://jobs.ashbyhq.com/cohere/49a6485c-c449-4e07-8001-cafc97a39a13",
     "verified": true,
     "category": "roles",
-    "kind": "VP"
+    "kind": "VP",
+    "featured": false
   },
   {
     "title": "VP of Services, Customer Success & Support",
@@ -160,7 +473,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://jobs.ashbyhq.com/cohere/068e9b49-e22b-493c-824f-0cc52840c80c",
     "verified": true,
     "category": "roles",
-    "kind": "VP"
+    "kind": "VP",
+    "featured": false
   },
   {
     "title": "Head of Sales, Defense & Intelligence",
@@ -171,7 +485,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://jobs.ashbyhq.com/cohere/334b2a07-0c6a-4764-b4a8-c8bf68513cde",
     "verified": true,
     "category": "roles",
-    "kind": "Head of"
+    "kind": "Head of",
+    "featured": false
   },
   {
     "title": "Government Affairs Lead - Middle East",
@@ -182,7 +497,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://jobs.ashbyhq.com/cohere/2dc8b505-128a-4bc8-b8c1-7084e7d26530",
     "verified": true,
     "category": "roles",
-    "kind": "Lead (senior)"
+    "kind": "Lead (senior)",
+    "featured": false
   },
   {
     "title": "Global Head of Sanctions",
@@ -193,7 +509,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://job-boards.eu.greenhouse.io/binance/jobs/5040761101",
     "verified": true,
     "category": "roles",
-    "kind": "Head of"
+    "kind": "Head of",
+    "featured": false
   },
   {
     "title": "Compliance Head of Business Advisory",
@@ -204,7 +521,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://job-boards.eu.greenhouse.io/binance/jobs/5034453101",
     "verified": true,
     "category": "roles",
-    "kind": "Head of"
+    "kind": "Head of",
+    "featured": false
   },
   {
     "title": "Growth Lead, Pakistan",
@@ -215,7 +533,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://job-boards.eu.greenhouse.io/binance/jobs/5002463101",
     "verified": true,
     "category": "roles",
-    "kind": "Lead (country)"
+    "kind": "Lead (country)",
+    "featured": false
   },
   {
     "title": "Communications Lead, MENAT+",
@@ -226,7 +545,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://jobs.lever.co/spotify/c152d042-642d-4a48-862b-8be8d6cdc819",
     "verified": true,
     "category": "roles",
-    "kind": "Lead (regional)"
+    "kind": "Lead (regional)",
+    "featured": false
   },
   {
     "title": "VP, Real Estate Investments",
@@ -237,7 +557,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://www.michaelpage.ae/job-detail/vp-real-estate-investments/ref/jn-112026-7150879",
     "verified": true,
     "category": "roles",
-    "kind": "VP"
+    "kind": "VP",
+    "featured": false
   },
   {
     "title": "Sales Director (Retail)",
@@ -248,7 +569,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://www.michaelpage.ae/job-detail/sales-director-retail/ref/jn-092026-7103808",
     "verified": true,
     "category": "roles",
-    "kind": "Director"
+    "kind": "Director",
+    "featured": false
   },
   {
     "title": "Marketing & Communications Director",
@@ -259,7 +581,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://www.michaelpage.ae/job-detail/marketing-communications-director-conglomorate-qatar/ref/jn-102026-7131746",
     "verified": true,
     "category": "roles",
-    "kind": "Director"
+    "kind": "Director",
+    "featured": false
   },
   {
     "title": "Country Manager - Tanzania",
@@ -270,7 +593,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://www.michaelpageafrica.com/job-detail/country-manager-tanzania/ref/jn-072026-7069303",
     "verified": true,
     "category": "roles",
-    "kind": "Country Manager / GM"
+    "kind": "Country Manager / GM",
+    "featured": false
   },
   {
     "title": "Director of Demand Generation",
@@ -281,7 +605,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://ats.rippling.com/fieldpulse/jobs/39c19c23-b40e-426e-b81c-af9c47524bfe",
     "verified": true,
     "category": "roles",
-    "kind": "Director"
+    "kind": "Director",
+    "featured": false
   },
   {
     "title": "Field CTO",
@@ -292,29 +617,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://job-boards.greenhouse.io/gitlab/jobs/8884627002",
     "verified": true,
     "category": "roles",
-    "kind": "C-level (field)"
-  },
-  {
-    "title": "GSMA Innovation Fund for AI-Enabled Financial Health",
-    "org": "GSMA (funded by UK FCDO)",
-    "location": "Pakistan, Bangladesh, Tanzania, Indonesia, Malaysia and wider Africa / South & SE Asia",
-    "summary": "Grants of GBP 100k-250k plus venture support for AI startups improving financial health.",
-    "when": "Deadline 2026-12-17",
-    "url": "https://digitalpakistan.pk/?p=23355",
-    "verified": true,
-    "category": "founders",
-    "kind": "Grant"
-  },
-  {
-    "title": "Founder Institute - Riyadh Spring 2027",
-    "org": "Founder Institute",
-    "location": "Riyadh, Saudi Arabia",
-    "summary": "In-person idea-stage programme, 21 Mar-31 May 2027; USD 499 fee charged after acceptance.",
-    "when": "Deadline 2026-12-29",
-    "url": "https://fi.co/apply/15420",
-    "verified": true,
-    "category": "founders",
-    "kind": "Pre-accelerator"
+    "kind": "C-level (field)",
+    "featured": false
   },
   {
     "title": "Founder Institute - Silicon Valley Spring 2027",
@@ -325,7 +629,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://fi.co/apply",
     "verified": true,
     "category": "founders",
-    "kind": "Pre-accelerator"
+    "kind": "Pre-accelerator",
+    "featured": false
   },
   {
     "title": "Disruptive Technologies Innovation Fund (DTIF) Call 8",
@@ -336,51 +641,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://enterprise.gov.ie/en/news-and-events/department-news/2026/october/minister-burke-seeks-new-applications-for-40-million-disruptive-technologies-funding.html",
     "verified": true,
     "category": "founders",
-    "kind": "Grant (consortium)"
-  },
-  {
-    "title": "Hub71 Access Programme - Cohort 21",
-    "org": "Hub71 (Abu Dhabi)",
-    "location": "Abu Dhabi, UAE (global applicants)",
-    "summary": "12-month programme from Sep 2027; reported AED 250k incentives plus AED 250k SAFE; relocation expected.",
-    "when": "Deadline Feb 2027 (per aggregators)",
-    "url": "https://www.hub71.com/program/access-programme",
-    "verified": false,
-    "category": "founders",
-    "kind": "Accelerator / incentive programme"
-  },
-  {
-    "title": "LEAP 2027 Startup Programme / Rocket Fuel",
-    "org": "LEAP (Tahaluf / MCIT)",
-    "location": "Riyadh, Saudi Arabia",
-    "summary": "Startup pitch competition for LEAP exhibitors; recent editions offered a USD 1M prize pool.",
-    "when": "Pre-registration for 2027 (dates unconfirmed)",
-    "url": "https://onegiantleap.com/startup",
-    "verified": false,
-    "category": "founders",
-    "kind": "Competition / exhibition"
-  },
-  {
-    "title": "EIC Accelerator",
-    "org": "European Innovation Council (EU)",
-    "location": "EU incl. Ireland and Germany",
-    "summary": "Grant below EUR 2.5M plus EIC Fund equity; short applications accepted year-round.",
-    "when": "Next full cut-off reported 2027-01-20 (2027 Work Programme pending)",
-    "url": "https://eic.ec.europa.eu/eic-accelerator_en",
-    "verified": false,
-    "category": "founders",
-    "kind": "Grant + equity"
-  },
-  {
-    "title": "Startup SG Tech - Proof of Concept / Proof of Value",
-    "org": "Enterprise Singapore",
-    "location": "Singapore",
-    "summary": "Up to SGD 250k (POC) or SGD 500k (POV) for deep-tech startups with 30% local shareholding.",
-    "when": "Deadline 2026-12-31 (per aggregator)",
-    "url": "https://www.enterprisesg.gov.sg/financial-support/startup-sg-tech",
-    "verified": false,
-    "category": "founders",
-    "kind": "Grant"
+    "kind": "Grant (consortium)",
+    "featured": false
   },
   {
     "title": "Antler Residency - Toronto and US (SF/NYC/Austin)",
@@ -391,7 +653,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://antler.co/cohort-start-dates",
     "verified": true,
     "category": "founders",
-    "kind": "Pre-seed residency / investment"
+    "kind": "Pre-seed residency / investment",
+    "featured": false
   },
   {
     "title": "Y Combinator - Winter 2027 (late applications)",
@@ -402,7 +665,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://www.ycombinator.com/apply",
     "verified": true,
     "category": "founders",
-    "kind": "Accelerator"
+    "kind": "Accelerator",
+    "featured": false
   },
   {
     "title": "Web Summit Qatar 2027 - Startup Programme",
@@ -413,62 +677,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://qatar.websummit.com/startups",
     "verified": true,
     "category": "founders",
-    "kind": "Event startup programme"
-  },
-  {
-    "title": "MIT DesignX Dubai",
-    "org": "MIT DesignX with DTEC",
-    "location": "Dubai, UAE",
-    "summary": "Jan-Mar 2027 programme for early-stage MEA built-environment startups; no funding, no equity taken.",
-    "when": "Programme Jan-Mar 2027; deadline not stated",
-    "url": "https://designx.mit.edu/programs/dubai/",
-    "verified": false,
-    "category": "founders",
-    "kind": "Accelerator (non-equity)"
-  },
-  {
-    "title": "Cradle Elevate",
-    "org": "Cradle Fund (MOSTI)",
-    "location": "Malaysia (Kuala Lumpur)",
-    "summary": "Up to RM2M for validated startups moving to growth; RM10M total.",
-    "when": "Announced Apr 2026; deadline not stated",
-    "url": "https://www.thestar.com.my/news/nation/2026/04/29/start-ups-can-now-access-up-to-rm2mil-in-funding",
-    "verified": false,
-    "category": "founders",
-    "kind": "Equity funding"
-  },
-  {
-    "title": "Kauffman Fellows - Class 32 (KF32)",
-    "org": "Kauffman Fellows",
-    "location": "Global (modules start NYC, Jun 2027)",
-    "summary": "Two-year fellowship for venture investors; USD 80k tuition.",
-    "when": "Final deadline 2027-01-11",
-    "url": "https://www.kauffmanfellows.org/program/application-details",
-    "verified": true,
-    "category": "executives",
-    "kind": "Fellowship (VC/investor)"
-  },
-  {
-    "title": "Non-Executive Director (2 vacancies)",
-    "org": "Office of Rail and Road (UK)",
-    "location": "London, UK",
-    "summary": "UK regulator NED; about 4 days/month; GBP 20,900 a year.",
-    "when": "Closes 2026-12-09 23:59",
-    "url": "https://apply-for-public-appointment.service.gov.uk/roles/9714",
-    "verified": true,
-    "category": "executives",
-    "kind": "Board seat / NED"
-  },
-  {
-    "title": "Chair, Adaptation Committee",
-    "org": "Climate Change Committee (UK)",
-    "location": "London, UK",
-    "summary": "Chairs UK statutory climate-adaptation advisory committee; 5 days/month, GBP 1,000/day.",
-    "when": "Closes 2026-12-11 12:00",
-    "url": "https://apply-for-public-appointment.service.gov.uk/roles/9724",
-    "verified": true,
-    "category": "executives",
-    "kind": "Chair"
+    "kind": "Event startup programme",
+    "featured": false
   },
   {
     "title": "Non-Executive Director (Generalist)",
@@ -479,18 +689,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://apply-for-public-appointment.service.gov.uk/roles/9712",
     "verified": true,
     "category": "executives",
-    "kind": "Board seat / NED"
-  },
-  {
-    "title": "Board Member - Dublin Bus (Bus Atha Cliath)",
-    "org": "Minister for Transport (Ireland), via Public Appointments Service",
-    "location": "Dublin, Ireland",
-    "summary": "Appointments to the board of Dublin's state-owned bus operator.",
-    "when": "Closes 2026-12-15",
-    "url": "https://publicjobs.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-6/candidate/so/pm/1/pl/14/opp/11238-Appointments-to-the-Board-of-Bus-%C3%81tha-Cliath-Dublin-Bus/en-GB",
-    "verified": true,
-    "category": "executives",
-    "kind": "Board seat / state board"
+    "kind": "Board seat / NED",
+    "featured": false
   },
   {
     "title": "Ordinary Member - Board of Tailte Eireann",
@@ -501,7 +701,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://publicjobs.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-6/candidate/so/pm/1/pl/14/opp/11038-Appointment-as-Ordinary-Member-to-the-Board-of-Tailte-%C3%89ireann/en-GB",
     "verified": true,
     "category": "executives",
-    "kind": "Board seat / state board"
+    "kind": "Board seat / state board",
+    "featured": false
   },
   {
     "title": "Chairperson and Ordinary Member - Advisory Board, Office of the Planning Regulator",
@@ -512,7 +713,8 @@ export const opportunities: Opportunity[] = [
     "url": "https://publicjobs.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-6/candidate/so/pm/1/pl/14/opp/10978-Appointment-as-Chairperson-and-Ordinary-Member-to-the-Advisory-Board-of-the-Office-of-the-Planning-Regulator/en-GB",
     "verified": true,
     "category": "executives",
-    "kind": "Chair / board seat"
+    "kind": "Chair / board seat",
+    "featured": false
   },
   {
     "title": "VC & Angel Investment Bootcamp - Cohort 02",
@@ -523,28 +725,7 @@ export const opportunities: Opportunity[] = [
     "url": "https://www.angelsden.com/academy",
     "verified": true,
     "category": "executives",
-    "kind": "Angel investor programme"
-  },
-  {
-    "title": "Sanabil Angel Investing Unlocked by 500 Global",
-    "org": "500 Global with Sanabil Investments (PIF)",
-    "location": "Riyadh, Saudi Arabia",
-    "summary": "Training for emerging MENA angels with 1-3 years and 3-10 deals; USD 2,000 tuition.",
-    "when": "Last cohort Jul 2026; waitlist for next",
-    "url": "https://500.co/venture-education/aiu/mena",
-    "verified": false,
-    "category": "executives",
-    "kind": "Angel investor programme"
-  },
-  {
-    "title": "SGLN Fellowship 2027",
-    "org": "Singapore Global Leaders Network (HCLI, supported by EDB)",
-    "location": "Singapore",
-    "summary": "Cohort programme for Singaporean leaders taking regional/global roles, Jan-Oct 2027.",
-    "when": "Cohort Jan-Oct 2027; deadline not confirmed",
-    "url": "https://www.sgln.hcli.org/wp-content/uploads/2026/07/SGLN-Fellowship-2027.pdf",
-    "verified": false,
-    "category": "executives",
-    "kind": "Executive fellowship"
+    "kind": "Angel investor programme",
+    "featured": false
   }
 ];

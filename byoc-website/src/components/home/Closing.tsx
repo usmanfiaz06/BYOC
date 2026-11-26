@@ -44,9 +44,9 @@ export default function Closing() {
         <p className="mt-8 font-display text-[clamp(24px,2.6vw,42px)] font-medium tracking-[-0.03em] text-sky">After that, someone saves you a seat.</p>
         <div className="mt-12 flex flex-wrap gap-3">
           <RollButton href="/chapters" variant="gold" size="lg">Find your city</RollButton>
-          <RollButton href="/join" variant="outline-light" size="lg">Apply to join</RollButton>
+          <RollButton href="/join" variant="outline-light" size="lg">Request an invite</RollButton>
         </div>
-        <p className="label mt-6 text-paper/50">By application · Free to join · The coffee is on you</p>
+        <p className="label mt-6 text-paper/50">Invite-only · The coffee is on you</p>
       </div>
     </section>
   );

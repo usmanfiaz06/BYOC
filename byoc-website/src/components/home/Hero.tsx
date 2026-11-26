@@ -236,7 +236,7 @@ export default function Hero({ ribbon, ribbonHref, next }: { ribbon: string; rib
         </p>
         <div className="flex shrink-0 gap-3">
           <RollButton href="/events" variant="outline" size="sm">See the next coffee</RollButton>
-          <RollButton href="/join" size="sm">Apply to join</RollButton>
+          <RollButton href="/join" size="sm">Request an invite</RollButton>
         </div>
       </div>
     </section>

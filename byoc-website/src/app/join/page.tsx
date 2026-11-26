@@ -74,7 +74,7 @@ export default function JoinPage() {
               Thank you, {name.trim().split(' ')[0]}.
             </h1>
             <p className="mt-8 max-w-[40ch] font-display text-[clamp(22px,2.2vw,34px)] font-medium leading-[1.2] tracking-[-0.025em] text-ink/80">
-              A person will read this, not a filter. When there’s a coffee near you, you’ll hear from us on WhatsApp. <span className="text-cherry">Bring a question.</span>
+              A person will read this, not a filter. If there’s a fit, your invitation will arrive on WhatsApp before the next coffee in your city. <span className="text-cherry">Bring a question.</span>
             </p>
             <div className="mt-12">
               <RollButton href="/" variant="outline">Back to the homepage</RollButton>
@@ -85,7 +85,7 @@ export default function JoinPage() {
             <div className="lg:sticky lg:top-28 lg:self-start">
               <h1 className="font-display text-[clamp(52px,7.4vw,132px)] font-medium text-ink display-tight">Who would you like to meet?</h1>
               <p className="mt-8 max-w-[44ch] text-[18px] leading-[1.6] text-ink/75">
-                Tell us a little, honestly. A person reads every application, usually within a week. Joining is free. The coffee is on you.
+                BYOC is invite-only. Tell us a little, honestly. A person reads every request, usually within a week, and invitations go out city by city. The coffee is on you.
               </p>
               <ul className="mt-12 border-t border-ink">
                 {['You’ll hear about gatherings in your city first.', 'Your number stays yours until you say yes.', 'Every introduction is one you asked for.'].map((t) => (
@@ -145,7 +145,7 @@ export default function JoinPage() {
               </Field>
 
               <div className="mt-10 flex flex-wrap items-center gap-5">
-                <RollButton type="submit" size="lg">{sending ? 'Sending…' : 'Send application'}</RollButton>
+                <RollButton type="submit" size="lg">{sending ? 'Sending…' : 'Request an invitation'}</RollButton>
                 {touched && !valid && <span className="text-[14px] text-cherry">A few things above need a look.</span>}
               </div>
             </form>

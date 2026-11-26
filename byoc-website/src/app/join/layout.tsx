@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Join the community',
-  description: 'Apply to join BYOC (Buy Your Own Coffee): founders, executives and operators meeting over coffee in 21 countries. By application, free to join.',
+  title: 'Request an invitation',
+  description: 'BYOC (Buy Your Own Coffee) is invite-only. Request an invitation to meet founders, executives and operators over coffee in 21 countries.',
   alternates: { canonical: '/join' },
 };
 
