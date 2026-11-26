@@ -119,9 +119,9 @@ function RotatingLine({ i }: { i: number }) {
   // Three fixed rows, so nothing reflows when the phrase changes:
   // the lead-in, a phrase block with a constant height, then "in City."
   return (
-    <p className="flex max-w-[34ch] flex-col font-display text-[clamp(38px,5.6vw,100px)] font-medium leading-[0.95] tracking-[-0.045em] text-paper">
+    <p className="flex flex-col font-display text-[30px] font-medium sm:text-[min(104px,6.2cqw)] leading-[0.95] tracking-[-0.045em] text-paper">
       <span className="text-paper/65">Coffee with someone who</span>
-      <span className="block h-[2.85em] overflow-hidden sm:h-[1.9em] lg:h-[1em] lg:whitespace-nowrap">
+      <span className="block h-[1.9em] overflow-hidden sm:h-[1em] sm:whitespace-nowrap">
         <Roll k={`w${i}`}>{lines[i].who}</Roll>
       </span>
       <span className="flex items-baseline gap-[0.25em]">
@@ -190,9 +190,9 @@ export default function Hero({ ribbon, ribbonHref, next }: { ribbon: string; rib
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/15 to-ink/80" />
 
-        <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-6 p-5 sm:p-8">
+        <div className="@container absolute inset-x-0 top-0 p-5 sm:p-8">
           <RotatingLine i={slide} />
-          <p className="hidden shrink-0 text-right font-display text-[18px] font-medium leading-[1.15] tracking-[-0.01em] text-paper md:block">
+          <p className="absolute right-5 top-5 hidden text-right font-display text-[18px] sm:right-8 sm:top-8 font-medium leading-[1.15] tracking-[-0.01em] text-paper md:block">
             33°41′N
             <br />
             73°03′E

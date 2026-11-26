@@ -11,13 +11,6 @@ const tabs: { key: OpportunityCategory; label: string; blurb: string }[] = [
   { key: 'executives', label: 'For executives', blurb: 'Board seats, fellowships and investor programmes.' },
 ];
 
-function hostOf(url: string) {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '');
-  } catch {
-    return 'source';
-  }
-}
 
 export default function OpportunityBoard({ limit, showSearch = false }: { limit?: number; showSearch?: boolean }) {
   const [tab, setTab] = useState<OpportunityCategory>('roles');
@@ -88,8 +81,8 @@ export default function OpportunityBoard({ limit, showSearch = false }: { limit?
                 </div>
                 <div className="text-[14px] leading-[1.45] text-espresso/70">
                   <p>{o.location}</p>
-                  <p className="label mt-1 text-[10px] text-espresso/50">
-                    {o.when} · via {hostOf(o.url)}
+                  <p className="mt-1 text-[14px] text-espresso/55">
+                    {o.when.replace(/\s*\(.*\)\s*$/, '')}
                     {!o.verified && <span className="ml-2 rounded-full bg-gold/25 px-2 py-0.5 text-espresso">verify</span>}
                   </p>
                 </div>

@@ -40,10 +40,10 @@ export default function Thesis() {
             className="group relative overflow-hidden border-b border-espresso"
           >
             <span className="absolute inset-0 origin-bottom scale-y-0 bg-espresso transition-transform duration-500 ease-[cubic-bezier(.7,0,.2,1)] group-hover:scale-y-100" />
-            <div className="relative flex flex-col gap-1 py-6 transition-colors duration-500 group-hover:text-paper sm:flex-row sm:items-baseline sm:gap-6 sm:py-8">
-              <span className="label w-10 shrink-0 text-gold">0{i + 1}</span>
+            <div className="relative grid grid-cols-[2.25rem_1fr] items-baseline gap-x-3 gap-y-1 py-6 transition-colors duration-500 group-hover:text-paper sm:flex sm:flex-row sm:items-baseline sm:gap-6 sm:py-8">
+              <span className="label row-span-2 w-10 shrink-0 text-gold">0{i + 1}</span>
               <span className="font-display text-[clamp(28px,3.8vw,64px)] font-medium leading-[1] tracking-[-0.04em]">{m.who}</span>
-              <span className="text-[clamp(18px,1.8vw,28px)] leading-[1.25] tracking-[-0.01em] text-espresso/70 transition-colors duration-500 group-hover:text-paper/80">
+              <span className="col-start-2 text-[clamp(18px,1.8vw,28px)] leading-[1.25] tracking-[-0.01em] text-espresso/70 transition-colors duration-500 group-hover:text-paper/80">
                 {m.rest}
               </span>
             </div>

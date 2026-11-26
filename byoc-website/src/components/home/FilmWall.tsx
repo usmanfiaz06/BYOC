@@ -30,43 +30,27 @@ const columns: number[][] = [
 const drift = [-14, 10, -18, 8, -12]; // % of column height, start → end
 
 function Tile({ film, onOpen }: { film: Film; onOpen: () => void }) {
-  const ref = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) v.play().catch(() => {});
-        else v.pause();
-      },
-      { threshold: 0.35 },
-    );
-    io.observe(v);
-    return () => io.disconnect();
-  }, []);
+  // A still frame by default (a few KB). The film itself only loads and plays
+  // while you hover it, so the wall never floods the connection.
+  const [live, setLive] = useState(false);
   return (
     <button
       type="button"
       onClick={onOpen}
+      onPointerEnter={(e) => e.pointerType === 'mouse' && setLive(true)}
+      onPointerLeave={() => setLive(false)}
       aria-label={`Play ${film.place} ${film.year} with sound`}
       className="group relative block aspect-[9/16] w-full overflow-hidden bg-[#1c1b1a]"
     >
-      <video
-        ref={ref}
-        src={film.src}
-        poster={film.poster}
-        muted
-        loop
-        playsInline
-        preload="none"
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-[1.06]"
-      />
-      <span className="absolute inset-0 bg-ink/50 transition-colors duration-500 group-hover:bg-ink/0" />
-      <span className="absolute bottom-0 left-0 right-0 flex items-center justify-between p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <span className="label text-[10px] text-paper">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={film.poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:scale-[1.06]" />
+      {live && <video src={film.src} poster={film.poster} muted loop playsInline autoPlay className="absolute inset-0 h-full w-full scale-[1.06] object-cover" />}
+      <span className="absolute inset-0 bg-ink/45 transition-colors duration-500 group-hover:bg-ink/0" />
+      <span className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <span className="text-[14px] font-medium text-paper">
           {film.place} · {film.year}
         </span>
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-paper text-ink">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-paper text-ink">
           <Play size={12} fill="currentColor" />
         </span>
       </span>
@@ -122,7 +106,7 @@ export default function FilmWall() {
         </div>
       </div>
 
-      <p className="label pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 text-paper/60">Tap any film to watch with sound</p>
+      <p className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[15px] text-paper/70">Tap any film to watch with sound</p>
 
       {/* Full-screen player */}
       <AnimatePresence>
@@ -148,7 +132,7 @@ export default function FilmWall() {
               onClick={(e) => e.stopPropagation()}
             >
               <video src={films[open].src} poster={films[open].poster} autoPlay controls playsInline className="h-full w-full bg-black object-cover" />
-              <p className="label absolute -top-8 left-0 text-paper/80">
+              <p className="absolute -top-8 left-0 text-[15px] text-paper/80">
                 {films[open].place} · {films[open].year}
               </p>
             </motion.div>

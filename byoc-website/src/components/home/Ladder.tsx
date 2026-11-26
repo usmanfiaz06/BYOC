@@ -38,11 +38,11 @@ export default function Ladder() {
           </div>
           <ol className="grid gap-12 md:grid-cols-4 md:gap-8">
             {rungs.map((r, i) => (
-              <li key={r.title} className="relative">
-                <div className="relative z-10 inline-flex bg-paper pr-4">
+              <li key={r.title} className="relative grid grid-cols-[auto_1fr] items-start gap-x-5 md:block">
+                <div className="relative z-10 row-span-2 inline-flex bg-paper pr-4">
                   <span className="font-cond text-[clamp(72px,7vw,120px)] text-ink">0{i + 1}</span>
                 </div>
-                <h3 className="mt-2 font-display text-[clamp(30px,3vw,48px)] font-medium leading-none tracking-[-0.04em] text-espresso">{r.title}</h3>
+                <h3 className="mt-1 font-display md:mt-2 text-[clamp(30px,3vw,48px)] font-medium leading-none tracking-[-0.04em] text-espresso">{r.title}</h3>
                 <p className="mt-3 max-w-[26ch] text-[17px] leading-[1.5] text-espresso/70">{r.body}</p>
               </li>
             ))}

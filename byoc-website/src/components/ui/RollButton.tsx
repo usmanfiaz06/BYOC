@@ -69,7 +69,7 @@ export default function RollButton({
   const [origin, setOrigin] = useState({ x: 50, y: 50 });
   const s = styles[variant];
 
-  const pad = size === 'lg' ? 'pl-7 pr-2 py-2 text-[13px]' : size === 'sm' ? 'pl-4 pr-1.5 py-1.5 text-[11px]' : 'pl-5 pr-1.5 py-1.5 text-[12px]';
+  const pad = size === 'lg' ? 'pl-7 pr-2 py-2 text-[16px]' : size === 'sm' ? 'pl-4 pr-1.5 py-1.5 text-[14px]' : 'pl-5 pr-1.5 py-1.5 text-[15px]';
   const dot = size === 'lg' ? 'w-11 h-11' : size === 'sm' ? 'w-7 h-7' : 'w-9 h-9';
 
   const onMove = (e: React.PointerEvent) => {
@@ -95,7 +95,7 @@ export default function RollButton({
       onPointerMove={onMove}
       onPointerEnter={onEnter}
       onPointerLeave={reset}
-      className={`group relative inline-flex items-center gap-4 overflow-hidden rounded-full font-mono font-medium uppercase tracking-[0.08em] isolate ${pad} ${s.base} ${arrow ? '' : 'pr-6'} ${className}`}
+      className={`group relative inline-flex items-center gap-4 overflow-hidden rounded-full font-display font-medium tracking-[-0.01em] isolate ${pad} ${s.base} ${arrow ? '' : 'pr-6'} ${className}`}
     >
       <span
         aria-hidden

@@ -99,10 +99,10 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Mono labels */
 .label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
 }
 
 /* Scrollbar */

@@ -8,7 +8,6 @@ import Wordmark from '@/components/brand/Wordmark';
 import RollButton from '@/components/ui/RollButton';
 
 export const navLinks = [
-  { href: '/about', label: 'Manifesto' },
   { href: '/events', label: 'Gatherings' },
   { href: '/chapters', label: 'Cities' },
   { href: '/opportunities', label: 'Opportunities' },
@@ -20,7 +19,7 @@ export function NavLink({ href, label, active, onClick, light }: { href: string;
     <Link
       href={href}
       onClick={onClick}
-      className={`group relative py-1 label ${light ? 'text-paper/80 hover:text-paper' : 'text-espresso/70 hover:text-espresso'} transition-colors`}
+      className={`group relative py-1 font-display text-[15px] font-medium tracking-[-0.01em] ${light ? 'text-paper/80 hover:text-paper' : 'text-espresso/70 hover:text-espresso'} transition-colors`}
     >
       {label}
       <span
