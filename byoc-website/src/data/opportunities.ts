@@ -2,7 +2,7 @@
 // `verified: false` means the listing was found but its open status should be re-checked.
 // Refresh monthly (see README notes: Greenhouse / Lever / Ashby public feeds, UK & Irish public appointments).
 
-export type OpportunityCategory = 'roles' | 'founders' | 'executives';
+export type OpportunityCategory = 'roles' | 'founders' | 'executives' | 'funding';
 
 export interface Opportunity {
   title: string;
