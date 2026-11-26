@@ -4,7 +4,7 @@ import Thesis from '@/components/home/Thesis';
 import CupToMap from '@/components/home/CupToMap';
 import Receipt from '@/components/home/Receipt';
 import TheHour from '@/components/home/TheHour';
-import HeroFilmStrip from '@/components/HeroFilmStrip';
+import FilmWall from '@/components/home/FilmWall';
 import Ladder from '@/components/home/Ladder';
 import Rules from '@/components/home/Rules';
 import Precedent from '@/components/home/Precedent';
@@ -29,11 +29,11 @@ export default async function Home() {
         next={next ? { city: next.city, day: `${next.weekday} ${next.shortDate}`, time: `${next.localTime} ${next.tzLabel}`, proximity: next.proximity, url: next.url ?? '/events' } : null}
       />
       <Origin />
+      <FilmWall />
       <Thesis />
       <CupToMap />
       <Receipt />
       <TheHour />
-      <HeroFilmStrip />
       <Ladder />
       <Rules />
       <Precedent />
