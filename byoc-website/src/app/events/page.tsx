@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import JoinCTA from '@/components/JoinCTA';
 import { ArrowRight } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Gatherings: the next coffee near you',
+  description: 'Upcoming and past BYOC gatherings. One hour in a café with founders, executives and operators. Everyone buys their own cup.',
+  alternates: { canonical: '/events' },
+};
 
 const pastEvents = [
   { title: 'BYOC Islamabad', city: 'Islamabad', flag: '🇵🇰', date: 'March 2026', attendees: 45, tags: ['Founders', 'AI'] },

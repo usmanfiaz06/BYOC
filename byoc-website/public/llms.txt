@@ -1,0 +1,33 @@
+# BYOC — Buy Your Own Coffee
+
+> BYOC (Buy Your Own Coffee) is a global community of founders, executives and operators who meet in cafés, in small groups, for about an hour. Everyone pays for their own cup. It started in Islamabad, Pakistan in 2020 during the COVID lockdowns and has held 212+ gatherings in 21 countries, with 3,200+ members.
+
+Website: https://www.byoc.global
+
+## Key facts
+- Name: BYOC, short for "Buy Your Own Coffee" (also written BYOC Global)
+- Founded: 2020, Islamabad, Pakistan
+- What it is: in-person coffee meetups for people building something: founders, executives, senior operators, investors, and people new to a city
+- Format: one hour, a small group, each person brings one question rather than a pitch; everyone buys their own coffee
+- Scale: 212+ gatherings, 3,200+ members, 21 countries
+- Membership: by application, free to join
+- Cities: Islamabad, Lahore, Karachi, Riyadh, Dubai, Doha, London, Dublin, Berlin, San Francisco, Dallas, Toronto, Kuala Lumpur, Singapore, Jakarta, Dhaka, Dar es Salaam
+
+## House rules
+1. Pay for your own.
+2. Bring a question, not a pitch.
+3. Ask before you advise.
+4. What's said over coffee stays there.
+5. Follow up within a week.
+
+## Pages
+- [Home](https://www.byoc.global/): what BYOC is, the origin story, the format, cities
+- [Join](https://www.byoc.global/join): apply to join the community
+- [Gatherings](https://www.byoc.global/events): upcoming and past meetups
+- [Opportunities](https://www.byoc.global/opportunities): senior roles, founder programmes and board seats in BYOC cities, each linked to its source
+- [Cities](https://www.byoc.global/chapters): where BYOC meets
+- [Manifesto](https://www.byoc.global/about): why BYOC exists
+
+## Elsewhere
+- LinkedIn: https://www.linkedin.com/company/byoc-global
+- Instagram: https://www.instagram.com/byoc.global

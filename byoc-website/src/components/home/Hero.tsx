@@ -119,7 +119,7 @@ function RotatingLine({ i }: { i: number }) {
   // Three fixed rows, so nothing reflows when the phrase changes:
   // the lead-in, a phrase block with a constant height, then "in City."
   return (
-    <h1 className="flex max-w-[34ch] flex-col font-display text-[clamp(38px,5.6vw,100px)] font-medium leading-[0.95] tracking-[-0.045em] text-paper">
+    <p className="flex max-w-[34ch] flex-col font-display text-[clamp(38px,5.6vw,100px)] font-medium leading-[0.95] tracking-[-0.045em] text-paper">
       <span className="text-paper/65">Coffee with someone who</span>
       <span className="block h-[2.85em] overflow-hidden sm:h-[1.9em] lg:h-[1em] lg:whitespace-nowrap">
         <Roll k={`w${i}`}>{lines[i].who}</Roll>
@@ -130,7 +130,7 @@ function RotatingLine({ i }: { i: number }) {
           <Roll k={`c${i}`} delay={0.15}>{`${lines[i].city}.`}</Roll>
         </span>
       </span>
-    </h1>
+    </p>
   );
 }
 
@@ -152,7 +152,9 @@ export default function Hero({ ribbon, ribbonHref, next }: { ribbon: string; rib
 
       {/* Masthead */}
       <div className="px-4 pt-3 sm:px-6 lg:px-10">
-        <svg viewBox="0 0 1000 96" className="rise-in block h-auto w-full text-ink" role="img" aria-label="Buy your own coffee">
+        <h1>
+          <span className="sr-only">BYOC — Buy Your Own Coffee: founders, executives and operators meeting over coffee in 21 countries</span>
+          <svg viewBox="0 0 1000 96" className="rise-in block h-auto w-full text-ink" aria-hidden="true">
           <text
             x="0"
             y="93"
@@ -164,6 +166,7 @@ export default function Hero({ ribbon, ribbonHref, next }: { ribbon: string; rib
             BUY YOUR OWN COFFEE
           </text>
         </svg>
+        </h1>
       </div>
 
       {/* Nav row */}

@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import JoinCTA from '@/components/JoinCTA';
 import GlobalMap from '@/components/GlobalMap';
+
+export const metadata: Metadata = {
+  title: 'Cities: where BYOC meets',
+  description: 'BYOC meets in Islamabad, Lahore, Karachi, Riyadh, Dubai, Doha, London, Dublin, Berlin, San Francisco, Dallas, Toronto, Kuala Lumpur, Singapore, Jakarta, Dhaka and Dar es Salaam.',
+  alternates: { canonical: '/chapters' },
+};
 
 interface Chapter {
   city: string;

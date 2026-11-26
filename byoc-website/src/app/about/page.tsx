@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import JoinCTA from '@/components/JoinCTA';
+
+export const metadata: Metadata = {
+  title: 'Manifesto: why we meet',
+  description: 'Why BYOC exists: people gather around a shared problem. Started in Islamabad in 2020 as a coffee during lockdown; now 212+ gatherings in 21 countries.',
+  alternates: { canonical: '/about' },
+};
 
 export default function AboutPage() {
   return (

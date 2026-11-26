@@ -4,7 +4,8 @@ import RollButton from '@/components/ui/RollButton';
 import { OPPORTUNITIES_UPDATED } from '@/data/opportunities';
 
 export const metadata: Metadata = {
-  title: 'Opportunities — BYOC',
+  title: 'Opportunities: senior roles, founder programmes and board seats',
+  alternates: { canonical: '/opportunities' },
   description: 'Senior roles, open calls for founders and board seats across the cities where BYOC meets. Every listing links to its source.',
 };
 
