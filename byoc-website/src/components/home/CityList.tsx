@@ -47,9 +47,9 @@ export default function CityList() {
 
       <div className="mx-auto mt-12 flex max-w-[1600px] flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-10">
         <p className="max-w-[30ch] font-display text-[clamp(24px,2.4vw,40px)] font-medium leading-[1.05] tracking-[-0.03em] text-espresso">
-          Your city isn’t here? That’s how every city started.
+          Your city isn’t on the list yet? Tell us where you are.
         </p>
-        <RollButton href="/request-meetup" size="lg">Host the first one</RollButton>
+        <RollButton href="/join" size="lg">Apply to join</RollButton>
       </div>
     </section>
   );

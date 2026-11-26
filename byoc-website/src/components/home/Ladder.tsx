@@ -5,10 +5,10 @@ import { motion, useScroll, useTransform, interpolate } from 'framer-motion';
 import { RiseWords, FadeUp } from '@/components/motion/Reveal';
 
 const rungs = [
-  { title: 'Guest', body: 'You came once and paid for your own cup.' },
-  { title: 'Regular', body: 'Someone saves you a seat.' },
-  { title: 'Host', body: 'You open the door in your city.' },
-  { title: 'City lead', body: 'You keep it open for the next stranger.' },
+  { title: 'First coffee', body: 'You’re a stranger who paid for your own cup.' },
+  { title: 'Third coffee', body: 'Someone saves you a seat.' },
+  { title: 'Tenth coffee', body: 'You’re the one making the introductions.' },
+  { title: 'A year in', body: 'Someone at that table changed your plans.' },
 ];
 
 export default function Ladder() {

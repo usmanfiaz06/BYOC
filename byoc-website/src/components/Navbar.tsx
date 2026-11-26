@@ -12,7 +12,6 @@ export const navLinks = [
   { href: '/events', label: 'Gatherings' },
   { href: '/chapters', label: 'Cities' },
   { href: '/opportunities', label: 'Opportunities' },
-  { href: '/request-meetup', label: 'Host a city' },
 ];
 
 /** Link whose underline draws in from the left and leaves to the right. */
