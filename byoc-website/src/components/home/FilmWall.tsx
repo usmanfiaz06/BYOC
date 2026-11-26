@@ -87,7 +87,7 @@ export default function FilmWall() {
   }, [open]);
 
   return (
-    <section ref={ref} className="relative h-[170vh] overflow-hidden bg-ink" aria-label="Films from BYOC gatherings">
+    <section ref={ref} className="relative h-[115vh] overflow-hidden bg-ink sm:h-[170vh]" aria-label="Films from BYOC gatherings">
       {/* The wall: taller than the section, so the drift never shows an edge */}
       <div className="absolute inset-x-0 -top-[18%] grid grid-cols-3 gap-3 px-3 md:grid-cols-5">
         {columns.map((ids, i) => (

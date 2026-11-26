@@ -53,26 +53,26 @@ export default function Footer() {
           <Wordmark className="h-12 w-auto text-espresso" />
           <p className="mt-5 max-w-[30ch] text-[15px] leading-[1.55] text-espresso/70">Started in Islamabad in 2020. Poured in 21 countries since.</p>
         </div>
-        <ul className="space-y-2.5">
+        <ul className="space-y-1">
           {navLinks.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="label text-espresso/70 transition-colors hover:text-cherry">
+              <Link href={l.href} className="label inline-block py-1.5 text-espresso/70 transition-colors hover:text-cherry">
                 {l.label}
               </Link>
             </li>
           ))}
           <li>
-            <Link href="/join" className="label text-espresso/70 transition-colors hover:text-cherry">Request an invite</Link>
+            <Link href="/join" className="label inline-block py-1.5 text-espresso/70 transition-colors hover:text-cherry">Request an invite</Link>
           </li>
         </ul>
-        <ul className="space-y-2.5">
+        <ul className="space-y-1">
           {[
             { href: 'https://instagram.com/byoc.global', label: 'Instagram' },
             { href: 'http://linkedin.com/company/byoc-global', label: 'LinkedIn' },
             { href: 'mailto:usman.fiaz@byoc.global', label: 'Email us' },
           ].map((l) => (
             <li key={l.label}>
-              <a href={l.href} target="_blank" rel="noopener noreferrer" className="label text-espresso/70 transition-colors hover:text-cherry">
+              <a href={l.href} target="_blank" rel="noopener noreferrer" className="label inline-block py-1.5 text-espresso/70 transition-colors hover:text-cherry">
                 {l.label}
               </a>
             </li>

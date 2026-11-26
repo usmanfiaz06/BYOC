@@ -20,7 +20,7 @@ export default function Receipt() {
 
   return (
     <section className="bg-paper">
-      <div className="mx-auto grid max-w-[1600px] gap-16 px-4 py-24 sm:px-6 sm:py-36 lg:grid-cols-[1.25fr_1fr] lg:px-10">
+      <div className="mx-auto grid max-w-[1600px] gap-16 px-4 py-16 sm:px-6 sm:py-36 lg:grid-cols-[1.25fr_1fr] lg:px-10">
         <div>
           <h2 className="mt-6 font-display text-[clamp(44px,6.6vw,116px)] font-medium text-espresso display-tight">
             <RiseWords text="Four dollars buys a room where nobody is selling." />
@@ -34,7 +34,7 @@ export default function Receipt() {
         </div>
 
         {/* Printer + receipt */}
-        <div ref={ref} className="relative mx-auto w-full max-w-[420px]">
+        <div ref={ref} className="relative mx-auto hidden w-full max-w-[420px] sm:block">
           <div className="relative z-10 h-6 rounded-full bg-espresso">
             <div className="absolute inset-x-6 top-1/2 h-1 -translate-y-1/2 rounded-full bg-black/60" />
           </div>

@@ -12,7 +12,7 @@ const mirrors = [
 
 export default function Thesis() {
   return (
-    <section className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-36 lg:px-10">
+    <section className="mx-auto max-w-[1600px] px-4 py-16 sm:px-6 sm:py-36 lg:px-10">
       <h2 className="mt-6 max-w-[16ch] font-display text-[clamp(44px,7.2vw,124px)] font-medium text-espresso display-tight">
         <RiseWords text="You can’t build a community." />
         <br />

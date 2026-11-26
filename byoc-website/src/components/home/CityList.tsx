@@ -9,7 +9,7 @@ import { RiseWords } from '@/components/motion/Reveal';
 /** The cities set as one run of large type, wrapping like a paragraph. */
 export default function CityList() {
   return (
-    <section className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-32 lg:px-10">
+    <section className="mx-auto max-w-[1600px] px-4 py-16 sm:px-6 sm:py-32 lg:px-10">
       <h2 className="font-display text-[clamp(44px,6.6vw,116px)] font-medium text-ink display-tight">
         <RiseWords text="Where the coffee is." />
       </h2>

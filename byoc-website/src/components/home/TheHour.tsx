@@ -66,20 +66,21 @@ export default function TheHour() {
         </div>
       </section>
 
-      {/* Phone: stacked photo cards */}
-      <section className="px-4 py-20 md:hidden">
-        <h2 className="font-display text-[48px] font-medium text-espresso display-tight">What actually happens.</h2>
-        <div className="mt-10 space-y-4">
+      {/* Phone: a swipeable row of photo cards */}
+      <section className="py-14 md:hidden">
+        <h2 className="px-4 font-display text-[44px] font-medium text-espresso display-tight">What actually happens.</h2>
+        <p className="mt-3 px-4 text-[15px] text-espresso/60">Swipe through the hour.</p>
+        <div className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2">
           {steps.map((s) => (
-            <article key={s.n} className="relative h-[70vh] overflow-hidden rounded-none bg-espresso">
-              <Image src={s.img} alt="" fill sizes="100vw" className="object-cover" />
+            <article key={s.n} className="relative h-[62vh] w-[82vw] shrink-0 snap-center overflow-hidden bg-espresso">
+              <Image src={s.img} alt="" fill sizes="82vw" className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent" />
-              <span className="absolute right-4 top-1 font-display text-[110px] font-medium leading-none tracking-[-0.06em] text-transparent" style={{ WebkitTextStroke: '1.5px rgba(251,248,242,0.75)' }} aria-hidden>
+              <span className="absolute right-4 top-1 font-display text-[96px] font-medium leading-none tracking-[-0.06em] text-transparent" style={{ WebkitTextStroke: '1.5px rgba(251,248,242,0.75)' }} aria-hidden>
                 {s.n}
               </span>
-              <div className="absolute inset-x-0 bottom-0 p-6">
-                <h3 className="font-display text-[44px] font-medium text-paper display-tight">{s.title}</h3>
-                <p className="mt-3 font-display text-[20px] font-medium leading-[1.2] text-paper/80">{s.body}</p>
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <h3 className="font-display text-[38px] font-medium text-paper display-tight">{s.title}</h3>
+                <p className="mt-3 text-[17px] font-medium leading-[1.3] text-paper/85">{s.body}</p>
               </div>
             </article>
           ))}

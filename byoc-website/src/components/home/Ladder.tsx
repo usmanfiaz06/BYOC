@@ -18,7 +18,7 @@ export default function Ladder() {
 
   return (
     <section className="border-y border-line bg-paper">
-      <div className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-36 lg:px-10">
+      <div className="mx-auto max-w-[1600px] px-4 py-16 sm:px-6 sm:py-36 lg:px-10">
         <h2 className="mt-6 max-w-[15ch] font-display text-[clamp(44px,6.6vw,116px)] font-medium text-espresso display-tight">
           <RiseWords text="Friendship takes hours." />{' '}
           <span className="text-gold">
