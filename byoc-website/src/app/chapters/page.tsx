@@ -1,6 +1,12 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
+import JoinCTA from '@/components/JoinCTA';
 import GlobalMap from '@/components/GlobalMap';
+
+export const metadata: Metadata = {
+  title: 'Cities: where BYOC meets',
+  description: 'BYOC meets in Islamabad, Lahore, Karachi, Riyadh, Dubai, Doha, London, Dublin, Berlin, San Francisco, Dallas, Toronto, Kuala Lumpur, Singapore, Jakarta, Dhaka and Dar es Salaam.',
+  alternates: { canonical: '/chapters' },
+};
 
 interface Chapter {
   city: string;
@@ -133,21 +139,7 @@ export default function ChaptersPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-28 bg-coffee-dark">
-        <div className="max-w-[680px] mx-auto px-6 lg:px-10 text-center">
-          <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-6">Start a Chapter</p>
-          <h2 className="text-[42px] sm:text-[52px] font-serif text-cream leading-[1.08] tracking-[-0.02em] mb-7">
-            Your city isn&apos;t listed yet?
-          </h2>
-          <p className="text-cream/40 text-[14px] mb-10 leading-[1.75]">
-            Bring BYOC to your city. All you need is a good coffee shop, a handful of the right people, and the willingness to create space for real conversation.
-          </p>
-          <Link href="/request-meetup" className="inline-flex items-center gap-3 px-7 py-3.5 bg-accent text-cream text-[13px] font-medium rounded-full hover:bg-accent/90 transition-colors tracking-[0.04em] uppercase">
-            Request a chapter <ArrowRight size={15} />
-          </Link>
-        </div>
-      </section>
+      <JoinCTA />
     </div>
   );
 }

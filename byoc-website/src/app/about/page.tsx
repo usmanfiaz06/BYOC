@@ -1,5 +1,11 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
+import JoinCTA from '@/components/JoinCTA';
+
+export const metadata: Metadata = {
+  title: 'Manifesto: why we meet',
+  description: 'Why BYOC exists: people gather around a shared problem. Started in Islamabad in 2020 as a coffee during lockdown; now 212+ gatherings in 21 countries.',
+  alternates: { canonical: '/about' },
+};
 
 export default function AboutPage() {
   return (
@@ -169,26 +175,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section id="partner" className="py-28 bg-coffee-dark">
-        <div className="max-w-[680px] mx-auto px-6 lg:px-10 text-center">
-          <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-6">Collaborate</p>
-          <h2 className="text-[42px] sm:text-[52px] font-serif text-cream leading-[1.08] tracking-[-0.02em] mb-7">
-            Let&apos;s build together.
-          </h2>
-          <p className="text-cream/40 text-[14px] mb-10 leading-[1.75]">
-            Whether you&apos;re an ecosystem partner, a venue host, or a community leader — we&apos;re interested in conversations about shared ambition.
-          </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/request-meetup" className="inline-flex items-center gap-3 px-7 py-3.5 bg-accent text-cream text-[13px] font-medium rounded-full hover:bg-accent/90 transition-colors tracking-[0.04em] uppercase">
-              Host a chapter <ArrowRight size={15} />
-            </Link>
-            <a href="mailto:usman.fiaz@byoc.global" className="inline-flex items-center gap-2 px-7 py-3.5 border border-cream/15 text-cream/60 text-[13px] font-medium rounded-full hover:border-cream/30 hover:text-cream transition-colors tracking-[0.04em] uppercase">
-              Get in touch
-            </a>
-          </div>
-        </div>
-      </section>
+      <JoinCTA />
     </div>
   );
 }

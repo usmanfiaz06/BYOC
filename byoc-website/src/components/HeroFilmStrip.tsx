@@ -196,11 +196,8 @@ export default function HeroFilmStrip() {
       {/* header / camera HUD */}
       <div className="relative z-[2] max-w-[1400px] mx-auto px-6 lg:px-10 mb-9 flex items-end justify-between gap-6">
         <div>
-          <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
-            <span>◆</span> On Film
-          </p>
-          <h2 className="text-[34px] sm:text-[46px] font-serif text-cream leading-[1.05] tracking-[-0.02em]">
-            Scenes from the table
+          <h2 className="font-display text-[clamp(40px,6vw,104px)] font-medium text-cream display-tight">
+            Scenes from 21 countries.
           </h2>
         </div>
         <div className="hidden sm:flex flex-col items-end gap-2 text-[10px] font-mono text-cream/40 tracking-[0.15em] uppercase pb-2">
@@ -232,9 +229,9 @@ export default function HeroFilmStrip() {
                 }`}
               >
                 <div
-                  className={`relative overflow-hidden rounded-[4px] bg-black aspect-[9/16] ${
+                  className={`relative overflow-hidden rounded-none bg-black aspect-[9/16] ${
                     isFeatured
-                      ? 'h-[420px] sm:h-[520px] lg:h-[600px] ring-2 ring-accent/50 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]'
+                      ? 'h-[420px] sm:h-[520px] lg:h-[600px] ring-2 ring-accent/50'
                       : 'h-[300px] sm:h-[380px] lg:h-[440px] ring-1 ring-cream/10'
                   }`}
                 >
@@ -349,7 +346,7 @@ export default function HeroFilmStrip() {
             <video
               ref={lightboxVideoRef}
               key={lb.src}
-              className="max-h-[84vh] max-w-[92vw] w-auto h-auto rounded-[4px] ring-1 ring-cream/15"
+              className="max-h-[84vh] max-w-[92vw] w-auto h-auto rounded-none ring-1 ring-cream/15"
               src={lb.src}
               poster={lb.poster}
               controls
