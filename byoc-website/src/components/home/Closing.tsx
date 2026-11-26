@@ -16,7 +16,7 @@ export function OpportunitiesPreview() {
             </h2>
           </div>
           <p className="max-w-[44ch] text-[18px] leading-[1.6] text-espresso/75">
-            Senior roles, open calls for founders and board seats in the cities where we meet. We don’t take money to list anything. Every item links to its source and comes down after its deadline.
+            Senior roles, open calls for founders, board seats and the latest funding news in the cities where we meet. We don’t take money to list anything. Every item links to its source and comes down after its deadline.
           </p>
         </div>
         <div className="mt-14">
