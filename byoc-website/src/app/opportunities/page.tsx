@@ -6,7 +6,7 @@ import { OPPORTUNITIES_UPDATED } from '@/data/opportunities';
 export const metadata: Metadata = {
   title: 'Opportunities: senior roles, founder programmes and board seats',
   alternates: { canonical: '/opportunities' },
-  description: 'Senior roles, open calls for founders and board seats across the cities where BYOC meets. Every listing links to its source.',
+  description: 'Senior roles, open calls for founders, board seats and the latest funding news across the cities where BYOC meets. Every listing links to its source.',
 };
 
 export default function OpportunitiesPage() {
@@ -16,7 +16,7 @@ export default function OpportunitiesPage() {
       <h1 className="mt-6 font-display text-[clamp(64px,12vw,220px)] font-medium text-espresso display-tight">What’s moving.</h1>
       <div className="mt-10 grid gap-8 md:grid-cols-[1.3fr_1fr]">
         <p className="max-w-[52ch] text-[19px] leading-[1.6] text-espresso/80">
-          Senior roles, open calls for founders and board seats across the cities where we meet. We don’t take money to list anything. Every item links to its original source and comes down after its deadline.
+          Senior roles, open calls for founders, board seats and the latest funding news across the cities where we meet. We don’t take money to list anything. Every item links to its original source and comes down after its deadline.
         </p>
         <div className="rounded-none bg-espresso p-7 text-paper">
           <p className="font-display text-[24px] font-medium leading-[1.1] tracking-[-0.02em]">Hiring?</p>
