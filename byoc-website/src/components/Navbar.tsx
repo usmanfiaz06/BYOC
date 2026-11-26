@@ -37,15 +37,23 @@ export default function Navbar() {
   const [openFor, setOpenFor] = useState<string | null>(null);
   const open = openFor === pathname;
   const setOpen = (fn: (v: boolean) => boolean) => setOpenFor(fn(open) ? pathname : null);
-  const [pastHero, setPastHero] = useState(false);
-  const scrolled = !isHome || pastHero;
+  // The compact bar stays hidden while the homepage masthead is on screen.
+  // Detected from the DOM so it also works when the site is served under a sub-path.
+  const [showBar, setShowBar] = useState(!isHome);
+  const scrolled = showBar;
 
   useEffect(() => {
-    if (!isHome) return;
-    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.55);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [isHome]);
+    const update = () => {
+      const hero = document.querySelector('[data-home-hero]');
+      setShowBar(!hero || window.scrollY > window.innerHeight * 0.55);
+    };
+    const raf = requestAnimationFrame(update);
+    window.addEventListener('scroll', update, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', update);
+    };
+  }, [pathname]);
 
   return (
     <>

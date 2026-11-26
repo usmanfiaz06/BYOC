@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 
 // Apple touch icon — Apple ignores SVGs, so render a 180×180 PNG of the BYOC
 // coffee-cup mark to match the favicon (app/icon.svg).
+export const dynamic = 'force-static';
 export const size = { width: 180, height: 180 };
 export const contentType = 'image/png';
 

@@ -101,7 +101,7 @@ export default function Hero({ ribbon, ribbonHref, next }: { ribbon: string; rib
   const imgScale = useTransform(scrollYProgress, (v: number) => interpolate([0, 1], [1.04, 1.16])(v));
 
   return (
-    <section className="-mt-16">
+    <section className="-mt-16" data-home-hero>
       <Ribbon text={ribbon} href={ribbonHref} />
 
       {/* Masthead */}
