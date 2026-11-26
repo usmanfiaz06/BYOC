@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import JoinCTA from '@/components/JoinCTA';
 import { ArrowRight } from 'lucide-react';
 
 const pastEvents = [
@@ -113,21 +113,7 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-28 bg-coffee-dark">
-        <div className="max-w-[680px] mx-auto px-6 lg:px-10 text-center">
-          <p className="text-[10px] text-accent tracking-[0.2em] uppercase mb-6">Host</p>
-          <h2 className="text-[42px] sm:text-[52px] font-serif text-cream leading-[1.08] tracking-[-0.02em] mb-7">
-            The best gathering is the one you convene.
-          </h2>
-          <p className="text-cream/40 text-[14px] mb-10 leading-[1.75]">
-            A great coffee spot and a commitment to creating space for honest conversation. That&apos;s the entire playbook.
-          </p>
-          <Link href="/request-meetup" className="inline-flex items-center gap-3 px-7 py-3.5 bg-accent text-cream text-[13px] font-medium rounded-full hover:bg-accent/90 transition-colors tracking-[0.04em] uppercase">
-            Host a gathering <ArrowRight size={15} />
-          </Link>
-        </div>
-      </section>
+      <JoinCTA />
     </div>
   );
 }
