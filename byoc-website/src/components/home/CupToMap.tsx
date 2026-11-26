@@ -67,8 +67,8 @@ function Pin({ x, y, name, i, progress, primary }: { x: number; y: number; name:
   return (
     <motion.g style={{ opacity }}>
       <motion.g style={{ scale, transformOrigin: `${x}px ${y}px` }}>
-        <circle cx={x} cy={y} r={primary ? 6 : 4} fill={primary ? '#C8231B' : '#F7F5F0'} className="pulse-ring" opacity={0.6} />
-        <circle cx={x} cy={y} r={primary ? 5.5 : 3.6} fill={primary ? '#C8231B' : '#F7F5F0'} stroke="#1A0C05" strokeWidth="1.2" />
+        <circle cx={x} cy={y} r={primary ? 6 : 4} fill={primary ? '#2340FF' : '#F7F5F0'} className="pulse-ring" opacity={0.6} />
+        <circle cx={x} cy={y} r={primary ? 5.5 : 3.6} fill={primary ? '#2340FF' : '#F7F5F0'} stroke="#1A0C05" strokeWidth="1.2" />
       </motion.g>
       {anchor && <text x={anchor === 'start' ? x + 8 : x - 8} y={y + 3.5} textAnchor={anchor} fontSize={primary ? 12 : 9.5} fill="#F7F5F0" opacity={primary ? 1 : 0.8} fontFamily="var(--font-geist-mono)" style={{ letterSpacing: '0.06em' }}>
         {name.toUpperCase()}
@@ -169,7 +169,7 @@ export default function CupToMap() {
           <motion.div style={{ opacity: outroOpacity, y: outroY }} className="absolute inset-x-0 bottom-0 z-20 px-4 pb-8 sm:px-6 lg:px-10">
             <div className="flex flex-col gap-6 border-t border-paper/20 pt-6 md:flex-row md:items-end md:justify-between">
               <h3 className="max-w-[14ch] font-display text-[clamp(32px,4.4vw,76px)] font-medium text-paper display-tight">
-                Twenty-one countries. <span className="text-gold">One habit.</span>
+                Twenty-one countries. <span className="text-sky">One habit.</span>
               </h3>
               <dl className="grid grid-cols-3 gap-6 text-paper sm:gap-10">
                 {[

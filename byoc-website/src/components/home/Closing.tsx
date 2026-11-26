@@ -41,7 +41,7 @@ export default function Closing() {
         <h2 className="max-w-[13ch] font-display text-[clamp(52px,8.4vw,150px)] font-medium display-tight">
           <RiseWords text="The hardest coffee to buy is the first one." />
         </h2>
-        <p className="mt-8 font-display text-[clamp(24px,2.6vw,42px)] font-medium tracking-[-0.03em] text-gold">After that, someone saves you a seat.</p>
+        <p className="mt-8 font-display text-[clamp(24px,2.6vw,42px)] font-medium tracking-[-0.03em] text-sky">After that, someone saves you a seat.</p>
         <div className="mt-12 flex flex-wrap gap-3">
           <RollButton href="/chapters" variant="gold" size="lg">Find your city</RollButton>
           <RollButton href="/join" variant="outline-light" size="lg">Apply to join</RollButton>

@@ -13,9 +13,10 @@
   --paper: #F7F5F0;
   --espresso: #111010;
   --ink: #0B0A09;
-  --gold: #C8231B;      /* legacy alias: accents are red now */
+  --gold: #2340FF;      /* legacy alias: accents are blue now */
   --gold-soft: #F7F5F0;
-  --cherry: #C8231B;
+  --cherry: #2340FF;    /* bright blue accent */
+  --sky: #8FA0FF;       /* the accent on dark backgrounds */
   --line: rgba(17, 16, 16, 0.16);
 
   /* legacy */
@@ -23,8 +24,8 @@
   --foreground: #111010;
   --card: #F7F5F0;
   --card-border: #D9D5CC;
-  --accent: #C8231B;
-  --accent-light: #F1D3CF;
+  --accent: #2340FF;
+  --accent-light: #D6DCFF;
   --muted: #5E5A55;
   --muted-light: #8E8983;
   --coffee-dark: #111010;
@@ -41,6 +42,7 @@
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-cherry: var(--cherry);
+  --color-sky: var(--sky);
   --color-line: var(--line);
 
   --color-background: var(--background);

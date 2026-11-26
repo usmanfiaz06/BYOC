@@ -6,7 +6,7 @@ export default function JoinCTA({ title = 'The hardest coffee to buy is the firs
     <section className="bg-ink text-paper">
       <div className="mx-auto max-w-[1600px] px-4 py-24 sm:px-6 sm:py-32 lg:px-10">
         <h2 className="max-w-[14ch] font-display text-[clamp(44px,7vw,124px)] font-medium display-tight">{title}</h2>
-        <p className="mt-6 font-display text-[clamp(22px,2.2vw,36px)] font-medium tracking-[-0.03em] text-cherry">{line}</p>
+        <p className="mt-6 font-display text-[clamp(22px,2.2vw,36px)] font-medium tracking-[-0.03em] text-sky">{line}</p>
         <div className="mt-10">
           <RollButton href="/join" variant="gold" size="lg">Join the community</RollButton>
         </div>

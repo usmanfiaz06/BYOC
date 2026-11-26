@@ -33,7 +33,7 @@ function Ribbon({ text, href }: { text: string; href?: string }) {
       {[0, 1].map((k) => (
         <div key={k} className="flex shrink-0">
           {Array.from({ length: 8 }).map((_, i) => (
-            <span key={i} className="label px-6 text-[11px] font-medium text-ink">
+            <span key={i} className="label px-6 text-[11px] font-medium text-paper">
               {text}
             </span>
           ))}

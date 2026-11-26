@@ -8,7 +8,7 @@ import { ArrowUpRight } from 'lucide-react';
 type Variant = 'dark' | 'light' | 'outline' | 'gold' | 'outline-light';
 
 const styles: Record<Variant, { base: string; fill: string; hoverText: string; dot: string }> = {
-  dark: { base: 'bg-espresso text-paper', fill: 'bg-cherry', hoverText: 'group-hover:text-espresso', dot: 'bg-paper text-espresso' },
+  dark: { base: 'bg-espresso text-paper', fill: 'bg-cherry', hoverText: 'group-hover:text-paper', dot: 'bg-paper text-espresso' },
   light: { base: 'bg-paper text-espresso', fill: 'bg-espresso', hoverText: 'group-hover:text-paper', dot: 'bg-espresso text-paper' },
   outline: { base: 'border border-espresso/80 text-espresso', fill: 'bg-espresso', hoverText: 'group-hover:text-paper', dot: 'bg-espresso text-paper' },
   'outline-light': { base: 'border border-paper/40 text-paper', fill: 'bg-paper', hoverText: 'group-hover:text-espresso', dot: 'bg-paper text-espresso' },
