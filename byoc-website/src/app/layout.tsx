@@ -48,11 +48,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "BYOC — Buy Your Own Coffee",
     locale: "en_US",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "BYOC — Buy Your Own Coffee. 212+ gatherings in 21 countries since 2020." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "BYOC — Buy Your Own Coffee",
     description: site.shortDescription,
+    images: ["/og-image.jpg"],
   },
   category: "community",
 };
